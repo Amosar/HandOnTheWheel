@@ -4,6 +4,7 @@ window.onload=function(){
 	function success(pos) {
 		var crd = pos.coords;
 	  initMap(crd)
+          navigator.geolocation.clearWatch(id);
 	}
 
 	function error(err) {
@@ -12,6 +13,7 @@ window.onload=function(){
 		longitude: -0.1275
 	  };
 	  initMap(crd)
+	  navigator.geolocation.clearWatch(id);
 	}
 
 	options = {
