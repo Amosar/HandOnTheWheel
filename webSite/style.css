@@ -265,8 +265,9 @@ footer{
 	float:left;
   display: flex;
   justify-content: center;
-	bottom:0;
-	position:absolute;
+	position:fixed;
+  bottom:0;
+  left:0;
 	color: white;
 }
 
