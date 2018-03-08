@@ -1,11 +1,113 @@
-var id;
-var locations = [];
-
+var markers = [];
 
 var defaultLocation = {
     lat: 51.507222,
     lng: -0.1275
 };
+
+function initialize() {
+    initMap();
+}
+
+function initMap() {
+    var options = {
+        enableHighAccuracy: false,
+        timeout: 5000,
+        maximumAge: 0
+    };
+    var location;
+
+    function success(pos) {
+        location = {
+            lat: pos.coords.latitude,
+            lng: pos.coords.longitude
+        };
+        displayMap();
+    }
+
+    function error() {
+        location = {
+            lat: defaultLocation.lat,
+            lng: defaultLocation.lng
+        };
+        displayMap();
+    }
+
+    function displayMap() {
+        var mapOptions = {
+            //gestureHandling: 'cooperative',
+            center: location,
+            zoom: 15
+        };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        initSearchBox();
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+}
+
+function initSearchBox() {
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    map.addListener('bounds_changed', function () {
+        searchBox.setBounds(map.getBounds());
+    });
+    searchBox.addListener('places_changed', function () {
+        var places = searchBox.getPlaces();
+        if (places.length == 0) {
+            return;
+        }
+        clearMarkers();
+
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function (place) {
+            if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+            }
+            var icon = {
+                url: "img/pinpint.png",
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+        });
+        map.fitBounds(bounds);
+    });
+}
+
+function clearMarkers(location) {
+    var length = markers.length;
+    for (var i = 0; i < length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+/*var id;
+var markers = [];
 
 function initialize() {
     var options = {
@@ -71,9 +173,67 @@ function placeMarkers(location) {
                         this.data.formatted_address + '</div>');
                     infowindow.open(map, this);
                 });
+                markers.push(marker);
             }
+            initSearchBox();
         }
+
     });
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+function initSearchBox(){
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+    });
+    searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();
+        if (places.length == 0) {
+            return;
+        }
+        clearMarkers();
+
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+            if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+            }
+            var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+        });
+        map.fitBounds(bounds);
+    });
+}
+
+function clearMarkers(location){
+    var length = markers.length;
+    for (var i = 0; i < length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+}*/
+
