@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+<title>Pin_Pints-Homepage</title>
+</head>
+
+<body>
+		<wrapper>
+			
+				
+				<header>
+					<div id="banner">
+						<img class="pinpintBanner" src="img/bg_banner.jpg" alt="missing banner">
+						<img class="brand" src="img/bg_brand.png" alt="Missing Brand">
+					</div>
+						
+					
+					<div id="navBox">
+					        
+            			<li class="nav_li"><a href="#">Home</a></li>
+		      		    <li class="nav_li"><a href="bar.html">Bars</a></li>
+              		    <li class="nav_li"><a href="about.html">About</a></li>
+              		    <li class="nav_li"><a href="contact.html">Contacts</a></li>                  		
+					
+					</div>
+										
+					<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal -->
+					<div id="register">
+					<p class="registertxt" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Register</p>
+					<p class="logintxt" onclick="document.getElementById('id01').style.display='block'">Login</p>
+					</div>
+				
+		
+
+
+			
+				</header>		
+
+
+			<!-- Register System -->
+<div id="id02" class="modal2">
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      </label>
+
+      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form>			
+			</div>			
+			
+			
+			
+	<!-- LOGIN SYSTEM --------->
+	<div id="id01" class="modal">
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+		
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img id="login_pinpintlogo" src="img/pinpint_logo.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+        
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+	  </div>
+			
+				<main>
+					<div id="Container">
+							<h1 CLASS="HEADINGMAP"> MAP AREA</h1>
+					</div>
+					
+					<div id="Boxholder">
+					
+					<div id="section_one">
+							<p class="closetome">Closest to me</p>
+					</div>
+					
+					<div id="section_two">
+						
+                        <form>
+  						<p class="findbar">	Input location of bar </p>
+  						<input type="barsearch" name="firstname" value="" id="textboxbar">
+  						<br> 						 
+ 						 <br>
+ 					 <input type="button" value="Submit" id="submitbar">
+					</form> 
+					
+						</div>
+					
+					</div>
+					
+					
+				</main>
+			
+	
+				<footer>
+					<!-- Change the footer sm postion to Center with Copyright -->
+					<div class="sm">
+						
+						<a href="https://en-gb.facebook.com/">
+						<img class="facebook" src="img/facebook.png" alt="missing facebook">
+						</a>
+						
+						<a href="https://twitter.com/Twitter?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+						<img class="twitter" src="img/twitter.png" alt="Missing twitter">
+						</a>
+						
+						<p class="copyright">&copy; Pint Pints</p>
+					
+					</div>
+				</footer>
+		
+	</wrapper>
+	<script src="js/jquery-3.1.1.js">
+</script>
+<script src="js/script.js">
+	var modal = document.getElementById('id01');
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+var modal2 = document.getElementById('id02');
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+</body>
+</html>
