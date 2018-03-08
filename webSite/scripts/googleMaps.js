@@ -1,4 +1,4 @@
-var api_key = "AIzaSyD1wu0c5kRaHUH7SvyTT8fpV01S-vFMemI"
+var api_key = "AIzaSyD1wu0c5kRaHUH7SvyTT8fpV01S-vFMemI";
 
 function getQuickLocation(success){
   //TODO Need to understand this code and improve it
@@ -11,7 +11,7 @@ function getQuickLocation(success){
       }
       success(geolocation);
     }
-  }
+  };
   xhttp.open("POST", "https://www.googleapis.com/geolocation/v1/geolocate?key=" + api_key, true);
   xhttp.send();
 }
@@ -28,11 +28,21 @@ function getPreciseLocation(success){
         lng: pos.coords.longitude
     };
     success(location);
+      $(".location-loading").hide();
   }
   function localError(err){
-    alert("Sorry we can't found your location.\nPlease check your settings")
+      console.error(err);
+      //alert("Your location could not be determined")
+
+      $('#mySmallModalLabel').modal({
+          show: true,
+          toggle: true
+
+      });
+      $(".location-loading").hide();
   }
   navigator.geolocation.getCurrentPosition(localSuccess, localError, options);
+    $(".location-loading").show();
 }
 
 function updateMap(location){
