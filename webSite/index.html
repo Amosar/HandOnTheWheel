@@ -23,34 +23,36 @@
 </head>
 
 <body>
-<wrapper>
+		<wrapper>
 
 
-    <header>
-        <div id="banner">
-            <img class="pinpintBanner" src="img/bg_banner.jpg" alt="missing banner">
-            <img class="brand" src="img/bg_brand.png" alt="Missing Brand">
-        </div>
+				<header>
+					<div id="banner">
+						<img class="pinpintBanner" src="img/bg_banner.jpg" alt="missing banner">
+						<img class="brand" src="img/bg_brand.png" alt="Missing Brand">
+					</div>
 
 
-        <div id="navBox">
+					<div id="navBox">
 
-            <li class="nav_li"><a href="#">Home</a></li>
-            <li class="nav_li"><a href="bar.html">Bars</a></li>
-            <li class="nav_li"><a href="about.html">About</a></li>
-            <li class="nav_li"><a href="contact.html">Contacts</a></li>
+            			<li class="nav_li"><a href="index.html">Home</a></li>
+		 							<li class="nav_li"><a href="bar.html">Bars</a></li>
+									<li class="nav_li"><a href="about.html">About Us</a></li>
+									<li class="nav_li"><a href="contact.html">Contact Us</a></li>
 
-        </div>
+					</div>
 
-        <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal -->
-        <div id="register">
-            <p class="registertxt" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">
-                Register</p>
-            <p class="logintxt" onclick="document.getElementById('id01').style.display='block'">Login</p>
-        </div>
+					<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal -->
+					<div id="register">
+					<p class="registertxt" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Register</p>
+					<p class="logintxt" onclick="document.getElementById('id01').style.display='block'">Login</p>
+					</div>
 
 
-    </header>
+
+
+
+				</header>
 
 
     <!-- Register System -->
@@ -86,7 +88,8 @@
                 </div>
             </div>
         </form>
-    </div>
+			</div>
+
 
 
     <!-- LOGIN SYSTEM --------->
@@ -120,60 +123,66 @@
                 <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
         </form>
-    </div>
+      </div>
+  </form>
+	  </div>
 
-    <main>
-        <div id="Container">
-
+				<main>
+					<div id="Container">
             <div id="map"></div>
             <div class="location-loading">
                 <div class="ball"></div>
                 <div class="ball1"></div>
             </div>
-        </div>
+					</div>
 
-        <div id="Boxholder">
+					<div id="Boxholder">
 
-            <div id="section_one">
-                <p class="closetome">Closest to me</p>
-            </div>
+					<div id="section_one">
+							<p class="closetome">Closest to me</p>
+					</div>
 
-            <div id="section_two">
+					<div id="section_two">
 
-                <form>
-                    <p class="findbar"> Input location of bar </p>
-                    <input type="barsearch" name="firstname" value="" id="textboxbar">
-                    <br>
-                    <br>
-                    <input type="button" value="Submit" id="submitbar">
-                </form>
+                        <form>
+  						<p class="findbar">	Input location of bar </p>
+  						<input type="barsearch" name="firstname" value="" id="textboxbar">
+  						<br>
+ 						 <br>
+ 					 <input type="button" value="Submit" id="submitbar">
+					</form>
 
-            </div>
+						</div>
 
-        </div>
-
-
-    </main>
+					</div>
 
 
-    <footer>
-        <!-- Change the footer sm postion to Center with Copyright -->
-        <div class="sm">
+				</main>
 
-            <a href="https://en-gb.facebook.com/">
-                <img class="facebook" src="img/facebook.png" alt="missing facebook">
-            </a>
 
-            <a href="https://twitter.com/Twitter?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
-                <img class="twitter" src="img/twitter.png" alt="Missing twitter">
-            </a>
+				<footer class="footer">
+					<container class="sm">
 
-            <p class="copyright">&copy; Pint Pints</p>
 
-        </div>
-    </footer>
+						<a class="facebook" href="https://en-gb.facebook.com">
+						<img class="facebook" src="img/facebook.png" alt="missing facebook">
+						</a>
+						<a class="twitter" href="https://twitter.com/Twitter?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+						<img class="twitter" src="img/twitter.png" alt="Missing twitter">
+						</a>
 
-</wrapper>
+<p id="contact">1 Test Street | Aberdeen | AB87 ER2  &#8226;
+	contact@pinpints.com</p>
+
+						</container>
+
+						<p class="copyright">
+						&copy; 2018 Copyright: PinPints
+					</p>
+
+				</footer>
+
+	</wrapper>
 <script>
     var modal = document.getElementById('id01');
     // When the user clicks anywhere outside of the modal, close it
@@ -188,7 +197,7 @@
         if (event.target == modal) {
             modal.style.display = "none";
         }
-    }
+    };
 </script>
 </body>
 </html>
