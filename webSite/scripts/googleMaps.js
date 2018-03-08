@@ -30,15 +30,11 @@ function getPreciseLocation(success){
     success(location);
       $(".location-loading").hide();
   }
+
+    //TODO better error for user
   function localError(err){
-      console.error(err);
-      //alert("Your location could not be determined")
-
-      $('#mySmallModalLabel').modal({
-          show: true,
-          toggle: true
-
-      });
+      console.warn(err);
+      alert("Your location could not be determined\n" + err.message);
       $(".location-loading").hide();
   }
   navigator.geolocation.getCurrentPosition(localSuccess, localError, options);
