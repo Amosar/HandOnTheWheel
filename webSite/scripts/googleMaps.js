@@ -65,7 +65,8 @@ function placeMarkers(location) {
     var request = {
         location: location,
         radius: '5000',
-        types: ['bar']
+        type: ['bar'],
+        keyword: ['pub', 'bar', 'beer']
     };
     var infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);

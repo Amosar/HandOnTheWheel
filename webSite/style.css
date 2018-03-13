@@ -260,15 +260,19 @@ input[type=submit]:hover {
 
 footer{
 	width: 100%;
-	height: 100px;
-	background-color: black;
+	height: 70px;
+	background-color: #1f1f1f;
 	float:left;
-  display: flex;
+  display: block;
   justify-content: center;
-	position:fixed;
   bottom:0;
   left:0;
 	color: white;
+	display:inline
+}
+
+#contact{
+	display:inline;
 }
 
 .sm{
@@ -293,7 +297,11 @@ footer{
 }
 .copyright{
 	font-size: 12px;
-	padding-left: 5px;
+	padding-top: 5px;
+	padding-right: 5px;
+	display: inline;
+	position: absolute;
+	right: 0px;
 }
 
 .cr_text{
@@ -544,4 +552,3 @@ span.psw {
     background-color: red;
 
 }
-
