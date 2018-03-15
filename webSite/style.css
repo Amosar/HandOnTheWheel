@@ -1,10 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
-
 body{
 	margin: 0;
 	padding: 0;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	background-color:#CCCCCC;
 }
 
@@ -14,114 +12,118 @@ wrapper{
 }
 header{
 	width: 100%;
-	height: 100px;
+	height: 4.375em; */
 	/*background-color: #2A5EC5; */
 }
 #banner{
 	width: 100%;
-	height: 100px;
+	background-image:url('img/bg_banner.jpg');
+	font-family: 'Shrikhand', cursive;
+	color: white;
+}
+#bannerText{
+	position:absolute;
+	top:0.2em;
+	left:2em;
+	font-size: 3.125em;
 }
 .pinpintBanner{
 	width: 100%;
-	height: 100px;
+	height: 6.25em;
+	vertical-align: top;
+}
+
+.navbar{
+	width: 100%;
+	height: auto;
+	padding-bottom: 0.625em;
+	position: fixed;
+}
+
+.navbar a:hover {
+	background: #696969;
 }
 
 
 .brand{
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    z-index: 1;
-	width: 350px;
-	height: 50px;
+	position: absolute;
+	left: 0.625em;
+	top: 0.625em;
+	z-index: 1;
+	width: 5em;
+	height: 5em;
 }
 
 
 #navBox{
-	width: 470px;
+	width: 29.375em;
 	height: auto;
 	/*background-color: #F0F;*/
 	position: absolute;
-    right: 3px;
-    top: 50px;
-    z-index: 1;
+	right: 0.188em;
+	top: 3.125em;
+	z-index: 1;
 
 }
 .nav_li{
-		list-style-type:none;
-		display:inline-block;
-		margin-top:2%;
-		margin-left:10%;
+	list-style-type:none;
+	display:inline-block;
+	margin-top:2%;
+	margin-left:10%;
 }
 .nav_li a{
 	text-decoration:none;
 	color:#fff;
-	font-size:20px;
+	font-size:1.25em;
 	font-weight: 600;
 }
 .nav_li a:hover{
-	border-bottom: 2px solid #FFF;
+	border-bottom: 0.125em solid #FFF;
 }
 
 #register{
 	position: absolute;
-    right: 3px;
-    top: 10px;
-	width: 150px;
+	right: 0.625em;
+	top: 0.625em;
+	width: auto;
 	height: auto;
 	/*background-color: #0F0; */
 	list-style-type:none;
-	display:inline-block;
+	display:inline;
 }
 .registertxt, .logintxt{
-	float: left;
 	margin: 0 5% 0 5%;
-	font-size: 20px;
+	font-size: 1.2em;
 	color: white;
+	text-align: right;
 }
 .registertxt:hover{
-	opacity: 0.5;
+	background: #696969;
 	cursor: pointer;
-	border-bottom: 3px solid #FFF;
 }
 .logintxt:hover{
-	opacity: 0.5;
+	background: #696969;
 	cursor: pointer;
-	border-bottom: 3px solid #FFF;
 }
 
 
 main{
 	width: 100%;
 	height: auto;
-/*	background-color: #00FF00; */
+	/*	background-color: #00FF00; */
 	float: left;
 }
-#section_one{
-	width: 100%;
-	height: 300px;
-	float: left;
-/*	background-color: #F00;*/
-	border: solid #000000 1px;
-}
-#section_two{
-	width: 100%;
-	height: 300px;
-	float: left;
-/*	background-color: #00FF00;*/
-	border: solid #000000 1px;
-}
+/*
 #Boxholder{
-	width: 20%;
+	width: 15%;
 	height: auto;
-	/*background-color: #00F; */
-}
+} */
 #Container{
-	width: 75%;
-	height: 603px;
+	width: 100%;
+	height: 500px;
 	/*background-color: #00F; */
 	float: right;
-	border: solid #000000 1px;
+	border: solid #000000 0.063em;
 }
 
 .HEADINGMAP{
@@ -131,24 +133,36 @@ main{
 }
 #overlay{
 	width: 75%;
-	height: 600px;
+	height: 37.5em;
 	background:rgba(107, 107, 107, 1);
 	position: absolute;
 	z-index: -1;
-	left: 480px;
-    top: 100px;
+	left: 30em;
+	top: 6.25em;
 }
+
+#searchfunction {
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    width:100px;
+    height:30px;
+}
+
 .closetome{
-	color: blue;
-	text-align: center;
-	margin-top: 30%;
-	font-size: 24px;
-	cursor: pointer;
+		/* background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 .findbar{
 	float:left;
 	margin: 10% 0 0 15%;
-	font-size: 20px;
+	font-size: 1.25em;
 	/*background-color:#0CF; */
 	width:70%;
 }
@@ -162,33 +176,33 @@ main{
 }
 
 #aboutbox{
-	width:450px;
+	width:28.125em;
 	height:auto;
 	/*background-color:#0000FF;*/
 	float:left;
-	margin: 30px 0 0 10px;
+	margin: 1.875em 0 0 0.625em;
 }
 .abouttxt{
 	color:#000000;
-	padding: 0 15px 0 15px;
+	padding: 0 0.938em 0 0.938em;
 }
 #aboutimgholder{
-	width: 250px;
-	height: 520px;
+	width: 15.625em;
+	height: 32.5em;
 	float:left;
 }
 .aboutbox_images{
-	width: 250px;
-	height: 250px;
+	width: 15.625em;
+	height: 15.625em;
 	float:left;
-	margin:45px 0 0 60px;
+	margin:2.813em 0 0 3.75em;
 	/*background-color:#00FF00; */
 
 }
 .barimage1{
 	width:100%;
 	height:auto;
-	border-radius:20px;
+	border-radius:1.25em;
 }
 .barimage1:hover{
 	opacity:0.5;
@@ -196,77 +210,77 @@ main{
 }
 
 #formholder{
-	width: 500px;
+	width: 31.25em;
 	height: auto;
 	float: left;
-	margin-left: 15px;
-	margin-top: 50px;
+	margin-left: 0.938em;
+	margin-top: 3.125em;
 	/*background-color:#336699; */
 }
 
 input[type=text], select, #subject {
-    width: 450px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 6px;
+	width: 28.125em;
+	padding: 1.25em;
+	border: 0.063em solid #ccc;
+	border-radius: 0.25em;
+	box-sizing: border-box;
+	margin-top: 0.375em;
+	margin-bottom: 0.375em;
 }
 /* Style the submit button with a specific background color etc */
 input[type=reset] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+	background-color: #4CAF50;
+	color: white;
+	padding: 0.75em 1.25em;
+	border: none;
+	border-radius: 0.25em;
+	cursor: pointer;
 }
 input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 10px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+	background-color: #4CAF50;
+	color: white;
+	padding: 0.75em 0.625em 0.75em;
+	border: none;
+	border-radius: 0.25em;
+	cursor: pointer;
 }
 #submitform{
-	width:80px;
+	width:5em;
 	text-align:center;
 }
 /* When moving the mouse over the submit button, add a darker green color */
 input[type=submit]:hover {
-    background-color: #45a049;
+	background-color: #45a049;
 }
 
 /* Add a background color and some padding around the form */
 .container-contacts {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 10px;
+	border-radius: 0.313em;
+	background-color: #f2f2f2;
+	padding: 0.625em;
 
 }
 #sent{
-	width:300px;
+	width:18.75em;
 	height:auto;
 	/*background:#0000FF; */
 	display:none;
 }
 .sented{
-	font-size:20px;
+	font-size:1.25em;
 	display:none;
 	cursor:pointer;
 }
 
 footer{
 	width: 100%;
-	height: 70px;
+	height: 4.375em;
 	background-color: #1f1f1f;
 	float:left;
-  display: block;
-  justify-content: center;
-  bottom:0;
-  left:0;
+	display: block;
+	justify-content: center;
+	bottom:0;
+	left:0;
 	color: white;
 	display:inline
 }
@@ -282,9 +296,9 @@ footer{
 	width: 100%;
 }
 .facebook,.twitter{
-	width: 50px;
-	height: 50px;
-	margin: 5px 5px 0px;
+	width: 3.125em;
+	height: 3.125em;
+	margin: 0.313em 0.313em 0em;
 	text-decoration: none;
 }
 .facebook:hover{
@@ -296,12 +310,12 @@ footer{
 	cursor: pointer;
 }
 .copyright{
-	font-size: 12px;
-	padding-top: 5px;
-	padding-right: 5px;
+	font-size: 0.75em;
+	padding-top: 0.313em;
+	padding-right: 0.313em;
 	display: inline;
 	position: absolute;
-	right: 0px;
+	right: 0em;
 }
 
 .cr_text{
@@ -312,138 +326,138 @@ footer{
 /****************************************************************/
 /* Full-width input fields */
 input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+	width: 100%;
+	padding: 0.75em 1.25em;
+	margin: 0.5em 0;
+	display: inline-block;
+	border: 0.063em solid #ccc;
+	box-sizing: border-box;
 }
 
 /* Set a style for all buttons */
 button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 0.875em 1.25em;
+	margin: 0.5em 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
 }
 
 button:hover {
-    opacity: 0.8;
+	opacity: 0.8;
 }
 
 /* Extra styles for the cancel button */
 .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
+	width: auto;
+	padding: 0.625em 1.125em;
+	background-color: #f44336;
 }
 
 /* Center the image and position the close button */
 .imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
+	text-align: center;
+	margin: 1.5em 0 0.75em 0;
+	position: relative;
 }
 
 img.avatar {
-    width: 40%;
-    border-radius: 50%;
+	width: 40%;
+	border-radius: 50%;
 }
 
 .container {
-    padding: 16px;
+	padding: 1em;
 }
 
 span.psw {
-    float: right;
-    padding-top: 16px;
+	float: right;
+	padding-top: 1em;
 }
 
 /* The Modal (background) */
 .modal{
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: hidden; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 40px;
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: hidden; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	padding-top: 2.5em;
 }
 .modal2{
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: hidden; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 40px;
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: hidden; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	padding-top: 2.5em;
 }
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+	background-color: #fefefe;
+	margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+	border: 0.063em solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
 }
 .modal-content2 {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+	background-color: #fefefe;
+	margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+	border: 0.063em solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
 .close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 40px;
-    font-weight: bold;
+	position: absolute;
+	right: 1.563em;
+	top: 0;
+	color: #000;
+	font-size: 2.5em;
+	font-weight: bold;
 }
 .close:hover,
 .close:focus {
-    color: red;
-    cursor: pointer;
+	color: red;
+	cursor: pointer;
 }
 
 /* Add Zoom Animation */
 .animate {
-    -webkit-animation: animatezoom 1.0s;
-    animation: animatezoom 1.0s
+	-webkit-animation: animatezoom 1.0s;
+	animation: animatezoom 1.0s
 }
 
 @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)}
-    to {-webkit-transform: scale(1)}
+	from {-webkit-transform: scale(0)}
+	to {-webkit-transform: scale(1)}
 }
 
 @keyframes animatezoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
+	from {transform: scale(0)}
+	to {transform: scale(1)}
 }
 
 /* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
+@media screen and (max-width: 18.75em) {
+	span.psw {
+		display: block;
+		float: none;
+	}
+	.cancelbtn {
+		width: 100%;
+	}
 }
 #login_pinpintlogo{
 	width: 20%;
@@ -451,104 +465,104 @@ span.psw {
 }
 
 /*#blursignin{
-	width: 100%;
-	height: 100vh;
-	background-color: #000000;
-	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
-    -webkit-filter: url(#blur-filter);
-    filter: url(#blur-filter);
-    -webkit-filter: blur(3px);
-    filter: blur(3px);
-	display: hidden;
+width: 100%;
+height: 100vh;
+background-color: #000000;
+filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+-webkit-filter: url(#blur-filter);
+filter: url(#blur-filter);
+-webkit-filter: blur(0.188em);
+filter: blur(0.188em);
+display: hidden;
 }*/
 #map {
-  height: 100%;
-  width: 100%;
+	height: 100%;
+	width: 100%;
 
 }
 
 .location-loading {
-    display: none;
-    position: relative;
-    top: -50%;
+	display: none;
+	position: relative;
+	top: -50%;
 }
 
 .ball {
-    background-color: rgba(0, 0, 0, 0);
-    border: 5px solid rgba(0, 183, 229, 0.9);
-    opacity: .9;
-    border-top: 5px solid rgba(0, 0, 0, 0);
-    border-left: 5px solid rgba(0, 0, 0, 0);
-    border-radius: 50px;
-    box-shadow: 0 0 35px #2187e7;
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;
-    -moz-animation: spin .5s infinite linear;
-    -webkit-animation: spin .5s infinite linear;
+	background-color: rgba(0, 0, 0, 0);
+	border: 0.313em solid rgba(0, 183, 229, 0.9);
+	opacity: .9;
+	border-top: 0.313em solid rgba(0, 0, 0, 0);
+	border-left: 0.313em solid rgba(0, 0, 0, 0);
+	border-radius: 3.125em;
+	box-shadow: 0 0 2.188em #2187e7;
+	width: 3.125em;
+	height: 3.125em;
+	margin: 0 auto;
+	-moz-animation: spin .5s infinite linear;
+	-webkit-animation: spin .5s infinite linear;
 }
 
 .ball1 {
-    background-color: rgba(0, 0, 0, 0);
-    border: 5px solid rgba(0, 183, 229, 0.9);
-    opacity: .9;
-    border-top: 5px solid rgba(0, 0, 0, 0);
-    border-left: 5px solid rgba(0, 0, 0, 0);
-    border-radius: 50px;
-    box-shadow: 0 0 15px #2187e7;
-    width: 30px;
-    height: 30px;
-    margin: 0 auto;
-    position: relative;
-    top: -40px;
-    -moz-animation: spinoff .5s infinite linear;
-    -webkit-animation: spinoff .5s infinite linear;
+	background-color: rgba(0, 0, 0, 0);
+	border: 0.313em solid rgba(0, 183, 229, 0.9);
+	opacity: .9;
+	border-top: 0.313em solid rgba(0, 0, 0, 0);
+	border-left: 0.313em solid rgba(0, 0, 0, 0);
+	border-radius: 3.125em;
+	box-shadow: 0 0 0.938em #2187e7;
+	width: 1.875em;
+	height: 1.875em;
+	margin: 0 auto;
+	position: relative;
+	top: -2.5em;
+	-moz-animation: spinoff .5s infinite linear;
+	-webkit-animation: spinoff .5s infinite linear;
 }
 
 @-moz-keyframes spin {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
+	0% {
+		-moz-transform: rotate(0deg);
+	}
 
-    100% {
-        -moz-transform: rotate(360deg);
-    }
+	100% {
+		-moz-transform: rotate(360deg);
+	}
 }
 
 @-moz-keyframes spinoff {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
+	0% {
+		-moz-transform: rotate(0deg);
+	}
 
-    100% {
-        -moz-transform: rotate(-360deg);
-    }
+	100% {
+		-moz-transform: rotate(-360deg);
+	}
 }
 
 @-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
 
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
 }
 
 @-webkit-keyframes spinoff {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
 
-    100% {
-        -webkit-transform: rotate(-360deg);
-    }
+	100% {
+		-webkit-transform: rotate(-360deg);
+	}
 }
 
 .map-error {
-    top: -50%;
-    width: 5%;
-    position: relative;
-    background-color: red;
+	top: -50%;
+	width: 5%;
+	position: relative;
+	background-color: red;
 
 }
