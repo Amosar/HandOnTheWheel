@@ -456,6 +456,8 @@ display: hidden;
 .searchfunction{
 	position: relative;
 	top: -100%;
+	display: inline;
+	margin: 10px;
 }
 
 .location-loading {
