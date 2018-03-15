@@ -97,7 +97,7 @@
             <p>Please fill in this form to create an account.</p>
             <hr>
             <label for="register-email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" id="register-email" autocomplete="email"
+            <input type="email" placeholder="Enter Email" name="email" id="register-email" autocomplete="email"
             required>
 
             <label for="register-psw"><b>Password</b></label>
@@ -137,7 +137,7 @@
 
         <div class="container">
           <label for="login-email"><b>Email</b></label>
-          <input type="text" placeholder="Enter your email" name="email" id="login-email" autocomplete="email"
+          <input type="email" placeholder="Enter your email" name="email" id="login-email" autocomplete="email"
           required>
 
           <label for="login-psw"><b>Password</b></label>
@@ -162,27 +162,20 @@
 </div>
 
 <main>
-  <div id="Container">
-    <div id="map">
-    </div>
+  <div id="container">
+    <div id="map"></div>
     <div class="location-loading">
       <div class="ball"></div>
       <div class="ball1"></div>
-      <div class="searchfunction">
-        <button type= "button" class="closetome">Nearby Search</button>
-
-        <form>
-          <!-- <p class="findbar">Input location of bar</p> -->
-          <input type="text" placeholder="Enter a Location" name="search" id="searhbar">
-          <br>
-          <br>
-          <input type="button" value="Submit" id="submitbar">
-        </form>
-
-      </div>
+    </div>
+    <div class="searchfunction">
+      <form>
+        <input type="text" placeholder="Enter a Location" name="search" id="searhbar"/>
+        <input type="submit" value="Search" id="submitbar"/>
+        <input type="button" class="closetome" value="Nearby Search">
+      </form>
     </div>
   </div>
-
 </main>
 
 <footer class="footer">
