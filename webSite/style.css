@@ -130,16 +130,6 @@ header{
 		top: 6.25em;
 	}
 
-	.closetome{
-		/* background-color: #4CAF50; /* Green */
-		border: none;
-		color: white;
-		padding: 15px 32px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-	}
 	.findbar{
 		float:left;
 		margin: 10% 0 0 15%;
@@ -269,7 +259,7 @@ header{
 		width: 100%;
 	}
 
-	button:hover {
+button:hover {
 		opacity: 0.8;
 	}
 
@@ -388,18 +378,6 @@ header{
 		height: auto;
 	}
 
-	/*#blursignin{
-	width: 100%;
-	height: 100vh;
-	background-color: #000000;
-	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
-	-webkit-filter: url(#blur-filter);
-	filter: url(#blur-filter);
-	-webkit-filter: blur(0.188em);
-	filter: blur(0.188em);
-	display: hidden;
-	}*/
-
 	.location-loading {
 		display: none;
 		position: relative;
@@ -483,5 +461,4 @@ header{
 		width: 5%;
 		position: relative;
 		background-color: red;
-
 	}
