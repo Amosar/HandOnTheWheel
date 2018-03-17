@@ -64,8 +64,8 @@ function updateMap(location) {
 function placeMarkers(location) {
     var request = {
         location: location,
-        radius: '5000',
-        types: ['bar']
+        radius: '2000',
+        type: ['bar']
     };
     var infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);

@@ -1,89 +1,114 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
+	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
-<title>Pin_Pints-Bars</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+	<title>Pin Pints | Bars</title>
 </head>
 
 <body>
-		<wrapper>
-				<header>
-					<div id="banner">
-						<img class="pinpintBanner" src="img/bg_banner.jpg" alt="missing banner">
-						<img class="brand" src="img/bg_brand.png" alt="Missing Brand">
-					</div>
+		<div id=banner>
+			<header>
+				<div>
+					<a href="index.html"><img src="img/pinpint.png" class="brand" alt=""></a>
+					<div id="bannerText">PinPints</div>
+				</div>
+
+				<!-- <div id="navBox">
+
+				<li class="nav_li"><a href="index.html">Home</a></li>
+				<li class="nav_li"><a href="bar.html">Bars</a></li>
+				<li class="nav_li"><a href="about.html">About Us</a></li>
+				<li class="nav_li"><a href="contact.html">Contact Us</a></li>
+
+			</div> -->
+			<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal -->
+			<div id="register">
+				<p class="registertxt" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Register</p>
+				<p class="logintxt" onclick="document.getElementById('id01').style.display='block'">Login</p>
+			</div>
+
+		</header>
+		<nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.html">Home</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="bar.html">My Bars<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="about.html">About</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="contact.html">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+<div class="wrapper">
+	<!-- <main>
+	<div id="Container">
+	<div id="overlay">
+	<h1 CLASS="HEADINGMAP"> No Access</h1>
+</div>
+</div>
+
+<div id="Boxholder">
+
+<div id="section_one">
+<p class="closetome">Closest to me</p>
+</div>
+
+<div id="section_two">
+<form>
+<p class="findbar">	Input location of bar </p>
+<input type="barsearch" name="firstname" value="" id="textboxbar">
+<br>
+<br>
+<input type="button" value="Submit" id="submitbar">
+</form>
+
+</div>
+
+</div>
 
 
-					<div id="navBox">
-
-						            			<li class="nav_li"><a href="index.html">Home</a></li>
-								      		    <li class="nav_li"><a href="bar.html">Bars</a></li>
-															<li class="nav_li"><a href="about.html">About Us</a></li>
-															<li class="nav_li"><a href="contact.html">Contact Us</a></li>
-
-					</div>
-
-					<div id="register">
-					<p class="registertxt">Register</p>
-					<p class="logintxt">Login</p>
-					</div>
+</main> -->
 
 
-				</header>
+<footer class="footer">
+	<div class="sm">
+		<a class="facebook" href="https://en-gb.facebook.com">
+			<img class="facebook" src="img/facebook.png" alt="missing facebook">
+		</a>
+		<a class="twitter" href="https://twitter.com/Twitter?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+			<img class="twitter" src="img/twitter.png" alt="Missing twitter">
+		</a>
 
-				<main>
-					<div id="Container">
-						<div id="overlay">
-							<h1 CLASS="HEADINGMAP"> No Access</h1>
-							</div>
-					</div>
-
-					<div id="Boxholder">
-
-					<div id="section_one">
-							<p class="closetome">Closest to me</p>
-					</div>
-
-					<div id="section_two">
-						 <form>
-  						<p class="findbar">	Input location of bar </p>
-  						<input type="barsearch" name="firstname" value="" id="textboxbar">
-  						<br>
- 						 <br>
- 					 <input type="button" value="Submit" id="submitbar">
-					</form>
-
-						</div>
-
-					</div>
+		<p id="contact">1 Test Street | Aberdeen | AB87 ER2  &#8226;
+			contact@pinpints.com</p>
 
 
-				</main>
+			<p class="copyright">
+				2018 &copy; Copyright: PinPints
+			</p>
 
+		</div>
 
-				<footer class="footer">
-					<container class="sm">
+	</footer>
 
-
-						<a class="facebook" href="https://en-gb.facebook.com">
-						<img class="facebook" src="img/facebook.png" alt="missing facebook">
-						</a>
-						<a class="twitter" href="https://twitter.com/Twitter?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
-						<img class="twitter" src="img/twitter.png" alt="Missing twitter">
-						</a>
-
-<p id="contact">1 Test Street | Aberdeen | AB87 ER2  &#8226;
-	contact@pinpints.com</p>
-
-						</container>
-
-						<p class="copyright">
-						© 2018 Copyright: PinPints
-					</p>
-
-				</footer>
-
-		</wrapper>
+</div>
 </body>
 </html>

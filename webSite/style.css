@@ -1,547 +1,316 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+
 @charset "utf-8";
 /* CSS Document */
 
 body{
 	margin: 0;
 	padding: 0;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	background-color:#CCCCCC;
 }
 
-wrapper{
-	width: 100%;
-	height: auto;
-}
+/* set the header */
 header{
 	width: 100%;
-	height: 100px;
-	/*background-color: #2A5EC5; */
+	height: 4.375em; */
 }
+
+.wrapper{
+	font-family: 'Work Sans', sans-serif;
+	margin: 0 auto;
+}
+
+/* banner background and text properties */
 #banner{
 	width: 100%;
-	height: 100px;
+	background-image:url('img/bg_banner.jpg');
+	font-family: 'Shrikhand', cursive;
+	color: white;
 }
-.pinpintBanner{
-	width: 100%;
-	height: 100px;
-}
-
-
-.brand{
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    z-index: 1;
-	width: 350px;
-	height: 50px;
+#bannerText{
+	position:absolute;
+	top:0.2em;
+	left:2em;
+	font-size: 3.125em;
 }
 
+/*resize text if screen too small*/
+@media (max-width: 500px) {
+	#bannerText{font-size: 2em;
+		position:absolute;
+		top:0.4em;
+		left:3em;}
+	}
 
-#navBox{
-	width: 470px;
-	height: auto;
-	/*background-color: #F0F;*/
-	position: absolute;
-    right: 3px;
-    top: 50px;
-    z-index: 1;
+	/* position of banner */
+	.pinpintBanner{
+		width: 100%;
+		height: 5em;
+		vertical-align: top;
+	}
 
-}
-.nav_li{
+	/*set navbar postion */
+	.navbar{
+		width: 100%;
+		height: auto;
+		padding-bottom: 0.625em;
+		position: fixed;
+	}
+
+	.navbar-nav {
+		font-family: 'Work Sans', sans-serif;
+		font-size: 1.2em;
+		font-weight:bold;
+	}
+
+	.navbar a:hover {
+		background: #696969;
+	}
+
+	/*set logo size */
+	.brand{
+		position: absolute;
+		left: 0.625em;
+		top: 0.625em;
+		z-index: 1;
+		width: 5em;
+		height: 5em;
+	}
+
+	#register{
+		position: absolute;
+		right: 0.625em;
+		top: 0.625em;
+		width: auto;
+		height: auto;
 		list-style-type:none;
-		display:inline-block;
-		margin-top:2%;
-		margin-left:10%;
-}
-.nav_li a{
-	text-decoration:none;
-	color:#fff;
-	font-size:20px;
-	font-weight: 600;
-}
-.nav_li a:hover{
-	border-bottom: 2px solid #FFF;
-}
+		display:inline;
+	}
+	.registertxt, .logintxt{
+		margin: 0 5% 0 5%;
+		font-size: 1.2em;
+		color: white;
+		text-align: right;
+		text-decoration: none;
+		font-family: 'Work Sans', sans-serif;
+		font-weight:bold;
+	}
+	.registertxt:hover,.logintxt:hover{
+		background: #696969;
+		cursor: pointer;
+		text-decoration: none;
+	}
 
-#register{
-	position: absolute;
-    right: 3px;
-    top: 10px;
-	width: 150px;
-	height: auto;
-	/*background-color: #0F0; */
-	list-style-type:none;
-	display:inline-block;
-}
-.registertxt, .logintxt{
-	float: left;
-	margin: 0 5% 0 5%;
-	font-size: 20px;
-	color: white;
-}
-.registertxt:hover{
-	opacity: 0.5;
-	cursor: pointer;
-	border-bottom: 3px solid #FFF;
-}
-.logintxt:hover{
-	opacity: 0.5;
-	cursor: pointer;
-	border-bottom: 3px solid #FFF;
-}
+	/* main pages css */
+	main{
+		width: 100%;
+		height: auto;
+		float: left;
+		margin: 0;
+		padding: 0;
+	}
 
+	/* set width and height of main content */
+	#container{
+		width: 100%;
+		height: 75%;
+		position: absolute;
+	}
 
-main{
-	width: 100%;
-	height: auto;
-/*	background-color: #00FF00; */
-	float: left;
-}
-#section_one{
-	width: 100%;
-	height: 300px;
-	float: left;
-/*	background-color: #F00;*/
-	border: solid #000000 1px;
-}
-#section_two{
-	width: 100%;
-	height: 300px;
-	float: left;
-/*	background-color: #00FF00;*/
-	border: solid #000000 1px;
-}
-#Boxholder{
-	width: 20%;
-	height: auto;
-	/*background-color: #00F; */
-}
-#Container{
-	width: 75%;
-	height: 603px;
-	/*background-color: #00F; */
-	float: right;
-	border: solid #000000 1px;
-}
+	/* google maps display */
+	#map {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		z-index: initial;
+	}
 
-.HEADINGMAP{
-	text-align: center;
-	margin-top:15%;
-	color: #000;
-}
-#overlay{
-	width: 75%;
-	height: 600px;
-	background:rgba(107, 107, 107, 1);
-	position: absolute;
-	z-index: -1;
-	left: 480px;
-    top: 100px;
-}
-.closetome{
-	color: blue;
-	text-align: center;
-	margin-top: 30%;
-	font-size: 24px;
-	cursor: pointer;
-}
-.findbar{
-	float:left;
-	margin: 10% 0 0 15%;
-	font-size: 20px;
-	/*background-color:#0CF; */
-	width:70%;
-}
-#submitbar{
-	cursor: pointer;
-	margin-left: 35%;
-}
-#textboxbar{
-	margin-left: 20%;
-	margin-top:5%;
-}
+	/*search features over google map */
+	.searchfunction{
+		position: absolute;
+		z-index: 1;
+		display: inline;
+		margin: 10px;
+	}
 
-#aboutbox{
-	width:450px;
-	height:auto;
-	/*background-color:#0000FF;*/
-	float:left;
-	margin: 30px 0 0 10px;
-}
-.abouttxt{
-	color:#000000;
-	padding: 0 15px 0 15px;
-}
-#aboutimgholder{
-	width: 250px;
-	height: 520px;
-	float:left;
-}
-.aboutbox_images{
-	width: 250px;
-	height: 250px;
-	float:left;
-	margin:45px 0 0 60px;
-	/*background-color:#00FF00; */
+	.HEADINGMAP{
+		text-align: center;
+		margin-top:15%;
+		color: #000;
+	}
+	#overlay{
+		width: 75%;
+		height: 37.5em;
+		background:rgba(107, 107, 107, 1);
+		position: absolute;
+		z-index: -1;
+		left: 30em;
+		top: 6.25em;
+	}
 
-}
-.barimage1{
-	width:100%;
-	height:auto;
-	border-radius:20px;
-}
-.barimage1:hover{
-	opacity:0.5;
-	cursor:pointer;
-}
+	/* style for about us page */
+	#aboutbox{
+		width:auto;
+		height:auto;
+		/*background-color:#0000FF;*/
+		float:left;
+		margin: 2em;
+		text-align: justify;
+	}
 
-#formholder{
-	width: 500px;
-	height: auto;
-	float: left;
-	margin-left: 15px;
-	margin-top: 50px;
-	/*background-color:#336699; */
-}
+	/* contact us form styles */
+	.contactus{
+		width: 70%;
+		padding: 1em;
+	}
 
-input[type=text], select, #subject {
-    width: 450px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 6px;
-}
-/* Style the submit button with a specific background color etc */
-input[type=reset] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 10px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-#submitform{
-	width:80px;
-	text-align:center;
-}
-/* When moving the mouse over the submit button, add a darker green color */
-input[type=submit]:hover {
-    background-color: #45a049;
-}
+	/* css for the footer and footer componenets */
+	footer{
+		width: 100%;
+		height: 3em;
+		background-color: #1f1f1f;
+		float:left;
+		display: block;
+		justify-content: center;
+		bottom:0;
+		left:0;
+		color: white;
+		display:inline;
+		position: fixed;
+	}
 
-/* Add a background color and some padding around the form */
-.container-contacts {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 10px;
+	.sm{
+		float: left;
+		margin-left: center;
+		text-align: center;
+		width: 100%;
+	}
+	.facebook,.twitter{
+		width: 3.125em;
+		height: 3.125em;
+		margin: 0.313em 0.313em 0em;
+		text-decoration: none;
+	}
+	.facebook:hover{
+		opacity: 0.5;
+		cursor: pointer;
+	}
+	.twitter:hover{
+		opacity: 0.5;
+		cursor: pointer;
+	}
+	.copyright{
+		font-size: 0.75em;
+		padding-top: 0.313em;
+		padding-right: 0.313em;
+		display: inline;
+		position: absolute;
+		right: 0em;
+	}
 
-}
-#sent{
-	width:300px;
-	height:auto;
-	/*background:#0000FF; */
-	display:none;
-}
-.sented{
-	font-size:20px;
-	display:none;
-	cursor:pointer;
-}
+	/* Set a style for all buttons */
+	button {
+		background-color: #4CAF50;
+		color: white;
+		padding: 0.875em 1.25em;
+		margin: 0.5em 0;
+		border: none;
+		cursor: pointer;
+		width: 100%;
+	}
 
-footer{
-	width: 100%;
-	height: 100px;
-	background-color: black;
-	float:left;
-  display: flex;
-  justify-content: center;
-	position:fixed;
-  bottom:0;
-  left:0;
-	color: white;
-}
+	button:hover {
+		opacity: 0.8;
+	}
 
-.sm{
-	float: left;
-	margin-left: center;
-	text-align: center;
-	width: 100%;
-}
-.facebook,.twitter{
-	width: 50px;
-	height: 50px;
-	margin: 5px 5px 0px;
-	text-decoration: none;
-}
-.facebook:hover{
-	opacity: 0.5;
-	cursor: pointer;
-}
-.twitter:hover{
-	opacity: 0.5;
-	cursor: pointer;
-}
-.copyright{
-	font-size: 12px;
-	padding-left: 5px;
-}
+	/* Set the loading icon when waiting for map */
+	.location-loading {
+		display: none;
+		position: relative;
+		top: -50%;
+	}
 
-.cr_text{
-	text-decoration: none;
-	color: white;
-}
+	.ball {
+		background-color: rgba(0, 0, 0, 0);
+		border: 0.313em solid rgba(0, 183, 229, 0.9);
+		opacity: .9;
+		border-top: 0.313em solid rgba(0, 0, 0, 0);
+		border-left: 0.313em solid rgba(0, 0, 0, 0);
+		border-radius: 3.125em;
+		box-shadow: 0 0 2.188em #2187e7;
+		width: 3.125em;
+		height: 3.125em;
+		margin: 0 auto;
+		-moz-animation: spin .5s infinite linear;
+		-webkit-animation: spin .5s infinite linear;
+	}
 
-/****************************************************************/
-/* Full-width input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
+	.ball1 {
+		background-color: rgba(0, 0, 0, 0);
+		border: 0.313em solid rgba(0, 183, 229, 0.9);
+		opacity: .9;
+		border-top: 0.313em solid rgba(0, 0, 0, 0);
+		border-left: 0.313em solid rgba(0, 0, 0, 0);
+		border-radius: 3.125em;
+		box-shadow: 0 0 0.938em #2187e7;
+		width: 1.875em;
+		height: 1.875em;
+		margin: 0 auto;
+		position: relative;
+		top: -2.5em;
+		-moz-animation: spinoff .5s infinite linear;
+		-webkit-animation: spinoff .5s infinite linear;
+	}
 
-/* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
+	@-moz-keyframes spin {
+		0% {
+			-moz-transform: rotate(0deg);
+		}
 
-button:hover {
-    opacity: 0.8;
-}
+		100% {
+			-moz-transform: rotate(360deg);
+		}
+	}
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
+	@-moz-keyframes spinoff {
+		0% {
+			-moz-transform: rotate(0deg);
+		}
 
-/* Center the image and position the close button */
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
-}
+		100% {
+			-moz-transform: rotate(-360deg);
+		}
+	}
 
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
+	@-webkit-keyframes spin {
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
 
-.container {
-    padding: 16px;
-}
+		100% {
+			-webkit-transform: rotate(360deg);
+		}
+	}
 
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
+	@-webkit-keyframes spinoff {
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
 
-/* The Modal (background) */
-.modal{
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: hidden; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 40px;
-}
-.modal2{
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: hidden; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 40px;
-}
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-.modal-content2 {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
+		100% {
+			-webkit-transform: rotate(-360deg);
+		}
+	}
 
-/* The Close Button (x) */
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 40px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: red;
-    cursor: pointer;
-}
+	.map-error {
+		top: -50%;
+		width: 5%;
+		position: relative;
+		background-color: red;
+	}
 
-/* Add Zoom Animation */
-.animate {
-    -webkit-animation: animatezoom 1.0s;
-    animation: animatezoom 1.0s
-}
-
-@-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)}
-    to {-webkit-transform: scale(1)}
-}
-
-@keyframes animatezoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
-}
-#login_pinpintlogo{
-	width: 20%;
-	height: auto;
-}
-
-/*#blursignin{
-	width: 100%;
-	height: 100vh;
-	background-color: #000000;
-	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
-    -webkit-filter: url(#blur-filter);
-    filter: url(#blur-filter);
-    -webkit-filter: blur(3px);
-    filter: blur(3px);
-	display: hidden;
-}*/
-#map {
-  height: 100%;
-  width: 100%;
-
-}
-
-.location-loading {
-    display: none;
-    position: relative;
-    top: -50%;
-}
-
-.ball {
-    background-color: rgba(0, 0, 0, 0);
-    border: 5px solid rgba(0, 183, 229, 0.9);
-    opacity: .9;
-    border-top: 5px solid rgba(0, 0, 0, 0);
-    border-left: 5px solid rgba(0, 0, 0, 0);
-    border-radius: 50px;
-    box-shadow: 0 0 35px #2187e7;
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;
-    -moz-animation: spin .5s infinite linear;
-    -webkit-animation: spin .5s infinite linear;
-}
-
-.ball1 {
-    background-color: rgba(0, 0, 0, 0);
-    border: 5px solid rgba(0, 183, 229, 0.9);
-    opacity: .9;
-    border-top: 5px solid rgba(0, 0, 0, 0);
-    border-left: 5px solid rgba(0, 0, 0, 0);
-    border-radius: 50px;
-    box-shadow: 0 0 15px #2187e7;
-    width: 30px;
-    height: 30px;
-    margin: 0 auto;
-    position: relative;
-    top: -40px;
-    -moz-animation: spinoff .5s infinite linear;
-    -webkit-animation: spinoff .5s infinite linear;
-}
-
-@-moz-keyframes spin {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
-
-    100% {
-        -moz-transform: rotate(360deg);
-    }
-}
-
-@-moz-keyframes spinoff {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
-
-    100% {
-        -moz-transform: rotate(-360deg);
-    }
-}
-
-@-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
-}
-
-@-webkit-keyframes spinoff {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(-360deg);
-    }
-}
-
-.map-error {
-    top: -50%;
-    width: 5%;
-    position: relative;
-    background-color: red;
-
-}
-
+	/* header and footer colour of modal */
+	.modal-header, .modal-footer{
+		background-color: #F5F5F5;
+	}
