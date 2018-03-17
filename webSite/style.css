@@ -1,20 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+
 @charset "utf-8";
 /* CSS Document */
+
 body{
 	margin: 0;
 	padding: 0;
 	background-color:#CCCCCC;
 }
 
-wrapper{
-	width: 100%;
-	height: auto;
-}
+/* set the header */
 header{
 	width: 100%;
 	height: 4.375em; */
-	/*background-color: #2A5EC5; */
 }
+
+.wrapper{
+	font-family: 'Work Sans', sans-serif;
+	margin: 0 auto;
+}
+
+/* banner background and text properties */
 #banner{
 	width: 100%;
 	background-image:url('img/bg_banner.jpg');
@@ -35,12 +42,15 @@ header{
 		top:0.4em;
 		left:3em;}
 	}
+
+	/* position of banner */
 	.pinpintBanner{
 		width: 100%;
-		height: 6.25em;
+		height: 5em;
 		vertical-align: top;
 	}
 
+	/*set navbar postion */
 	.navbar{
 		width: 100%;
 		height: auto;
@@ -48,11 +58,17 @@ header{
 		position: fixed;
 	}
 
+	.navbar-nav {
+		font-family: 'Work Sans', sans-serif;
+		font-size: 1.2em;
+		font-weight:bold;
+	}
+
 	.navbar a:hover {
 		background: #696969;
 	}
 
-
+	/*set logo size */
 	.brand{
 		position: absolute;
 		left: 0.625em;
@@ -68,7 +84,6 @@ header{
 		top: 0.625em;
 		width: auto;
 		height: auto;
-		/*background-color: #0F0; */
 		list-style-type:none;
 		display:inline;
 	}
@@ -77,16 +92,17 @@ header{
 		font-size: 1.2em;
 		color: white;
 		text-align: right;
+		text-decoration: none;
+		font-family: 'Work Sans', sans-serif;
+		font-weight:bold;
 	}
-	.registertxt:hover{
+	.registertxt:hover,.logintxt:hover{
 		background: #696969;
 		cursor: pointer;
-	}
-	.logintxt:hover{
-		background: #696969;
-		cursor: pointer;
+		text-decoration: none;
 	}
 
+	/* main pages css */
 	main{
 		width: 100%;
 		height: auto;
@@ -95,12 +111,14 @@ header{
 		padding: 0;
 	}
 
+	/* set width and height of main content */
 	#container{
 		width: 100%;
 		height: 75%;
 		position: absolute;
 	}
 
+	/* google maps display */
 	#map {
 		height: 100%;
 		width: 100%;
@@ -108,6 +126,7 @@ header{
 		z-index: initial;
 	}
 
+	/*search features over google map */
 	.searchfunction{
 		position: absolute;
 		z-index: 1;
@@ -130,70 +149,23 @@ header{
 		top: 6.25em;
 	}
 
-	.findbar{
-		float:left;
-		margin: 10% 0 0 15%;
-		font-size: 1.25em;
-		/*background-color:#0CF; */
-		width:70%;
-	}
-	#submitbar{
-		cursor: pointer;
-		margin-left: 35%;
-	}
-	#textboxbar{
-		margin-left: 20%;
-		margin-top:5%;
-	}
-
+	/* style for about us page */
 	#aboutbox{
-		width:28.125em;
+		width:auto;
 		height:auto;
 		/*background-color:#0000FF;*/
 		float:left;
-		margin: 1.875em 0 0 0.625em;
-	}
-	.abouttxt{
-		color:#000000;
-		padding: 0 0.938em 0 0.938em;
-	}
-	#aboutimgholder{
-		width: 15.625em;
-		height: 32.5em;
-		float:left;
-	}
-	.aboutbox_images{
-		width: 15.625em;
-		height: 15.625em;
-		float:left;
-		margin:2.813em 0 0 3.75em;
-		/*background-color:#00FF00; */
-
-	}
-	.barimage1{
-		width:100%;
-		height:auto;
-		border-radius:1.25em;
-	}
-	.barimage1:hover{
-		opacity:0.5;
-		cursor:pointer;
+		margin: 2em;
+		text-align: justify;
 	}
 
+	/* contact us form styles */
+	.contactus{
+		width: 70%;
+		padding: 1em;
+	}
 
-.main{
-	display: flex;
-}
-.contactus{
-	width: 100%;
-	padding: 1em;
-	flex: 3;
-}
-
-.sidepane{
-	flex: 1;
-}
-
+	/* css for the footer and footer componenets */
 	footer{
 		width: 100%;
 		height: 3em;
@@ -237,17 +209,6 @@ header{
 		right: 0em;
 	}
 
-	/****************************************************************/
-	/* Full-width input fields */
-	input[type=text], input[type=password], input[type=email] {
-		width: 100%;
-		padding: 0.75em 1.25em;
-		margin: 0.5em 0;
-		display: inline-block;
-		border: 0.063em solid #ccc;
-		box-sizing: border-box;
-	}
-
 	/* Set a style for all buttons */
 	button {
 		background-color: #4CAF50;
@@ -259,125 +220,11 @@ header{
 		width: 100%;
 	}
 
-button:hover {
+	button:hover {
 		opacity: 0.8;
 	}
 
-	/* Extra styles for the cancel button */
-	.cancelbtn {
-		width: auto;
-		padding: 0.625em 1.125em;
-		background-color: #f44336;
-	}
-
-	/* Center the image and position the close button */
-	.imgcontainer {
-		text-align: center;
-		margin: 1.5em 0 0.75em 0;
-		position: relative;
-	}
-
-	img.avatar {
-		width: 40%;
-		border-radius: 50%;
-	}
-
-	.container {
-		padding: 1em;
-	}
-
-	span.psw {
-		float: right;
-		padding-top: 1em;
-	}
-
-	/* The Modal (background) */
-	.modal{
-		display: none; /* Hidden by default */
-		position: fixed; /* Stay in place */
-		z-index: 1; /* Sit on top */
-		left: 0;
-		top: 0;
-		width: 100%; /* Full width */
-		height: 100%; /* Full height */
-		overflow: hidden; /* Enable scroll if needed */
-		background-color: rgb(0,0,0); /* Fallback color */
-		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-		padding-top: 2.5em;
-	}
-	.modal2{
-		display: none; /* Hidden by default */
-		position: fixed; /* Stay in place */
-		z-index: 1; /* Sit on top */
-		left: 0;
-		top: 0;
-		width: 100%; /* Full width */
-		height: 100%; /* Full height */
-		overflow: hidden; /* Enable scroll if needed */
-		background-color: rgb(0,0,0); /* Fallback color */
-		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-		padding-top: 2.5em;
-	}
-	/* Modal Content/Box */
-	.modal-content {
-		background-color: #fefefe;
-		margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-		border: 0.063em solid #888;
-		width: 80%; /* Could be more or less, depending on screen size */
-	}
-	.modal-content2 {
-		background-color: #fefefe;
-		margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-		border: 0.063em solid #888;
-		width: 80%; /* Could be more or less, depending on screen size */
-	}
-
-	/* The Close Button (x) */
-	.close {
-		position: absolute;
-		right: 1.563em;
-		top: 0;
-		color: #000;
-		font-size: 2.5em;
-		font-weight: bold;
-	}
-	.close:hover,
-	.close:focus {
-		color: red;
-		cursor: pointer;
-	}
-
-	/* Add Zoom Animation */
-	.animate {
-		-webkit-animation: animatezoom 1.0s;
-		animation: animatezoom 1.0s
-	}
-
-	@-webkit-keyframes animatezoom {
-		from {-webkit-transform: scale(0)}
-		to {-webkit-transform: scale(1)}
-	}
-
-	@keyframes animatezoom {
-		from {transform: scale(0)}
-		to {transform: scale(1)}
-	}
-
-	/* Change styles for span and cancel button on extra small screens */
-	@media screen and (max-width: 18.75em) {
-		span.psw {
-			display: block;
-			float: none;
-		}
-		.cancelbtn {
-			width: 100%;
-		}
-	}
-	#login_pinpintlogo{
-		width: 20%;
-		height: auto;
-	}
-
+	/* Set the loading icon when waiting for map */
 	.location-loading {
 		display: none;
 		position: relative;
@@ -461,4 +308,9 @@ button:hover {
 		width: 5%;
 		position: relative;
 		background-color: red;
+	}
+
+	/* header and footer colour of modal */
+	.modal-header, .modal-footer{
+		background-color: #F5F5F5;
 	}
