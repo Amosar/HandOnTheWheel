@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+	<title>Pin Pints | Bars</title>
+</head>
+
+<body>
+	<div id=banner>
+		<header>
+			<div>
+				<a href="index.html"><img src="img/pinpint.png" class="brand" alt=""></a>
+				<div id="bannerText">PinPints</div>
+			</div>
+
+			<!-- <div id="navBox">
+
+			<li class="nav_li"><a href="index.html">Home</a></li>
+			<li class="nav_li"><a href="bar.html">Bars</a></li>
+			<li class="nav_li"><a href="about.html">About Us</a></li>
+			<li class="nav_li"><a href="contact.html">Contact Us</a></li>
+
+		</div> -->
+		<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal -->
+		<div id="register">
+			<p href="#modalLogin" class="logintxt" data-toggle="modal">Login</p>
+			<p href="#modalRegister" class="registertxt" data-toggle="modal">Register</p>
+		</div>
+
+	</header>
+	<nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="index.html">Home</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="bar.html">My Bars<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="about.html">About</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="contact.html">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
+<div class="wrapper">
+	<!-- <main>
+	<div id="Container">
+	<div id="overlay">
+	<h1 CLASS="HEADINGMAP"> No Access</h1>
+</div>
+</div>
+
+<div id="Boxholder">
+
+<div id="section_one">
+<p class="closetome">Closest to me</p>
+</div>
+
+<div id="section_two">
+<form>
+<p class="findbar">	Input location of bar </p>
+<input type="barsearch" name="firstname" value="" id="textboxbar">
+<br>
+<br>
+<input type="button" value="Submit" id="submitbar">
+</form>
+
+</div>
+
+</div>
+
+
+</main> -->
+
+<!-- Modal Login https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-modal-login-form-->
+<div id="modalLogin" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<form action="" method="post">
+				<div class="modal-header">
+					<h4 class="modal-title">Login</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" class="form-control" placeholder="Enter Email Address" required="required">
+					</div>
+					<div class="form-group">
+						<div class="clearfix">
+							<label>Password</label>
+							<a href="#" class="pull-right text-muted"><small>Forgot?</small></a>
+						</div>
+
+						<input type="password" class="form-control" placeholder="Enter Password" required="required">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary mr-auto" value="Login">
+					<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Register -->
+<div id="modalRegister" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<form action="" method="post">
+				<div class="modal-header">
+					<h4 class="modal-title">Register</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" class="form-control" placeholder="Enter Email Address" required="required">
+					</div>
+					<div class="form-group">
+						<div class="clearfix">
+							<label>Password</label>
+						</div>
+
+						<input type="password" class="form-control" placeholder="Enter Password" required="required">
+					</div>
+					<div class="form-group">
+						<div class="clearfix">
+							<label>Repeat Password</label>
+						</div>
+						<input type="password" class="form-control" placeholder="Re-enter Password" required="required">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary mr-auto" value="Register">
+					<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+	<div class="sm">
+		<a class="facebook" href="https://en-gb.facebook.com">
+			<img class="facebook" src="img/facebook.png" alt="missing facebook">
+		</a>
+		<a class="twitter" href="https://twitter.com/Twitter?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+			<img class="twitter" src="img/twitter.png" alt="Missing twitter">
+		</a>
+	</div>
+
+		<div id="contact">1 Test Street | Aberdeen | AB87 ER2  <br/>
+			contact@pinpints.com</div>
+
+
+			<p class="copyright">
+				2018 &copy; Copyright: PinPints
+			</p>
+
+	</footer>
+
+</div>
+</body>
+</html>
