@@ -238,7 +238,7 @@ header{
 	.location-loading {
 		display: none;
 		position: relative;
-		top: -50%;
+		top: 50%;
 	}
 
 	.ball {
