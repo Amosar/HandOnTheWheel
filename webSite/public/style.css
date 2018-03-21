@@ -5,7 +5,7 @@ body{
 	margin: 0;
 	padding: 0;
 	background-color:#CCCCCC;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 /* set the header */
@@ -41,9 +41,6 @@ header{
 		left:3em;}
 		#contact{
 			display: none;
-		}
-		.footer{
-			height: 2em;
 		}
 	}
 
@@ -154,26 +151,36 @@ header{
 		top: 6.25em;
 	}
 
-	/* style for about us page */
-	#aboutbox{
-		width:auto;
-		height:auto;
-		/*background-color:#0000FF;*/
-		float:left;
-		margin: 2em;
+
+	/* contact us form and about us styles */
+	.contactus, .sideimg, .aboutbox{
+		width: 50%;
+		padding: 1em;
+		float: left;
 		text-align: justify;
 	}
 
-	/* contact us form styles */
-	.contactus{
-		width: 70%;
-		padding: 1em;
+/* set the margin of the images in contact and about pages */
+	#mail, #beers{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
+
+/* contact form full size remove side image */
+		@media (max-width: 600px) {
+			.contactus, .aboutbox{
+				width: 100%;
+			}
+			.sideimg {
+				display: none;
+			}
+		}
 
 	/* css for the footer and footer componenets */
 	footer{
 		width: 100%;
-		height: 4em;
+		height: 10%;
 		background-color: #1f1f1f;
 		display: block;
 		bottom:0;
