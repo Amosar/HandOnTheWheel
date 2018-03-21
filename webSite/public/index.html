@@ -22,6 +22,7 @@
 </head>
 
 <body>
+  <!-- banner image -->
   <div id=banner>
     <header>
       <div>
@@ -29,21 +30,14 @@
         <div id="bannerText">PinPints</div>
       </div>
 
-      <!-- <div id="navBox">
-
-      <li class="nav_li"><a href="index.html">Home</a></li>
-      <li class="nav_li"><a href="bar.html">Bars</a></li>
-      <li class="nav_li"><a href="about.html">About Us</a></li>
-      <li class="nav_li"><a href="contact.html">Contact Us</a></li>
-
-    </div> -->
-    <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal -->
+      <!-- register and login text -->
     <div id="register">
       <p href="#modalLogin"  class="logintxt" data-toggle="modal">Login</p>
       <p href="#modalRegister" class="registertxt" data-toggle="modal">Register</p>
     </div>
 
   </header>
+  <!-- navbar items and menu -->
   <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -67,15 +61,19 @@
   </nav>
 </div>
 
+<!-- Main content -->
 <div class="wrapper">
   <main>
     <div id="container">
+      <!-- Add Google Maps -->
       <div id="map"></div>
+      <!-- Search box and location -->
       <form class="searchfunction">
         <input type="text" placeholder="Enter a Location" name="search" id="searhbar"/>
         <input type="submit" value="Search" id="submitbar"/>
         <input type="button" class="closetome" value="Bars Nearby">
       </form>
+      <!-- Loading icon -->
       <div class="location-loading">
         <div class="ball"></div>
         <div class="ball1"></div>
@@ -87,6 +85,7 @@
   <div id="modalLogin" class="modal fade">
     <div class="modal-dialog modal-login">
       <div class="modal-content">
+        <!-- TODO add login action -->
         <form action="" method="post">
           <div class="modal-header">
             <h4 class="modal-title">Login</h4>
@@ -99,10 +98,10 @@
             <div class="form-group">
               <div class="clearfix">
                 <label>Password</label>
+                <!-- TODO forgot password page -->
                 <a href="#" class="pull-right text-muted"><small>Forgot?</small></a>
               </div>
-
-              <input type="password" class="form-control" placeholder="Enter Password" required="required">
+              <input type="password" id="password" class="form-control" placeholder="Enter Password" required="required" data-toggle="password">
             </div>
           </div>
           <div class="modal-footer">
@@ -118,6 +117,7 @@
   <div id="modalRegister" class="modal fade">
     <div class="modal-dialog modal-login">
       <div class="modal-content">
+        <!-- TODO add register action -->
         <form action="" method="post">
           <div class="modal-header">
             <h4 class="modal-title">Register</h4>
@@ -131,14 +131,13 @@
               <div class="clearfix">
                 <label>Password</label>
               </div>
-
-              <input type="password" class="form-control" placeholder="Enter Password" required="required">
+              <input type="password" id="password" class="form-control" placeholder="Enter Password" required="required" data-toggle="password">
             </div>
             <div class="form-group">
               <div class="clearfix">
                 <label>Repeat Password</label>
               </div>
-              <input type="password" class="form-control" placeholder="Re-enter Password" required="required">
+              <input type="password" id="password" class="form-control" placeholder="Re-enter Password" required="required" data-toggle="password">
             </div>
           </div>
           <div class="modal-footer">
@@ -150,7 +149,9 @@
     </div>
   </div>
 
+<!-- Foooter -->
   <footer class="footer">
+    <!-- Social Media icons -->
     <div class="sm">
       <a class="facebook" href="https://en-gb.facebook.com">
         <img class="facebook" src="img/facebook.png" alt="missing facebook">
@@ -160,10 +161,11 @@
       </a>
     </div>
 
+      <!-- contact details -->
       <div id="contact">1 Test Street | Aberdeen | AB87 ER2  <br/>
         contact@pinpints.com</div>
 
-
+        <!-- copyright information -->
         <p class="copyright">
           2018 &copy; Copyright: PinPints
         </p>
@@ -171,5 +173,9 @@
     </footer>
 
   </div>
+  <!-- script to set password visability -->
+  <script type="text/javascript">
+  $("#password").password('toggle');
+  </script>
 </body>
 </html>
