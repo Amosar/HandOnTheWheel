@@ -1,5 +1,4 @@
 const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
 const bcrypt = require('bcryptjs');
 const uuidv1 = require('uuid/v1');
 
@@ -20,21 +19,28 @@ function connect(callback) {
 }
 
 const local = module.exports = {
-    createUser: function (login, email, password, callback) {
+    /**
+     * Create and add a user to the database
+     * @param pseudo - pseudo of the user
+     * @param email - email of the user
+     * @param password - password of the user
+     * @param callback - callback function that return a json file with error and message field.
+     */
+    createUser: function (pseudo, email, password, callback) {
         connect(function (db, client) {
             local.isUserExist(email, function (isUserExist) {
                 if (!isUserExist) {
                     const salt = bcrypt.genSaltSync(10);
                     const hash = bcrypt.hashSync(password, salt);
 
-                    api_key = uuidv1();
+                    const token = uuidv1();
 
                     const user = db.collection('user');
                     user.insertOne({
-                        login: login,
+                        pseudo: pseudo,
                         email: email,
                         password: hash,
-                        api_key: api_key
+                        token: token
                     }, function (err, result) {
                         client.close();
                         if (err) {
@@ -52,6 +58,13 @@ const local = module.exports = {
         })
     },
 
+    /**
+     * get api key
+     * (will be remove or modify with session system)
+     * @param email
+     * @param password
+     * @param callback
+     */
     getApiKey: function (email, password, callback) {
         connect(function (db, client) {
             const user = db.collection('user');
@@ -60,7 +73,7 @@ const local = module.exports = {
                 if (docs.length > 0) {
                     bcrypt.compare(password, docs[0].password, function (err, res) {
                         if (res === true) {
-                            callback({error: false, message: "Successful login", api_key: docs[0].api_key});
+                            callback({error: false, message: "Successful login", token: docs[0].token});
                         } else {
                             callback({error: true, message: "Wrong password!"});
                         }
@@ -72,13 +85,19 @@ const local = module.exports = {
         })
     },
 
-    getUserByApiKey: function (api_key, callback) {
+    /**
+     * get user with his api key
+     * (will be remove or modify with session system)
+     * @param token
+     * @param callback
+     */
+    getUserByApiKey: function (token, callback) {
         connect(function (db, client) {
             const user = db.collection('user');
-            user.find({api_key: api_key}).toArray(function (err, docs) {
+            user.find({token: token}).toArray(function (err, docs) {
                 client.close();
                 if (docs.length > 0) {
-                    callback(docs[0].login);
+                    callback(docs[0].pseudo);
                 } else {
                     callback(undefined);
                 }
@@ -86,6 +105,11 @@ const local = module.exports = {
         });
     },
 
+    /**
+     * Check is the user is in the database with his email address.
+     * @param email - email address of the user.
+     * @param callback - callback function with boolean parameter.
+     */
     isUserExist: function (email, callback) {
         connect(function (db, client) {
             const user = db.collection('user');

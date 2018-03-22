@@ -1,10 +1,12 @@
 const dbHandler = require('./include/Db_Handler.js');
 
-function authenticate(req, callback) {
-    const api_key = req.header("Authorization");
+//Need to be improve and use session instead of trying to use restApi that is not design for authentication.
 
-    if (api_key) {
-        dbHandler.getUserByApiKey(api_key, function (user) {
+function authenticate(req, callback) {
+    const token = req.header("Authorization");
+
+    if (token) {
+        dbHandler.getUserByApiKey(token, function (user) {
             if (user !== undefined) {
                 callback({error: false, user: user});
             } else {
@@ -18,13 +20,13 @@ function authenticate(req, callback) {
 
 module.exports = function(app) {
     app.post('/restApi/register', function (req, res) {
-        const login = req.body.login;
+        const pseudo = req.body.pseudo;
         const email = req.body.email;
         const password = req.body.password;
 
         const paramErr = [];
 
-        if (login === undefined || login === "") paramErr.push("login");
+        if (pseudo === undefined || pseudo === "") paramErr.push("pseudo");
         if (email === undefined || email === "") paramErr.push("email");
         if (password === undefined || password === "") paramErr.push("password");
 
@@ -36,7 +38,7 @@ module.exports = function(app) {
             });
         } else {
             if (validateEmail(email)) {
-                dbHandler.createUser(login, email, password, function (rep) {
+                dbHandler.createUser(pseudo, email, password, function (rep) {
                     res.status(200).json(rep);
                 });
             } else {
@@ -82,7 +84,7 @@ module.exports = function(app) {
     app.get('/restApi/*', function (req, res) {
         res.status(404).send("invalidRequest");
     });
-}
+};
 function validateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
