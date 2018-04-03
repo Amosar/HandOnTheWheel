@@ -12,14 +12,29 @@ require('./auth.js')(app);
 
 app.use(express.static('public'));
 
+//Used for static html files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
     res.render('index');
 });
 
-//Used for static html files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.get('/about', function (req, res) {
+    res.render('about');
+});
+
+app.get('/account', function (req, res) {
+    res.render('account');
+});
+
+app.get('/bar', function (req, res) {
+    res.render('bar');
+});
+
+app.get('/contact', function (req, res) {
+    res.render('contact');
+});
 
 /*app.get('/*', function (req, res) {
     res.redirect('/');
