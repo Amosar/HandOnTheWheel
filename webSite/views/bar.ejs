@@ -9,6 +9,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="scripts/auth.js"></script>
+
     <title>Pin Pints | Bars</title>    <!-- Defining the title of the page -->
 </head>
 
@@ -72,16 +74,19 @@
     <div id="modalLogin" class="modal fade">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
-                <!-- TODO add login action -->
-                <form action="" method="post">   <!-- Creating a form for user to be able to login -->
+                <form action="/login" id="loginForm" method="post">
+                    <!-- Creating a form for user to be able to login -->
                     <div class="modal-header">
                         <h4 class="modal-title">Login</h4>
                     </div>
                     <div class="modal-body">
+                        <div id="login-message"></div>
+
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" placeholder="Enter Email Address"
-                                   required="required">   <!-- Input box for users to enter their email address -->
+                                   required="required" autocomplete="email" name="email">
+                            <!-- Input box for users to enter their email address -->
                         </div>
                         <div class="form-group">
                             <div class="clearfix">
@@ -91,9 +96,9 @@
                                     <small>Forgot?</small>
                                 </a>
                             </div>
-                            <input type="password" id="password" class="form-control" placeholder="Enter Password"
-                                   required="required" data-toggle="password">
-                            <!-- Input box for user to enter their password -->
+                            <input type="password" class="form-control password" placeholder="Enter Password"
+                                   required="required" autocomplete="current-password" data-toggle="password"
+                                   name="password">   <!-- Input box for user to enter their password -->
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -110,32 +115,39 @@
     <div id="modalRegister" class="modal fade">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
-                <!-- TODO add register action -->
-                <form action="" method="post">     <!-- Creating a form for the user to register -->
+                <form action="/register" id="registerForm" method="post">
+                    <!-- Creating a form for the user to register -->
                     <div class="modal-header">
                         <h4 class="modal-title">Register</h4>
                     </div>
                     <div class="modal-body">
+                        <div id="register-message"></div>
+                        <div class="form-group">
+                            <label>Pseudo</label>
+                            <input type="text" class="form-control" name="login" placeholder="Enter your pseudo"
+                                   required="required" autocomplete="nickname">
+                        </div>
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" placeholder="Enter Email Address"
-                                   required="required">       <!-- Input box for users to enter their email address -->
+                                   required="required" autocomplete="email" name="email">
+                            <!-- Input box for users to enter their email address -->
                         </div>
                         <div class="form-group">
                             <div class="clearfix">
                                 <label>Password</label>
                             </div>
-                            <input type="password" id="password" class="form-control" placeholder="Enter Password"
-                                   required="required" data-toggle="password">
-                            <!-- Input box for user to enter their password -->
+                            <input type="password" class="form-control password" placeholder="Enter Password"
+                                   required="required" autocomplete="new-password" data-toggle="password"
+                                   name="password">      <!-- Input box for user to enter their password -->
                         </div>
                         <div class="form-group">
                             <div class="clearfix">
                                 <label>Repeat Password</label>
                             </div>
-                            <input type="password" id="password" class="form-control" placeholder="Re-enter Password"
-                                   required="required" data-toggle="password">
-                            <!-- Input box for user to re-enter their password -->
+                            <input type="password" class="form-control password" placeholder="Re-enter Password"
+                                   required="required" autocomplete="new-password" data-toggle="password"
+                                   name="confirmPassword">   <!-- Input box for user to re-enter their password -->
                         </div>
                     </div>
                     <div class="modal-footer">

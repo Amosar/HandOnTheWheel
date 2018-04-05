@@ -42,11 +42,29 @@ module.exports = function (app) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.post('/login', passport.authenticate('local', {
-            successRedirect: '/#success',
-            failureRedirect: '/#fail'
-        })
-    );
+    app.post('/login', function (req, res) {
+        passport.authenticate('local', function (err, user, info) {
+            if (err) {
+                return err;
+            }
+            if (!user) {
+                res.status(200).json({
+                    error: true,
+                    message: info.message
+                })
+            } else {
+                req.logIn(user, function (err) {
+                    if (err) {
+                        return err
+                    }
+                    res.status(200).json({
+                        error: false
+                    });
+                });
+            }
+        })(req, res);
+    });
+
     app.get('/logout', function (req, res) {
             req.logout();
             res.redirect('/');

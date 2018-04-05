@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const uuidv1 = require('uuid/v1');
 const assert = require('assert');
+const bcrypt = require('bcryptjs');
 
 // Connection URL
 const url = 'mongodb://localhost:27017';
@@ -50,8 +51,6 @@ const local = module.exports = {
                         }
                     });
                 } else {
-                    const user = db.collection('user');
-                    user.removeMany({email: email});
                     callback({error: true, message: "User already exist"})
                 }
             });

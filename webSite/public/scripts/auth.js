@@ -1,12 +1,12 @@
 $(function () {
-    // Get the form.
-    const form = $('#registerForm');
-    $(form).submit(function (event) {
-        // Stop the browser from submitting the form.
+    // Get the registerForm.
+    const registerForm = $('#registerForm');
+    $(registerForm).submit(function (event) {
+        // Stop the browser from submitting the registerForm.
         event.preventDefault();
-        const formData = $(form).serialize();
-        const password = $(form).find(":input[name=password]")[0].value;
-        const confirmPassword = $(form).find(":input[name=confirmPassword]")[0].value;
+        const formData = $(registerForm).serialize();
+        const password = $(registerForm).find(":input[name=password]")[0].value;
+        const confirmPassword = $(registerForm).find(":input[name=confirmPassword]")[0].value;
         if (password !== confirmPassword) {
             $("#register-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                 + "the passwords doesn't match"
@@ -16,7 +16,7 @@ $(function () {
 
         $.ajax({
             type: 'POST',
-            url: $(form).attr('action'),
+            url: $(registerForm).attr('action'),
             data: formData
         }).done(function (response) {
             if (response.error) {
@@ -35,6 +35,28 @@ $(function () {
             $("#register-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                 + data.responseJSON.message + data.responseJSON.param
                 + "</div>");
+        });
+    });
+
+    const loginForm = $('#loginForm');
+    $(loginForm).submit(function (event) {
+        // Stop the browser from submitting the loginForm.
+        event.preventDefault();
+        const formData = $(loginForm).serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: $(loginForm).attr('action'),
+            data: formData
+        }).done(function (response) {
+            console.log(response);
+            if (response.error) {
+                $("#login-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                    + response.message
+                    + "</div>");
+            } else {
+                window.location.reload();
+            }
         });
     });
 });
