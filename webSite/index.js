@@ -17,27 +17,27 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {auth: req.isAuthenticated()});
 });
 
 app.get('/about', function (req, res) {
-    res.render('about');
+    res.render('about', {auth: req.isAuthenticated()});
 });
 
 app.get('/account', function (req, res) {
-    res.render('account');
+    res.render('account', {auth: req.isAuthenticated()});
 });
 
 app.get('/bar', function (req, res) {
-    res.render('bar');
+    res.render('bar', {auth: req.isAuthenticated()});
 });
 
 app.get('/contact', function (req, res) {
-    res.render('contact');
+    res.render('contact', {auth: req.isAuthenticated()});
 });
 
-/*app.get('/*', function (req, res) {
+app.get('/*', function (req, res) {
     res.redirect('/');
-});*/
+});
 
 app.listen(8080);

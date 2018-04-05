@@ -21,11 +21,18 @@
             <div id="bannerText">PinPints</div>
         </div>
 
-        <!-- register and login text -->
-        <div id="register">
-            <p href="#modalLogin" class="logintxt" data-toggle="modal">Login</p>
-            <p href="#modalRegister" class="registertxt" data-toggle="modal">Register</p>
-        </div>
+        <!-- auth text -->
+        <ul id="auth">
+            <% if (!auth) { %>
+            <!-- Div tag for the user to register or login choices -->
+            <li class="logintxt"><a href="#modalLogin" data-toggle="modal">Login</a></li>      <!-- Login choice -->
+            <li class="registertxt"><a href="#modalRegister" data-toggle="modal">Register</a></li>
+            <!-- Register choice -->
+            <% } else { %>
+            <li class="accountLink"><a href="account">Account</a></li>      <!-- Account choice -->
+            <li class="logOutLink"><a href="/logout">LogOut</a></li>      <!-- LogOut choice -->
+            <% } %>
+        </ul>
 
     </header>
     <!-- navbar items and menu -->

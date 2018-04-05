@@ -47,11 +47,10 @@ module.exports = function (app) {
             failureRedirect: '/#fail'
         })
     );
-    app.post('/logout',
-        passport.authenticate('local', {
-            successRedirect: '/#success',
-            failureRedirect: '/#fail'
-        })
+    app.get('/logout', function (req, res) {
+            req.logout();
+            res.redirect('/');
+        }
     );
     app.post('/register', function (req, res) {
             const login = req.body.login;
@@ -81,6 +80,10 @@ module.exports = function (app) {
             }
         }
     );
+
+    app.get('/check', function (req, res) {
+        res.send(req.isAuthenticated());
+    });
 };
 
 function validateEmail(email) {

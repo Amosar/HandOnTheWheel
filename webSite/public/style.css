@@ -84,7 +84,7 @@ header {
 }
 
 /* login and register links */
-#register {
+#auth {
     position: absolute;
     right: 0.625em;
     top: 0.625em;
@@ -94,20 +94,22 @@ header {
     display: inline;
 }
 
-.registertxt, .logintxt {
+.registertxt > a, .logintxt > a, .accountLink > a, .logOutLink > a {
     margin: 0 5% 0 5%;
     font-size: 1.2em;
     color: white;
-    text-align: right;
     text-decoration: none;
     font-family: 'Work Sans', sans-serif;
     font-weight: bold;
+    text-align: right;
+
 }
 
-.registertxt:hover, .logintxt:hover {
+.registertxt:hover > a, .logintxt:hover > a, .accountLink:hover > a, .logOutLink:hover > a {
     background: #696969;
     cursor: pointer;
     text-decoration: none;
+    color: white;
 }
 
 /* main pages css */
