@@ -13,7 +13,7 @@ require('./auth.js')(app);
 app.use(express.static('public'));
 
 //Used for static html files
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/views/pages');
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
