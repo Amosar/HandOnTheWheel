@@ -1,59 +1,18 @@
 <!doctype html>
 <html>
 <head>
+  <!-- ejs file for the header information  -->
 <% include ../partials/head %>
 
     <title>Pin Pints | Contact Us</title>   <!-- Defining the title of the page -->
 </head>
 
 <body>
-<!-- banner image -->
-<div id="banner">
-    <header>
-        <div>
-            <a href="/"><img src="img/pinpint.png" class="brand" alt=""></a>
-            <div id="bannerText">PinPints</div>
-        </div>
 
-        <!-- auth text -->
-        <ul id="auth">
-            <% if (!auth) { %>
-            <!-- Div tag for the user to register or login choices -->
-            <li class="logintxt"><a href="#modalLogin" data-toggle="modal">Login</a></li>      <!-- Login choice -->
-            <li class="registertxt"><a href="#modalRegister" data-toggle="modal">Register</a></li>
-            <!-- Register choice -->
-            <% } else { %>
-            <li class="accountLink"><a href="account">Account</a></li>      <!-- Account choice -->
-            <li class="logOutLink"><a href="/logout">LogOut</a></li>      <!-- LogOut choice -->
-            <% } %>
-        </ul>
-
-    </header>
-    <!-- navbar items and menu -->
-    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">       <!-- Starting to create a navigation bar -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-                    <!-- Link to homepage -->
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="bar">My Bars</a>     <!-- Link to Bar page -->
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="about">About</a>     <!-- Link to About page -->
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="contact">Contact</a>     <!-- Link to Contact page -->
-                </li>
-            </ul>
-        </div>
-    </nav>
-</div>
+  <div id="banner">    <!-- Created a div for the banner -->
+    <!-- ejs file where the navbar and banner are contained -->
+  <% include ../partials/banner %>
+  </div>
 
 
 <div class="wrapper">
