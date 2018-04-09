@@ -42,7 +42,7 @@ app.get('/*', function (req, res) {
 });
 
 // POST route from contact form
-app.post('/contactus', function (req, res) {
+app.post('/contact', function (req, res) {
   var mailOpts, smtpTrans;
   smtpTrans = nodemailer.createTransport({
     host: 'smtp.gmail.com',
