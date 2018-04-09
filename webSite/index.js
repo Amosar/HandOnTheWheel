@@ -34,7 +34,7 @@ app.get('/bar', function (req, res) {
 });
 
 app.get('/contact', function (req, res) {
-    res.render('contact', {auth: req.isAuthenticated()});
+    res.render('contact', {auth: req.isAuthenticated(), msg:""});
 });
 
 app.get('/*', function (req, res) {
