@@ -54,6 +54,7 @@ app.post('/contact', function (req, res) {
       pass: "Webdev123"
     }
   });
+
   mailOpts = {
     from: req.body.email,
     to: 'contactpinpints@gmail.com',
@@ -62,10 +63,10 @@ app.post('/contact', function (req, res) {
   };
   smtpTrans.sendMail(mailOpts, function (error, response) {
     if (error) {
-      res.render('contact', {auth: req.isAuthenticated(), msg: 'Message failed to send.'});
+      res.render('contact', {auth: req.isAuthenticated(), msg: `<div class=\"alert alert-danger\" role=\"alert\">Message failed to send</div>`});
     }
     else {
-      res.render('contact', {auth: req.isAuthenticated(), msg: 'Message sent.'});
+      res.render('contact', {auth: req.isAuthenticated(), msg: `<div class=\"alert alert-success\" role=\"alert\">Message sent</div>`});
     }
   });
 });
