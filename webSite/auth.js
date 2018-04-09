@@ -99,6 +99,90 @@ module.exports = function (app) {
         }
     );
 
+    app.post('/changePassword', function (req, res) {
+        const email = req.body.email;
+        const oldPassword = req.body.oldPassword;
+        const newPassword = req.body.newPassword;
+
+        const paramErr = [];
+        if (email === undefined || email === "") paramErr.push("email");
+        if (oldPassword === undefined || oldPassword === "") paramErr.push("oldPassword");
+        if (newPassword === undefined || newPassword === "") paramErr.push("newPassword");
+
+        if (paramErr.length > 0) {
+            res.status(400).json({
+                error: 'true',
+                message: "One or more parameters are empty or missing: ",
+                param: paramErr
+            });
+        } else {
+
+            if (validateEmail(email)) {
+                if (req.isAuthenticated()) {
+                    dbHandler.getUserByEmail(email, function (err, user) {
+                        if (err) return done(err);
+                        if (!user) return done(null, false, {message: 'Incorrect username.'});
+
+                        bcrypt.compare(oldPassword, user.password, function (err, result) {
+                            if (result === true) {
+                                dbHandler.updatePassword(email, newPassword, function (err) {
+                                    if (err) res.status(200).json({error: true, message: err.errmsg});
+                                    res.status(200).json({error: false})
+                                });
+                            } else {
+                                res.status(200).json({error: true, message: 'Wrong password.'})
+                            }
+                        });
+                    })
+                } else {
+                    res.status(400).json({error: 'true', message: "Email address is not valid"});
+                }
+            }
+        }
+    });
+
+    app.post('/deleteAccount', function (req, res) {
+        const email = req.body.email;
+        const password = req.body.password;
+
+        const paramErr = [];
+
+        if (email === undefined || email === "") paramErr.push("email");
+        if (password === undefined || password === "") paramErr.push("password");
+
+        if (paramErr.length > 0) {
+            res.status(400).json({
+                error: 'true',
+                message: "One or more parameters are empty or missing: ",
+                param: paramErr
+            });
+        } else {
+            if (validateEmail(email)) {
+                if (req.isAuthenticated()) {
+                    dbHandler.getUserByEmail(email, function (err, user) {
+                        if (err) return done(err);
+                        if (!user) return done(null, false, {message: 'Incorrect username.'});
+
+                        bcrypt.compare(password, user.password, function (err, result) {
+                            if (result === true) {
+                                req.logout();
+                                dbHandler.deleteUser(email, function (rep) {
+                                    res.redirect('/');
+                                });
+                            } else {
+                                res.status(200).json({error: true, message: 'Wrong password.'})
+                            }
+                        })
+                    })
+                } else {
+                    res.status(400).json({error: 'true', message: "You need to be authenticated to do that"});
+                }
+            } else {
+                res.status(400).json({error: 'true', message: "Email address is not valid"});
+            }
+        }
+    });
+
     app.get('/check', function (req, res) {
         res.send(req.isAuthenticated());
     });

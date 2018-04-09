@@ -57,6 +57,20 @@ const local = module.exports = {
         })
     },
 
+    deleteUser: function (email, callback) {
+        connect(function (db, client) {
+            const user = db.collection('user');
+            user.removeMany({email: email}, function (err, result) {
+                client.close();
+                if (err) {
+                    callback({error: true, message: err.errmsg})
+                } else {
+                    callback({error: false, message: "User successfully removed"});
+                }
+            });
+        })
+    },
+
     /**
      * getUserByEmail
      * (will be remove or modify with session system)
@@ -108,6 +122,28 @@ const local = module.exports = {
             user.find({email: email}).toArray(function (err, docs) {
                 client.close();
                 callback(docs.length > 0);
+            });
+        })
+    },
+
+    /**
+     * Update the password in the database
+     * @param email - email adress of the user
+     * @param newPassword - new Password of the user
+     * @param callback - callback function that return an error or not
+     */
+    updatePassword: function (email, newPassword, callback) {
+        connect(function (db, client) {
+            const user = db.collection('user');
+            user.find({email: email}).toArray(function (err, doc) {
+                if (doc.length > 0) {
+                    const salt = bcrypt.genSaltSync(10);
+                    user.updateOne({email: email}, {$set: {"password": bcrypt.hashSync(newPassword, salt)}});
+                    callback(null);
+                } else {
+                    callback(new Error('No user have been found with ' + uuid + " id"));
+                }
+                client.close();
             });
         })
     }
