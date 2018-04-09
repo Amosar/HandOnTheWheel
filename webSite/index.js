@@ -58,14 +58,14 @@ app.post('/contactus', function (req, res) {
     from: req.body.email,
     to: 'contactpinpints@gmail.com',
     subject: req.body.subject,
-    text: `${req.body.name} (${req.body.email}) says: ${req.body.msg}`
+    text: `${req.body.name} <${req.body.email}> says: ${req.body.msg}`
   };
   smtpTrans.sendMail(mailOpts, function (error, response) {
     if (error) {
-      res.render('contact', {auth: req.isAuthenticated()});
+      res.render('contact', {auth: req.isAuthenticated(), msg: 'Message failed to send.'});
     }
     else {
-      res.render('contact', {auth: req.isAuthenticated()});
+      res.render('contact', {auth: req.isAuthenticated(), msg: 'Message sent.'});
     }
   });
 });
