@@ -97,29 +97,10 @@
     <!-- Foooter -->
     <footer class="footer">
         <!-- Creating a footer at the bottom of the homepage for the contact details and social media links -->
-        <!-- Social Media icons -->
-        <div class="sm">
-            <a class="facebook" href="https://en-gb.facebook.com">
-                <img class="facebook" src="img/facebook.png" alt="missing facebook">
-            </a>
-            <a class="twitter"
-               href="https://twitter.com/Twitter?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
-                <img class="twitter" src="img/twitter.png" alt="Missing twitter">
-            </a>
-        </div>
-
-        <!-- contact details -->
-        <div id="contact">1 Test Street | Aberdeen | AB87 ER2 <br/>
-            contact@pinpints.com
-        </div>       <!-- Paragraph for the address and email -->
-
-        <!-- copyright information -->
-        <p class="copyright">
-            2018 &copy; Copyright: PinPints
-        </p>         <!-- Paragraph for the Copyright -->
-
-    </footer>
-</div>
+        <!-- ejs file where footer is contained -->
+        <% include ../partials/footer %>
+      </footer>
+  </div>
 </body>
 
 </html>
