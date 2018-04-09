@@ -20,25 +20,25 @@
         <div class="contactus">
             <h2>Get in touch</h2>
             <p>Please fill in the form below and one of the team will get back in due course</p>
-            <form>      <!-- Creating a form for users to contact us -->
+            <form action="/contact" id="ContactForm" method="post">      <!-- Creating a form for users to contact us -->
                 <div class="form-group">
                     <!-- <label for="fname">First Name</label> -->
-                    <input type="text" class="form-control" id="name" placeholder="Enter Name"
+                    <input type="text" class="form-control" name="name" placeholder="Enter Name"
                            required="required">
                 </div>     <!-- Input box for users to enter their First name -->
                 <div class="form-group">
                     <!-- <label for="email">Email address</label> -->
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp"
                            placeholder="Enter Email" required="required">
                 </div>      <!-- Input box for users to enter their email address -->
                 <div class="form-group">
                     <!-- <label for="lname">Last Name</label> -->
-                    <input type="text" class="form-control" id="subject" placeholder="Subject"
+                    <input type="text" class="form-control" name="subject" placeholder="Subject"
                            required="required">
                 </div>      <!-- Input box for users to enter their subject -->
                 <div class="form-group">
                     <!-- <label for="msg">Message</label> -->
-                    <textarea class="form-control" id="msg" placeholder="Message us!" required="required"></textarea>
+                    <textarea class="form-control" name="msg" placeholder="Message us!" required="required"></textarea>
                 </div>      <!-- Text area for users to enter a message -->
                 <button type="submit" style="width: 30%" class="btn btn-primary">Send</button>
                 <!-- Submit button when pressed will send all the details to us -->

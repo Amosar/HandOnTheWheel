@@ -10,6 +10,8 @@ app.use(bodyParser.json());
 //Used for authenticate system.
 require('./auth.js')(app);
 
+require('./contact.js')(app);
+
 app.use(express.static('public'));
 
 //Used for static html files
