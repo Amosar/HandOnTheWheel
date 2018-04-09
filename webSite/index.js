@@ -49,9 +49,8 @@ app.post('/contact', function (req, res) {
     port: 465,
     secure: true,
     auth: {
-      user: "contactpinpints@gmail.com",
-      // need to add app password TODO
-      pass: "Webdev123"
+      user: "contactpinpints@gmail.com", //username for gmail
+      pass: "zkkiniafavawgsyw" //secure app password
     }
   });
 
