@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Work+Sans');
-@import url('https://fonts.googleapis.com/css?family=Shrikhand');
-
 body {
     margin: 0;
     padding: 0;
@@ -81,6 +78,11 @@ header {
     z-index: 1;
     width: 5em;
     height: 5em;
+}
+
+/* set height of textarea */
+#msg {
+  height: 30px;
 }
 
 /* login and register links */
