@@ -64,12 +64,14 @@ app.post('/contact', function (req, res) {
   };
   smtpTrans.sendMail(mailOpts, function (error, response) {
     if (error) {
-      //set div to visable with failed message
-      res.render('contact', {auth: req.isAuthenticated(), msg: `<div class=\"alert alert-danger\" role=\"alert\">Message failed to send</div>`});
+      //set div to visable with failed message and allow user to close
+      res.render('contact', {auth: req.isAuthenticated(), msg: `<div class=\"alert alert-danger\" role=\"alert\">
+      <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Message failed to send</div>`});
     }
     else {
-      //set div to visable with sent message
-      res.render('contact', {auth: req.isAuthenticated(), msg: `<div class=\"alert alert-success\" role=\"alert\">Message sent</div>`});
+      //set div to visable with sent message and allow user to close
+      res.render('contact', {auth: req.isAuthenticated(), msg: `<div class=\"alert alert-success\" role=\"alert\">
+      <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Message sent</div>`});
     }
   });
 });
