@@ -83,6 +83,11 @@ header {
     height: 5em;
 }
 
+/* set height to 10% of page */
+#msg {
+  height: 10vh;
+}
+
 /* login and register links */
 #auth {
     position: absolute;

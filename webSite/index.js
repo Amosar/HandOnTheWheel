@@ -43,6 +43,7 @@ app.get('/*', function (req, res) {
 
 // POST route from contact form
 app.post('/contact', function (req, res) {
+  //setup smtp setting gmail
   var mailOpts, smtpTrans;
   smtpTrans = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -55,16 +56,19 @@ app.post('/contact', function (req, res) {
   });
 
   mailOpts = {
-    from: req.body.email,
-    to: 'contactpinpints@gmail.com',
-    subject: req.body.subject,
+    from: req.body.email, //email address from form
+    to: 'contactpinpints@gmail.com', //send to pinpints address
+    subject: req.body.subject, //subject from form
+    //add name, email and messge from form
     text: `${req.body.name} <${req.body.email}> says: ${req.body.msg}`
   };
   smtpTrans.sendMail(mailOpts, function (error, response) {
     if (error) {
+      //set div to visable with failed message
       res.render('contact', {auth: req.isAuthenticated(), msg: `<div class=\"alert alert-danger\" role=\"alert\">Message failed to send</div>`});
     }
     else {
+      //set div to visable with sent message
       res.render('contact', {auth: req.isAuthenticated(), msg: `<div class=\"alert alert-success\" role=\"alert\">Message sent</div>`});
     }
   });

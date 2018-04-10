@@ -2,47 +2,43 @@
 <html>
 <head>
   <!-- ejs file for the header information  -->
-<% include ../partials/head %>
+  <% include ../partials/head %>
 
-    <title>Pin Pints | Bars</title>    <!-- Defining the title of the page -->
+  <title>Pin Pints | Bars</title>    <!-- Defining the title of the page -->
 </head>
 
 <body>
 
   <div id="banner">    <!-- Created a div for the banner -->
     <!-- ejs file where the navbar and banner are contained -->
-  <% include ../partials/banner %>
+    <% include ../partials/banner %>
   </div>
 
-<div class="wrapper">
+  <div class="wrapper">
     <main>
-        <p>Here there will be a list of bars the user has rated and any comments added. This is where the registered
-            users can track where they have been and what bars they enjoyed.</p>
-    </main>
+      <p>Here there will be a list of bars the user has rated and any comments added. This is where the registered
+        users can track where they have been and what bars they enjoyed.</p>
+      </main>
 
 
-    <!-- Modal Login-->
-    <div id="modalLogin" class="modal fade">
-      <!-- login ejs file -->
+      <!-- Modal Login-->
+      <div id="modalLogin" class="modal fade">
+        <!-- login ejs file -->
         <% include ../partials/login %>
-    </div>
+      </div>
 
-    <!-- Modal Register -->
-    <div id="modalRegister" class="modal fade">
-      <!-- register ejs file -->
-      <% include ../partials/register %>
-    </div>
+      <!-- Modal Register -->
+      <div id="modalRegister" class="modal fade">
+        <!-- register ejs file -->
+        <% include ../partials/register %>
+      </div>
 
-    <!-- Foooter -->
-    <footer class="footer">
+      <!-- Foooter -->
+      <footer class="footer">
         <!-- Creating a footer at the bottom of the homepage for the contact details and social media links -->
         <!-- ejs file where footer is contained -->
         <% include ../partials/footer %>
-    </footer>
-</div>
-<!-- script to set password visability -->
-<script type="text/javascript">
-    $("#password").password('toggle');
-</script>
-</body>
-</html>
+      </footer>
+    </div>
+  </body>
+  </html>
