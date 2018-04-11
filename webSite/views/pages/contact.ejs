@@ -17,11 +17,11 @@
 
   <div class="wrapper">
     <main>
+      <div id="contactmsg"><%- msg %></div>
       <div class="contactus">
         <h2>Get in touch</h2>
         <p>Please fill in the form below and one of the team will get back in due course</p>
         <!-- msg will show once user submits form -->
-        <div id="contactmsg"><%- msg %></div>
         <form action="/contact" id="ContactForm" method="post">      <!-- Creating a form for users to contact us -->
           <div class="form-group">
             <input type="text" class="form-control" name="name" placeholder="Enter Name"
