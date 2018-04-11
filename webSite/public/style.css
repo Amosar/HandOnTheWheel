@@ -82,7 +82,7 @@ header {
 
 /* set height of textarea */
 #msg {
-  height: 30px;
+  height: 100px;
 }
 
 /* login and register links */
