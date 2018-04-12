@@ -76,7 +76,6 @@ function searchLocation(success){
            return;
          }
 
-
          //for each place get name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
@@ -103,7 +102,9 @@ function searchLocation(success){
 function updateMap(location) {
     const mapOptions = {
         center: location,
-        zoom: 15
+        zoom: 15,
+        streetViewControl: false,
+        minZoom: 3
     };
     clearMarkers();
     if (typeof map.setCenter !== "undefined") {
