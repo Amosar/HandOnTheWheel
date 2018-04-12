@@ -52,7 +52,7 @@ function getPreciseLocation(success) {
     $(".location-loading").show();
 }
 
-function searchLocation(){
+function searchLocation(success){
   //create the search box and link it to the searchbar
   var input = document.getElementById('searchbar');
   var searchBox = new google.maps.places.SearchBox(input);
@@ -90,15 +90,26 @@ function searchLocation(){
           });
           map.fitBounds(bounds);
         });
-        
-        function localSuccess(pos) {
-            const location = {
-                lat: pos.coords.latitude,
-                lng: pos.coords.longitude
-            };
-            success(location);
-            $(".location-loading").hide();
-        }
+
+
+            function localSuccess(pos) {
+                const location = {
+                    lat: pos.coords.latitude,
+                    lng: pos.coords.longitude
+                };
+                success(location);
+                $(".location-loading").hide();
+            }
+
+            //TODO better error for user
+            function localError(err) {
+                console.warn(err);
+                alert("Your location could not be determined\n" + err.message);
+                $(".location-loading").hide();
+            }
+
+            navigator.geolocation.getCurrentPosition(localSuccess, localError, options);
+            $(".location-loading").show();
 }
 
 /**
