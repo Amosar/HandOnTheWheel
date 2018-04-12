@@ -52,7 +52,7 @@ function getPreciseLocation(success) {
     $(".location-loading").show();
 }
 
-function searchLocation(){
+function searchLocation(success){
   // Create the search box and link it to the UI element.
   var input = document.getElementById('searchbar');
   var searchBox = new google.maps.places.SearchBox(input);
@@ -82,13 +82,6 @@ function searchLocation(){
               console.log("Returned place contains no geometry");
               return;
             }
-            // var icon = {
-            //   url: place.icon,
-            //   size: new google.maps.Size(71, 71),
-            //   origin: new google.maps.Point(0, 0),
-            //   anchor: new google.maps.Point(17, 34),
-            //   scaledSize: new google.maps.Size(12, 12)
-            // };
 
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
@@ -99,6 +92,15 @@ function searchLocation(){
           });
           map.fitBounds(bounds);
         });
+
+        function localSuccess(pos) {
+            const location = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+            };
+            success(location);
+            $(".location-loading").hide();
+        }
 }
 
 /**
