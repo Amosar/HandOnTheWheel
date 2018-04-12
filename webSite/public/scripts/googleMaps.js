@@ -125,7 +125,7 @@ function updateMap(location) {
 function placeMarkers(location) {
     const request = {
         location: location,
-        radius: '2000',
+        radius: '1000',
         type: ['bar']
     };
     const infowindow = new google.maps.InfoWindow();
