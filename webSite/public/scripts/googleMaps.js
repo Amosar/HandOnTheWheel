@@ -61,11 +61,13 @@ function searchLocation(success){
   var input = document.getElementById('searchbar');
   var searchBox = new google.maps.places.SearchBox(input);
 
-  //bias search results to current view
+    //bias search results to current view
     map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
 
+       //clear previous markers
+       clearMarkers();
        //listen for event when user selects place get more information
        searchBox.addListener('places_changed', function() {
          var places = searchBox.getPlaces();
@@ -74,8 +76,6 @@ function searchLocation(success){
            return;
          }
 
-         //remove previous markers
-         // clearMarkers();
 
          //for each place get name and location.
           var bounds = new google.maps.LatLngBounds();
@@ -191,6 +191,7 @@ $(document).ready(function () {
     getQuickLocation(updateMap);
 
     $(".closetome").click(function () {
+        $('.search').val(""); //clears the serachbox
         getPreciseLocation(updateMap);
     });
 
