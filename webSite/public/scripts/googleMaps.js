@@ -75,25 +75,37 @@ function searchLocation(success){
          }
 
          //for each place get name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          //clear previous markers
-          clearMarkers();
-          //display the location
-          map.fitBounds(bounds);
+          // var bounds = new google.maps.LatLngBounds();
+          // places.forEach(function(place) {
+          //   if (!place.geometry) {
+          //     console.log("Returned place contains no geometry");
+          //     return;
+          //   }
+          //
+          //   if (place.geometry.viewport) {
+          //     // Only geocodes have viewport.
+          //     bounds.union(place.geometry.viewport);
+          //   } else {
+          //     bounds.extend(place.geometry.location);
+          //   }
+          // });
+          // //clear previous markers
+          // clearMarkers();
+          // //display the location
+          // map.fitBounds(bounds);
         });
+
+        function localSuccess(pos) {
+            const location = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+            };
+            success(location);
+            $(".location-loading").hide();
+        }
+
+        navigator.geolocation.getCurrentPosition(localSuccess);
+        $(".location-loading").show();
 }
 
 /**
@@ -190,13 +202,16 @@ function clearMarkers() {
  * Init the map when the page is load
  */
 $(document).ready(function () {
+    //find location
     getQuickLocation(updateMap);
 
+    //find exact location
     $(".closetome").click(function () {
         $('.search').val(""); //clears the serachbox
         getPreciseLocation(updateMap);
     });
 
+    //find searched location
     $(".search").click(function () {
         searchLocation(updateMap);
     });
