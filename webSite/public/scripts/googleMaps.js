@@ -75,37 +75,25 @@ function searchLocation(success){
          }
 
          //for each place get name and location.
-          // var bounds = new google.maps.LatLngBounds();
-          // places.forEach(function(place) {
-          //   if (!place.geometry) {
-          //     console.log("Returned place contains no geometry");
-          //     return;
-          //   }
-          //
-          //   if (place.geometry.viewport) {
-          //     // Only geocodes have viewport.
-          //     bounds.union(place.geometry.viewport);
-          //   } else {
-          //     bounds.extend(place.geometry.location);
-          //   }
-          // });
-          // //clear previous markers
-          // clearMarkers();
-          // //display the location
-          // map.fitBounds(bounds);
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          //clear previous markers
+          clearMarkers();
+          //display the location
+          map.fitBounds(bounds);
         });
-
-        function localSuccess(pos) {
-            const location = {
-                lat: pos.coords.latitude,
-                lng: pos.coords.longitude
-            };
-            success(location);
-            $(".location-loading").hide();
-        }
-
-        navigator.geolocation.getCurrentPosition(localSuccess);
-        $(".location-loading").show();
 }
 
 /**
@@ -214,6 +202,11 @@ $(document).ready(function () {
     //find searched location
     $(".search").click(function () {
         searchLocation(updateMap);
+    });
+
+    //find searched location
+    $(".searchbutton").click(function () {
+        updateMap();
     });
 
 });
