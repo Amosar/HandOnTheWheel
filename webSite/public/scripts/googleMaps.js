@@ -90,7 +90,7 @@ function searchLocation(){
           });
           map.fitBounds(bounds);
           //update map and place markers
-          updateMap();
+          updateMap(location);
         });
 }
 
