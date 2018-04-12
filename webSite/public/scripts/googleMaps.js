@@ -75,7 +75,7 @@ function searchLocation(success){
          }
 
          //remove previous markers
-         clearMarkers();
+         // clearMarkers();
 
          //for each place get name and location.
           var bounds = new google.maps.LatLngBounds();
