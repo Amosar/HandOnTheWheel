@@ -90,6 +90,15 @@ function searchLocation(){
           });
           map.fitBounds(bounds);
         });
+        
+        function localSuccess(pos) {
+            const location = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+            };
+            success(location);
+            $(".location-loading").hide();
+        }
 }
 
 /**
