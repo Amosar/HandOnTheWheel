@@ -62,7 +62,6 @@ function searchLocation(success){
     searchBox.setBounds(map.getBounds());
   });
 
-        var markers = [];
        // Listen for the event fired when the user selects a prediction and retrieve
        // more details for that place.
        searchBox.addListener('places_changed', function() {
@@ -92,15 +91,6 @@ function searchLocation(success){
           });
           map.fitBounds(bounds);
         });
-
-        function localSuccess(pos) {
-            const location = {
-                lat: pos.coords.latitude,
-                lng: pos.coords.longitude
-            };
-            success(location);
-            $(".location-loading").hide();
-        }
 }
 
 /**
