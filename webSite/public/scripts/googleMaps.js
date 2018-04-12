@@ -204,4 +204,8 @@ $(document).ready(function () {
         getPreciseLocation(updateMap);
     });
 
+    $(".search").click(function () {
+        searchLocation(updateMap);
+    });
+
 });
