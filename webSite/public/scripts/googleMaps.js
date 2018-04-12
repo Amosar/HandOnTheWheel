@@ -198,7 +198,7 @@ function clearMarkers() {
  */
 $(document).ready(function () {
     getQuickLocation(updateMap);
-    searchLocation(updateMap);
+    searchLocation();
 
     $(".closetome").click(function () {
         getPreciseLocation(updateMap);
