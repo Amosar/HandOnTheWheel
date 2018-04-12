@@ -103,6 +103,7 @@ function searchLocation(success){
           };
             success(location);
             $(".location-loading").hide();
+          }
 }
 
 /**
