@@ -52,6 +52,10 @@ function getPreciseLocation(success) {
     $(".location-loading").show();
 }
 
+/**
+ * Use user inputed text to find location
+ * @param success - give a callback method called if the user location is get.
+ */
 function searchLocation(success){
   //create the search box and link it to the searchbar
   var input = document.getElementById('searchbar');
@@ -108,7 +112,7 @@ function searchLocation(success){
                 $(".location-loading").hide();
             }
 
-            navigator.geolocation.getCurrentPosition(localSuccess, localError, options);
+            navigator.geolocation.getCurrentPosition(localSuccess, localError);
             $(".location-loading").show();
 }
 
