@@ -197,12 +197,11 @@ function clearMarkers() {
  * Init the map when the page is load
  */
 $(document).ready(function () {
-    getQuickLocation(updateMap);
-    searchLocation();
+    // getQuickLocation(updateMap);
+    searchLocation(updateMap);
 
     $(".closetome").click(function () {
         getPreciseLocation(updateMap);
     });
-
 
 });
