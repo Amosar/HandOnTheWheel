@@ -112,8 +112,7 @@ function searchLocation(success){
                 $(".location-loading").hide();
             }
 
-            navigator.geolocation.getCurrentPosition(localSuccess, localError);
-            $(".location-loading").show();
+            navigator.geolocation.getBounds(localSuccess, localError);
 }
 
 /**
