@@ -52,18 +52,17 @@ function getPreciseLocation(success) {
     $(".location-loading").show();
 }
 
-function searchLocation(success){
-  // Create the search box and link it to the UI element.
+function searchLocation(){
+  //create the search box and link it to the searchbar
   var input = document.getElementById('searchbar');
   var searchBox = new google.maps.places.SearchBox(input);
 
-  // Bias the SearchBox results towards current map's viewport.
+  //bias search results to current view
     map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
 
-       // Listen for the event fired when the user selects a prediction and retrieve
-       // more details for that place.
+       //listen for event when user selects place get more information
        searchBox.addListener('places_changed', function() {
          var places = searchBox.getPlaces();
 
@@ -73,23 +72,23 @@ function searchLocation(success){
 
          //remove previous markers
          clearMarkers();
-
-         // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
+         //
+         // //for each place name and location.
+         //  var bounds = new google.maps.LatLngBounds();
+         //  places.forEach(function(place) {
+         //    if (!place.geometry) {
+         //      console.log("Returned place contains no geometry");
+         //      return;
+         //    }
+         //
+         //    if (place.geometry.viewport) {
+         //      // Only geocodes have viewport.
+         //      bounds.union(place.geometry.viewport);
+         //    } else {
+         //      bounds.extend(place.geometry.location);
+         //    }
+         //  });
+         //  map.fitBounds(bounds);
         });
 }
 
