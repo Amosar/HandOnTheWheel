@@ -191,7 +191,7 @@ $(document).ready(function () {
     });
 
     $(".search").click(function () {
-        searchLocation();
+        searchLocation(updateMap);
     });
 
 });
