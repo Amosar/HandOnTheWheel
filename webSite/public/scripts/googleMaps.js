@@ -86,8 +86,6 @@ function searchLocation(){
               bounds.union(place.geometry.viewport);
             } else {
               bounds.extend(place.geometry.location);
-              //print co-ords
-              console.log(place.geometry.location);
             }
           });
           map.fitBounds(bounds);
