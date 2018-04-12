@@ -198,13 +198,11 @@ function clearMarkers() {
  */
 $(document).ready(function () {
     getQuickLocation(updateMap);
+    searchLocation(updateMap);
 
     $(".closetome").click(function () {
         getPreciseLocation(updateMap);
     });
 
-    $(".submitbar").click(function () {
-        searchLocation(updateMap);
-    });
 
 });
