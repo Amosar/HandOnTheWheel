@@ -72,23 +72,25 @@ function searchLocation(){
 
          //remove previous markers
          clearMarkers();
-         //
-         // //for each place name and location.
-         //  var bounds = new google.maps.LatLngBounds();
-         //  places.forEach(function(place) {
-         //    if (!place.geometry) {
-         //      console.log("Returned place contains no geometry");
-         //      return;
-         //    }
-         //
-         //    if (place.geometry.viewport) {
-         //      // Only geocodes have viewport.
-         //      bounds.union(place.geometry.viewport);
-         //    } else {
-         //      bounds.extend(place.geometry.location);
-         //    }
-         //  });
-         //  map.fitBounds(bounds);
+
+         //for each place get name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+              //print co-ords
+              console.log(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
         });
 }
 
