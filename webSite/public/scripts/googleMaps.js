@@ -66,8 +66,6 @@ function searchLocation(success){
     searchBox.setBounds(map.getBounds());
   });
 
-       //clear previous markers
-       clearMarkers();
        //listen for event when user selects place get more information
        searchBox.addListener('places_changed', function() {
          var places = searchBox.getPlaces();
@@ -91,6 +89,9 @@ function searchLocation(success){
               bounds.extend(place.geometry.location);
             }
           });
+          //clear previous markers
+          clearMarkers();
+          //display the location
           map.fitBounds(bounds);
         });
 }
