@@ -89,6 +89,8 @@ function searchLocation(){
             }
           });
           map.fitBounds(bounds);
+          //update map and place markers
+          updateMap();
         });
 }
 
@@ -185,14 +187,13 @@ function clearMarkers() {
  */
 $(document).ready(function () {
     getQuickLocation(updateMap);
-    //searchLocation(updateMap);
 
     $(".closetome").click(function () {
         getPreciseLocation(updateMap);
     });
 
     $(".search").click(function () {
-        searchLocation(updateMap);
+        searchLocation();
     });
 
 });
