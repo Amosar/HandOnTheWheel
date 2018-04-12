@@ -204,7 +204,7 @@ $(document).ready(function () {
         searchLocation(updateMap);
     });
 
-    //find searched location
+    //add markers searched location
     $(".searchbutton").click(function () {
         placeMarkers();
     });
