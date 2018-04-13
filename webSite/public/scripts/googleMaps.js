@@ -107,6 +107,7 @@ function searchLocation(success){
  * Update the map with a given location
  * @param location - location object with lat and lng fields.
  */
+//when user navigates to a location update markers
 function navigatedLocation(location) {
   var newMapCenter = map.getCenter();
   location = {
