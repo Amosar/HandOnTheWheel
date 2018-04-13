@@ -77,7 +77,8 @@ function searchLocation(success){
          //for each place get name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
-            var NewMapCenter = map.getCenter();
+            //get the center co-ords of the map
+            var newMapCenter = map.getCenter();
             if (!place.geometry) {
               console.log("Returned place contains no geometry");
               return;
@@ -86,14 +87,24 @@ function searchLocation(success){
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
               bounds.union(place.geometry.viewport);
-              //get lat and lng co-ords
-              console.log("lat:" + NewMapCenter.lat() + " " + "lng:" + NewMapCenter.lng());
+              //get lat and lng co-ords from center function
+              console.log("lat:" + newMapCenter.lat() + " " + "lng:" + newMapCenter.lng());
             } else {
               bounds.extend(place.geometry.location);
-              //get lat and lng co-ords
-              console.log("lat:" + NewMapCenter.lat() + " " + "lng:" + NewMapCenter.lng());
+              //get lat and lng co-ords from center function
+              console.log("lat:" + newMapCenter.lat() + " " + "lng:" + newMapCenter.lng());
             }
           });
+
+          function localSuccess(pos) {
+              const location = {
+                  lat: newMapCenter.lat(),
+                  lng: newMapCenter.lng()
+              };
+              success(location);
+              //$(".location-loading").hide();
+          }
+
           //clear previous markers
           clearMarkers();
           //display the location
