@@ -103,12 +103,31 @@ function searchLocation(success){
         });
 }
 
-function navigatedLocation(newMapCenter){
-  newMapCenter = map.getCenter();
-  const location = {
-      lat: newMapCenter.lat(),
-      lng: newMapCenter.lng()
+/**
+ * Update the map with a given location
+ * @param location - location object with lat and lng fields.
+ */
+function navigatedLocation(location) {
+  var newMapCenter = map.getCenter();
+  location: {
+    lat: newMapCenter.lat(),
+    lng: newMapCenter.lng()
   };
+    const mapOptions = {
+        center: location,
+        zoom: 15,
+        streetViewControl: false,
+        minZoom: 3
+    };
+    clearMarkers();
+    if (typeof map.setCenter !== "undefined") {
+        map.panTo(location);
+        map.setZoom(mapOptions.zoom);
+        placeMarkers(location);
+    } else {
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        placeMarkers(location);
+    }
 }
 
 /**
@@ -221,7 +240,7 @@ $(document).ready(function () {
 
     //add markers for current view on map
     $(".searchbutton").click(function () {
-        navigatedLocation(updateMap);
+        navigatedLocation();
     });
 
 });
