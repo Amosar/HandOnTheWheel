@@ -112,7 +112,7 @@ function searchLocation(success){
           //$(".location-loading").hide();
         }
 
-        map.setCenter(localSuccess);
+        map.getCenter(localSuccess);
 }
 
 /**
