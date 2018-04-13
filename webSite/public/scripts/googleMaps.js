@@ -53,13 +53,94 @@ function getPreciseLocation(success) {
 }
 
 /**
+ * Use user inputed text to find location
+ * @param success - give a callback method called if the user location is get.
+ */
+function searchLocation(success){
+  //create the search box and link it to the searchbar
+  var input = document.getElementById('searchbar');
+  var searchBox = new google.maps.places.SearchBox(input);
+
+    //bias search results to current view
+    map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+       //listen for event when user selects place get more information
+       searchBox.addListener('places_changed', function() {
+         var places = searchBox.getPlaces();
+
+         if (places.length == 0) {
+           return;
+         }
+
+         //for each place get name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            //get the center co-ords of the map
+            var newMapCenter = map.getCenter();
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+              //get lat and lng co-ords from center function
+              console.log("lat:" + newMapCenter.lat() + " " + "lng:" + newMapCenter.lng());
+            } else {
+              bounds.extend(place.geometry.location);
+              //get lat and lng co-ords from center function
+              console.log("lat:" + newMapCenter.lat() + " " + "lng:" + newMapCenter.lng());
+            }
+          });
+
+          //clear previous markers
+          clearMarkers();
+          //display the location
+          map.fitBounds(bounds);
+        });
+}
+
+/**
+ * Update the map with a given location
+ * @param location - location object with lat and lng fields.
+ */
+//when user navigates to a location update markers
+function navigatedLocation(location) {
+  var newMapCenter = map.getCenter();
+  location = {
+    lat: newMapCenter.lat(),
+    lng: newMapCenter.lng()
+  };
+    const mapOptions = {
+        center: location,
+        zoom: 15,
+        streetViewControl: false,
+        minZoom: 3
+    };
+    clearMarkers();
+    if (typeof map.setCenter !== "undefined") {
+        map.panTo(location);
+        map.setZoom(mapOptions.zoom);
+        placeMarkers(location);
+    } else {
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        placeMarkers(location);
+    }
+}
+
+/**
  * Update the map with a given location
  * @param location - location object with lat and lng fields.
  */
 function updateMap(location) {
     const mapOptions = {
         center: location,
-        zoom: 15
+        zoom: 15,
+        streetViewControl: false,
+        minZoom: 3
     };
     clearMarkers();
     if (typeof map.setCenter !== "undefined") {
@@ -79,7 +160,7 @@ function updateMap(location) {
 function placeMarkers(location) {
     const request = {
         location: location,
-        radius: '2000',
+        radius: '1000',
         type: ['bar']
     };
     const infowindow = new google.maps.InfoWindow();
@@ -144,9 +225,23 @@ function clearMarkers() {
  * Init the map when the page is load
  */
 $(document).ready(function () {
+    //find location
     getQuickLocation(updateMap);
 
+    //find exact location
     $(".closetome").click(function () {
+        $('.search').val(""); //clears the serachbox
         getPreciseLocation(updateMap);
     });
+
+    //find searched location
+    $(".search").click(function () {
+        searchLocation(updateMap);
+    });
+
+    //add markers for current view on map
+    $(".findbars").click(function () {
+        navigatedLocation();
+    });
+
 });
