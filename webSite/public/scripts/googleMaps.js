@@ -100,6 +100,8 @@ function searchLocation(success){
           clearMarkers();
           //display the location
           map.fitBounds(bounds);
+          //display new markers
+          navigatedLocation();
         });
 }
 
@@ -236,7 +238,7 @@ $(document).ready(function () {
 
     //find searched location
     $(".search").click(function () {
-        searchLocation(navigatedLocation);
+        searchLocation();
     });
 
     //add markers for current view on map
