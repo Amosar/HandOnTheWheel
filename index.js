@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
+const port = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 //app.use(require('morgan')('combined')); //useful value :dev, combined
@@ -75,4 +76,4 @@ app.post('/contact', function (req, res) {
     }
   });
 });
-app.listen(8080);
+app.listen(port);
