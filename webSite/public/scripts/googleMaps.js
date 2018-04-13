@@ -102,13 +102,12 @@ function searchLocation(success){
               lng: pos.geometry.location.lng()
           };
             success(location);
-            $(".location-loading").hide();
+            //$(".location-loading").hide();
             console.log("lat:" + pos.geometry.location.lat() + " " + "lng:" + pos.geometry.location.lng());
 
           }
 
-          navigator.geolocation.getCurrentPosition(localSuccess);
-
+          navigator.geolocation.getBounds(localSuccess);
 
 }
 
