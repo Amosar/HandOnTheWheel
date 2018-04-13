@@ -99,18 +99,16 @@ function searchLocation(success){
           //clear previous markers
           clearMarkers();
           //display the location
-          //map.fitBounds(bounds);
-          function localSuccess() {
-            const location = {
-              lat: newMapCenter.lat(),
-              lng: newMapCenter.lng()
-            };
-            success(location);
-            //$(".location-loading").hide();
-          }
-
-          map.fitBounds(localSuccess);
+          map.fitBounds(bounds);
         });
+}
+
+function navigatedLocation(newMapCenter){
+  newMapCenter = map.getCenter();
+  const location = {
+      lat: newMapCenter.lat(),
+      lng: newMapCenter.lng()
+  };
 }
 
 /**
@@ -223,7 +221,7 @@ $(document).ready(function () {
 
     //add markers for current view on map
     $(".searchbutton").click(function () {
-        updateMap();
+        navigatedLocation(updateMap);
     });
 
 });
