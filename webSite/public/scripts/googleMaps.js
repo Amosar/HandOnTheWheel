@@ -87,13 +87,13 @@ function searchLocation(success){
               bounds.union(place.geometry.viewport);
             } else {
               bounds.extend(place.geometry.location);
+              console.log("lat:" + place.geometry.location.lat() + " " + "lng:" + place.geometry.location.lng());
             }
           });
           //clear previous markers
           clearMarkers();
           //display the location
           map.fitBounds(bounds);
-          console.log("lat:" + place.geometry.location.lat() + " " + "lng:" + place.geometry.location.lng());
         });
 }
 
