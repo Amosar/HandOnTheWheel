@@ -100,19 +100,17 @@ function searchLocation(success){
           clearMarkers();
           //display the location
           //map.fitBounds(bounds);
+          function localSuccess() {
+            const location = {
+              lat: newMapCenter.lat(),
+              lng: newMapCenter.lng()
+            };
+            success(location);
+            //$(".location-loading").hide();
+          }
+
+          map.fitBounds(localSuccess);
         });
-
-
-        function localSuccess() {
-          const location = {
-            lat: newMapCenter.lat(),
-            lng: newMapCenter.lng()
-          };
-          success(location);
-          //$(".location-loading").hide();
-        }
-
-        map.fitBounds(localSuccess);
 }
 
 /**
