@@ -109,7 +109,7 @@ function searchLocation(success){
  */
 function navigatedLocation(location) {
   var newMapCenter = map.getCenter();
-  location: {
+  const location = {
     lat: newMapCenter.lat(),
     lng: newMapCenter.lng()
   };
