@@ -96,20 +96,23 @@ function searchLocation(success){
             }
           });
 
-          function localSuccess(pos) {
-              const location = {
-                  lat: newMapCenter.lat(),
-                  lng: newMapCenter.lng()
-              };
-              success(location);
-              //$(".location-loading").hide();
-          }
-
           //clear previous markers
           clearMarkers();
           //display the location
           map.fitBounds(bounds);
         });
+
+
+        function localSuccess(pos) {
+          const location = {
+            lat: newMapCenter.lat(),
+            lng: newMapCenter.lng()
+          };
+          success(location);
+          //$(".location-loading").hide();
+        }
+
+        map.setCenter(localSuccess);
 }
 
 /**
