@@ -99,11 +99,11 @@ function searchLocation(success){
           //clear previous markers
           clearMarkers();
           //display the location
-          map.fitBounds(bounds);
+          //map.fitBounds(bounds);
         });
 
 
-        function localSuccess(pos) {
+        function localSuccess() {
           const location = {
             lat: newMapCenter.lat(),
             lng: newMapCenter.lng()
@@ -112,7 +112,7 @@ function searchLocation(success){
           //$(".location-loading").hide();
         }
 
-        map.getCenter(localSuccess);
+        map.fitBounds(localSuccess);
 }
 
 /**
