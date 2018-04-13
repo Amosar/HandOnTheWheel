@@ -103,44 +103,39 @@ function searchLocation(success){
         });
 }
 
-// /**
-//  * Update the map with a given location
-//  * @param location - location object with lat and lng fields.
-//  */
-// //when user navigates to a location update markers
-// function navigatedLocation(location) {
-//   var newMapCenter = map.getCenter();
-//   location = {
-//     lat: newMapCenter.lat(),
-//     lng: newMapCenter.lng()
-//   };
-//     const mapOptions = {
-//         center: location,
-//         zoom: 15,
-//         streetViewControl: false,
-//         minZoom: 3
-//     };
-//     clearMarkers();
-//     if (typeof map.setCenter !== "undefined") {
-//         map.panTo(location);
-//         map.setZoom(mapOptions.zoom);
-//         placeMarkers(location);
-//     } else {
-//         map = new google.maps.Map(document.getElementById('map'), mapOptions);
-//         placeMarkers(location);
-//     }
-// }
+/**
+ * Update the map with a given location
+ * @param location - location object with lat and lng fields.
+ */
+//when user navigates to a location update markers
+function navigatedLocation(location) {
+  var newMapCenter = map.getCenter();
+  location = {
+    lat: newMapCenter.lat(),
+    lng: newMapCenter.lng()
+  };
+    const mapOptions = {
+        center: location,
+        zoom: 15,
+        streetViewControl: false,
+        minZoom: 3
+    };
+    clearMarkers();
+    if (typeof map.setCenter !== "undefined") {
+        map.panTo(location);
+        map.setZoom(mapOptions.zoom);
+        placeMarkers(location);
+    } else {
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        placeMarkers(location);
+    }
+}
 
 /**
  * Update the map with a given location
  * @param location - location object with lat and lng fields.
  */
 function updateMap(location) {
-  var newMapCenter = map.getCenter();
-  location = {
-    lat: newMapCenter.lat(),
-    lng: newMapCenter.lng()
-  };
     const mapOptions = {
         center: location,
         zoom: 15,
@@ -246,7 +241,7 @@ $(document).ready(function () {
 
     //add markers for current view on map
     $(".searchbutton").click(function () {
-        updateMap();
+        navigatedLocation();
     });
 
 });
