@@ -32,8 +32,10 @@ $(function () {
                 $("#modalRegister").modal("hide");
             }
         }).fail(function (data) {
+            let param = data.responseJSON.param;
+            if (param === undefined) param = "";
             $("#register-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                + data.responseJSON.message + data.responseJSON.param
+                + data.responseJSON.message + param
                 + "</div>");
         });
     });
@@ -49,7 +51,6 @@ $(function () {
             url: $(loginForm).attr('action'),
             data: formData
         }).done(function (response) {
-            console.log(response);
             if (response.error) {
                 $("#login-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                     + response.message
@@ -57,6 +58,83 @@ $(function () {
             } else {
                 window.location.reload();
             }
+        }).fail(function (data) {
+            let param = data.responseJSON.param;
+            if (param === undefined) param = "";
+            $("#login-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                + data.responseJSON.message + param
+                + "</div>");
+        });
+    });
+
+    const deleteAccountForm = $('#deleteAccountForm');
+    $(deleteAccountForm).submit(function (event) {
+        // Stop the browser from submitting the loginForm.
+        event.preventDefault();
+        const formData = $(deleteAccountForm).serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: $(deleteAccountForm).attr('action'),
+            data: formData
+        }).done(function (response) {
+            if (response.error) {
+                $("#deleteAccount-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                    + response.message
+                    + "</div>");
+            } else {
+                window.location = "/";
+            }
+        }).fail(function (data) {
+            let param = data.responseJSON.param;
+            if (param === undefined) param = "";
+            $("#deleteAccount-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                + data.responseJSON.message + param
+                + "</div>");
+        });
+    });
+
+    const changePasswordForm = $('#changePasswordForm');
+    $(changePasswordForm).submit(function (event) {
+        // Stop the browser from submitting the loginForm.
+        event.preventDefault();
+        const formData = $(changePasswordForm).serialize();
+        const currentPassword = $(changePasswordForm).find(":input[name=oldPassword]")[0].value;
+        const newPassword = $(changePasswordForm).find(":input[name=newPassword]")[0].value;
+        const confirmNewPassword = $(changePasswordForm).find(":input[name=confirmNewPassword]")[0].value;
+        if (currentPassword === newPassword) {
+            $("#changePasswordForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                + "You new password need to different from the old"
+                + "</div>");
+            return;
+        }
+        if (newPassword !== confirmNewPassword) {
+            $("#changePasswordForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                + "the passwords doesn't match"
+                + "</div>");
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: $(changePasswordForm).attr('action'),
+            data: formData
+        }).done(function (response) {
+            if (response.error) {
+                $("#changePasswordForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                    + response.message
+                    + "</div>");
+            } else {
+                $("#changePasswordForm-message").html("<div class=\"alert alert-success\" role=\"alert\">"
+                    + response.message
+                    + "</div>");
+            }
+        }).fail(function (data) {
+            let param = data.responseJSON.param;
+            if (param === undefined) param = "";
+            $("#changePasswordForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                + data.responseJSON.message + param
+                + "</div>");
         });
     });
 });
