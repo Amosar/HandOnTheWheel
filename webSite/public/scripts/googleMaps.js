@@ -95,7 +95,7 @@ function searchLocation(success){
           map.fitBounds(bounds);
         });
 
-        function localSuccess(pos) {
+        function localSuccess(place) {
           //get location from geometry
           const location = {
               lat: place.geometry.location.lat(),
