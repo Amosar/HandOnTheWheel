@@ -93,22 +93,8 @@ function searchLocation(success){
           clearMarkers();
           //display the location
           map.fitBounds(bounds);
+          console.log("lat:" + place.geometry.location.lat() + " " + "lng:" + place.geometry.location.lng());
         });
-
-        function localSuccess(pos) {
-          //get location from geometry
-          const location = {
-              lat: pos.geometry.location.lat(),
-              lng: pos.geometry.location.lng()
-          };
-            success(location);
-            //$(".location-loading").hide();
-            console.log("lat:" + pos.geometry.location.lat() + " " + "lng:" + pos.geometry.location.lng());
-
-          }
-
-          navigator.geolocation.getBounds(localSuccess);
-
 }
 
 /**
