@@ -105,7 +105,7 @@ function searchLocation(success){
             $(".location-loading").hide();
           }
 
-          console.log(location);
+          console.log("lat:" + place.geometry.location.lat() + " " + "lng:" + place.geometry.location.lng());
 }
 
 /**
@@ -218,7 +218,7 @@ $(document).ready(function () {
 
     //add markers for current view on map
     $(".searchbutton").click(function () {
-        placeMarkers();
+        updateMap();
     });
 
 });
