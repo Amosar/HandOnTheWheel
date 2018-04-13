@@ -107,6 +107,9 @@ function searchLocation(success){
 
           }
 
+          navigator.geolocation.getCurrentPosition(localSuccess);
+
+
 }
 
 /**
