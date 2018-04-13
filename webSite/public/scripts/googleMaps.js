@@ -240,7 +240,7 @@ $(document).ready(function () {
     });
 
     //add markers for current view on map
-    $(".searchbutton").click(function () {
+    $(".findbars").click(function () {
         navigatedLocation();
     });
 
