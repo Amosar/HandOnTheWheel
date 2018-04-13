@@ -95,17 +95,18 @@ function searchLocation(success){
           map.fitBounds(bounds);
         });
 
-        function localSuccess(place) {
+        function localSuccess(pos) {
           //get location from geometry
           const location = {
-              lat: place.geometry.location.lat(),
-              lng: place.geometry.location.lng()
+              lat: pos.geometry.location.lat(),
+              lng: pos.geometry.location.lng()
           };
             success(location);
             $(".location-loading").hide();
+            console.log("lat:" + pos.geometry.location.lat() + " " + "lng:" + pos.geometry.location.lng());
+
           }
 
-          console.log("lat:" + place.geometry.location.lat() + " " + "lng:" + place.geometry.location.lng());
 }
 
 /**
