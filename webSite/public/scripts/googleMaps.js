@@ -85,10 +85,12 @@ function searchLocation(success){
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
               bounds.union(place.geometry.viewport);
-              console.log("lat:" + place.geometry.viewport.getCenter());
+              //get lat and lng co-ords
+              console.log("lat:" + place.geometry.viewport.getCenter().lat() + " " + "lng:" + place.viewport.location.getCenter().lng());
             } else {
               bounds.extend(place.geometry.location);
-              console.log("lat:" + place.geometry.location.getCenter());
+              //get lat and lng co-ords
+              console.log("lat:" + place.geometry.location.getCenter().lat() + " " + "lng:" + place.geometry.location.getCenter().lng());
             }
           });
           //clear previous markers
