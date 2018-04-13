@@ -104,6 +104,8 @@ function searchLocation(success){
             success(location);
             $(".location-loading").hide();
           }
+
+          console.log(location);
 }
 
 /**
@@ -214,7 +216,7 @@ $(document).ready(function () {
         searchLocation(updateMap);
     });
 
-    //add markers searched location
+    //add markers for current view on map
     $(".searchbutton").click(function () {
         placeMarkers();
     });
