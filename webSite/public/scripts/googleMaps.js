@@ -236,7 +236,7 @@ $(document).ready(function () {
 
     //find searched location
     $(".search").click(function () {
-        searchLocation(updateMap);
+        searchLocation(navigatedLocation);
     });
 
     //add markers for current view on map
