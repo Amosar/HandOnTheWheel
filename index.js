@@ -38,7 +38,7 @@ app.get('/contact', function (req, res) {
 });
 
 app.get('/*', function (req, res) {
-    res.redirect('/');
+    res.redirect('/', {auth: req.isAuthenticated()});
 });
 
 // POST route from contact form

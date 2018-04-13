@@ -5,6 +5,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
+//req.session.passport.user; A way to found the user email
 passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
@@ -57,6 +58,7 @@ module.exports = function (app) {
                     if (err) {
                         return err
                     }
+                    req.session.email = req.body.email;
                     res.status(200).json({
                         error: false
                     });
@@ -67,6 +69,7 @@ module.exports = function (app) {
 
     app.get('/logout', function (req, res) {
             req.logout();
+        req.session.destroy();
             res.redirect('/');
         }
     );
@@ -93,19 +96,22 @@ module.exports = function (app) {
                         res.status(200).json(rep);
                     });
                 } else {
-                    res.status(400).json({error: 'true', message: "Email address is not valid"});
+                    res.status(200).json({error: 'true', message: "Email address is not valid"});
                 }
             }
         }
     );
 
     app.post('/changePassword', function (req, res) {
-        const email = req.body.email;
+        const email = req.session.email;
         const oldPassword = req.body.oldPassword;
         const newPassword = req.body.newPassword;
 
         const paramErr = [];
-        if (email === undefined || email === "") paramErr.push("email");
+        if (email === undefined || email === "") res.status(400).json({
+            error: true,
+            message: "You need to be authenticated to do that"
+        });
         if (oldPassword === undefined || oldPassword === "") paramErr.push("oldPassword");
         if (newPassword === undefined || newPassword === "") paramErr.push("newPassword");
 
@@ -116,8 +122,12 @@ module.exports = function (app) {
                 param: paramErr
             });
         } else {
-
-            if (validateEmail(email)) {
+            if (oldPassword === newPassword) {
+                res.status(200).json({
+                    error: 'true',
+                    message: "You new password need to different from the old"
+                });
+            } else if (validateEmail(email)) {
                 if (req.isAuthenticated()) {
                     dbHandler.getUserByEmail(email, function (err, user) {
                         if (err) return done(err);
@@ -127,7 +137,7 @@ module.exports = function (app) {
                             if (result === true) {
                                 dbHandler.updatePassword(email, newPassword, function (err) {
                                     if (err) res.status(200).json({error: true, message: err.errmsg});
-                                    res.status(200).json({error: false})
+                                    res.status(200).json({error: false, message: 'Password change with success'})
                                 });
                             } else {
                                 res.status(200).json({error: true, message: 'Wrong password.'})
@@ -135,9 +145,12 @@ module.exports = function (app) {
                         });
                     })
                 } else {
-                    res.status(400).json({error: 'true', message: "Email address is not valid"});
+                    res.status(200).json({error: 'true', message: "You need to be authenticated to do that"});
                 }
+            } else {
+                res.status(200).json({error: 'true', message: "Email address is not valid"});
             }
+
         }
     });
 
@@ -160,14 +173,18 @@ module.exports = function (app) {
             if (validateEmail(email)) {
                 if (req.isAuthenticated()) {
                     dbHandler.getUserByEmail(email, function (err, user) {
-                        if (err) return done(err);
-                        if (!user) return done(null, false, {message: 'Incorrect username.'});
+                        if (err) throw(err);
+                        if (!user) return res.status(400).json({error: 'true', message: 'Incorrect username.'});
 
                         bcrypt.compare(password, user.password, function (err, result) {
                             if (result === true) {
                                 req.logout();
                                 dbHandler.deleteUser(email, function (rep) {
-                                    res.redirect('/');
+                                    if (rep.error) {
+                                        res.status(200).json(rep);
+                                    } else {
+                                        res.redirect('/');
+                                    }
                                 });
                             } else {
                                 res.status(200).json({error: true, message: 'Wrong password.'})
@@ -175,10 +192,10 @@ module.exports = function (app) {
                         })
                     })
                 } else {
-                    res.status(400).json({error: 'true', message: "You need to be authenticated to do that"});
+                    res.status(200).json({error: 'true', message: "You need to be authenticated to do that"});
                 }
             } else {
-                res.status(400).json({error: 'true', message: "Email address is not valid"});
+                res.status(200).json({error: 'true', message: "Email address is not valid"});
             }
         }
     });
