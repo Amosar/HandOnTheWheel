@@ -44,8 +44,8 @@ app.get('/contact', function (req, res) {
 });
 
 //404 page when user navigates to wrong section
-app.get('/*', function (req, res) {
-    res.render('/404', {auth: req.isAuthenticated()});
+app.use(function (req, res) {
+    res.render('/404', 404, {auth: req.isAuthenticated()});
 });
 
 // POST route from contact form
