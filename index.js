@@ -51,7 +51,7 @@ app.get('/contact', function (req, res) {
 //handle 404 - Keep this as a last route
 app.use(function(req, res, next) {
     res.status(404);
-    res.send('404: File Not Found');
+    res.render('404', {auth: req.isAuthenticated()});
 });
 
 // POST route from contact form
