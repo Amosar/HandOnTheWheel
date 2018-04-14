@@ -14,32 +14,38 @@ require('./auth.js')(app);
 
 app.use(express.static('public'));
 
-//Used for static html files
+//Used for static ejs files
 app.set('views', __dirname + '/views/pages');
 app.set('view engine', 'ejs');
 
+//homepage
 app.get('/', function (req, res) {
     res.render('index', {auth: req.isAuthenticated()});
 });
 
+//about us poge
 app.get('/about', function (req, res) {
     res.render('about', {auth: req.isAuthenticated()});
 });
 
+//users account page
 app.get('/account', function (req, res) {
     res.render('account', {auth: req.isAuthenticated()});
 });
 
+//bar page where users can view saved info
 app.get('/bar', function (req, res) {
     res.render('bar', {auth: req.isAuthenticated()});
 });
 
+//contact us page
 app.get('/contact', function (req, res) {
     res.render('contact', {auth: req.isAuthenticated(), msg:""});
 });
 
+//404 page when user navigates to wrong section
 app.get('/*', function (req, res) {
-    res.redirect('/404', {auth: req.isAuthenticated()});
+    res.render('/404', {auth: req.isAuthenticated()});
 });
 
 // POST route from contact form
