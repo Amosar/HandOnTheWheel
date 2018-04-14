@@ -43,9 +43,15 @@ app.get('/contact', function (req, res) {
     res.render('contact', {auth: req.isAuthenticated(), msg:""});
 });
 
-//404 page when user navigates to wrong section
-app.get('/hi', function (req, res) {
-    res.redirect('/404', {auth: req.isAuthenticated()});
+// //404 page when user navigates to wrong section
+// app.get('/hi', function (req, res) {
+//     res.redirect('/404', {auth: req.isAuthenticated()});
+// });
+
+//handle 404 - Keep this as a last route
+app.use(function(req, res, next) {
+    res.status(404);
+    res.send('404: File Not Found');
 });
 
 // POST route from contact form
