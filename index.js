@@ -44,7 +44,7 @@ app.get('/contact', function (req, res) {
 });
 
 //404 page when user navigates to wrong section
-app.use(function (req, res) {
+app.get('/hi', function (req, res) {
     res.render('/404', 404, {auth: req.isAuthenticated()});
 });
 
