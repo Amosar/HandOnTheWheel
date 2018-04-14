@@ -118,7 +118,6 @@ function navigatedLocation(location) {
   };
     const mapOptions = {
         center: location,
-        zoom: 14,
         streetViewControl: false,
         minZoom: 3
     };
@@ -140,7 +139,7 @@ function navigatedLocation(location) {
 function updateMap(location) {
     const mapOptions = {
         center: location,
-        zoom: 14,
+        zoom: 15,
         streetViewControl: false,
         minZoom: 3
     };
