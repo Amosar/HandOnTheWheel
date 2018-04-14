@@ -163,7 +163,7 @@ main {
 }
 
 /* contact us form and about us styles */
-.contactus, .accountManagement, .sideimg, .aboutbox {
+.contactus, .accountManagement, .sideimg, .aboutbox, .error {
     width: 50%;
     padding: 1em;
     float: left;
