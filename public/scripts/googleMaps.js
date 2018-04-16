@@ -118,6 +118,7 @@ function navigatedLocation(location) {
   };
     const mapOptions = {
         center: location,
+        zoom: 15,
         streetViewControl: false,
         minZoom: 3
     };
