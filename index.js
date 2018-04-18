@@ -43,17 +43,6 @@ app.get('/contact', function (req, res) {
     res.render('contact', {auth: req.isAuthenticated(), msg:""});
 });
 
-// //404 page when user navigates to wrong section
-// app.get('/hi', function (req, res) {
-//     res.redirect('/404', {auth: req.isAuthenticated()});
-// });
-
-//handle 404 - Keep this as a last route
-app.use(function(req, res, next) {
-    res.status(404);
-    res.render('404', {auth: req.isAuthenticated()});
-});
-
 // POST route from contact form
 app.post('/contact', function (req, res) {
   //setup smtp setting gmail
@@ -88,4 +77,11 @@ app.post('/contact', function (req, res) {
     }
   });
 });
+
+//handle 404 - Keep this as a last route
+app.use(function(req, res, next) {
+    res.status(404);
+    res.render('404', {auth: req.isAuthenticated()});
+});
+
 app.listen(port);
