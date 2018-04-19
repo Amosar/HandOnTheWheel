@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 
 //Used for authenticate system.
 require('./auth.js')(app);
+require('./rating.js')(app);
 
 app.use(express.static('public'));
 
@@ -57,8 +58,7 @@ app.use(function(req, res, next) {
 // POST route from contact form
 app.post('/contact', function (req, res) {
   //setup smtp setting gmail
-  var mailOpts, smtpTrans;
-  smtpTrans = nodemailer.createTransport({
+    const smtpTrans = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
@@ -68,7 +68,7 @@ app.post('/contact', function (req, res) {
     }
   });
 
-  mailOpts = {
+    const mailOpts = {
     from: req.body.email, //email address from form
     to: 'contactpinpints@gmail.com', //send to pinpints address
     subject: req.body.subject, //subject from form

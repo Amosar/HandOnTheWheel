@@ -1,4 +1,4 @@
-const api_key = "AIzaSyD1wu0c5kRaHUH7SvyTT8fpV01S-vFMemI";
+const api_key = "AIzaSyAf-JAqM8EDoTDnBgaH0dN9ioyBPI0dYJs";
 let markers = [];
 
 /**
@@ -70,7 +70,7 @@ function searchLocation(success){
        searchBox.addListener('places_changed', function() {
          var places = searchBox.getPlaces();
 
-         if (places.length == 0) {
+           if (places.length === 0) {
            return;
          }
 
@@ -168,48 +168,110 @@ function placeMarkers(location) {
     const infowindow = new google.maps.InfoWindow();
     const service = new google.maps.places.PlacesService(map);
 
-    service.nearbySearch(request, function (results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (let i = 0; i < results.length; i++) {
-                const place = results[i];
+    checkIfUserIsLogged(function (userIsLogged) {
+        service.nearbySearch(request, function (results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (let i = 0; i < results.length; i++) {
+                    const place = results[i];
+                    getBarRatingByUser(place.place_id, function (barRated) {
 
-                const icon = {
-                    url: "img/pinpint.png",
-                    size: new google.maps.Size(50, 50),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(50, 50)
-                };
-                const marker = new google.maps.Marker({
-                    map: map,
-                    position: place.geometry.location,
-                    icon: icon
-                });
-                marker.data = place;
-                google.maps.event.addListener(marker, 'click', function () {
-
-                    const PlaceService = new google.maps.places.PlacesService(map);
-                    PlaceService.getDetails({
-                        placeId: this.data.place_id
-                    }, function (placeDetail, status) {
-                        for (let j = 0; j < markers.length; j++) {
-                            if (markers[j].data.place_id === placeDetail.place_id) {
-                                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                                    infowindow.setContent('<div><strong>' + placeDetail.name + '</strong><br>' +
-                                        'Google rating: ' + placeDetail.rating + '<br>' +
-                                        'WebSite: <a href="' + placeDetail.website + '" target="_blank">click here</a><br>' +
-                                        placeDetail.formatted_address + '</div>');
-                                    infowindow.open(map, markers[j]);
-                                }
-                            }
+                        const icon = {
+                            url: "/img/pinpint.png",
+                            size: new google.maps.Size(50, 50),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(50, 50)
+                        };
+                        if (barRated.isRated) {
+                            icon.url = "/img/pinpint-rated.png"
                         }
-                    });
-                });
-                markers.push(marker);
-            }
-        }
 
+                        const marker = new google.maps.Marker({
+                            map: map,
+                            position: place.geometry.location,
+                            icon: icon
+                        });
+                        marker.data = place;
+                        google.maps.event.addListener(marker, 'click', function () {
+                            const PlaceService = new google.maps.places.PlacesService(map);
+                            PlaceService.getDetails({
+                                placeId: this.data.place_id
+                            }, function (placeDetail, status) {
+                                for (let j = 0; j < markers.length; j++) {
+                                    if (markers[j].data.place_id === placeDetail.place_id) {
+                                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                                            let infoWindowContent = '<div><strong>' + placeDetail.name + '</strong><br />';
+                                            infoWindowContent += 'Google rating: ' + placeDetail.rating + '<br />';
+                                            if (placeDetail.website !== undefined) {
+                                                infoWindowContent += 'WebSite: <a href="' + placeDetail.website
+                                                    + '" target="_blank">click here</a><br />';
+                                            }
+                                            infoWindowContent += placeDetail.formatted_address + "<br />";
+                                            infoWindowContent += '<a target="_blank" href="' + placeDetail.url
+                                                + '">View on Google Maps</a><br /><br />';
+
+                                            if (barRated.isRated) {
+                                                infoWindowContent += "Your rating: " + barRated.rating + "/5 <br />";
+                                                infoWindowContent += "<a data-toggle='modal' data-target=\"#modalRating\" " +
+                                                    "data-bar_name='" + placeDetail.name + "' " +
+                                                    "data-bar_id='" + placeDetail.place_id + "' " +
+                                                    "data-bar_rating='" + barRated.rating + "' " +
+                                                    "data-bar_comment='" + barRated.comment + "'  " +
+                                                    "href=''>Change your rating</a> "
+                                            } else if (userIsLogged) {
+                                                infoWindowContent += "<a data-toggle='modal' data-target=\"#modalRating\" " +
+                                                    "data-bar_name='" + placeDetail.name + "' " +
+                                                    "data-bar_id='" + placeDetail.place_id + "' " +
+                                                    "href=''>Rate this bar</a> "
+                                            }
+                                            infoWindowContent += "</div>";
+                                            infowindow.setContent(infoWindowContent);
+                                            infowindow.open(map, markers[j]);
+                                        }
+                                    }
+                                }
+                            });
+                        });
+                        markers.push(marker);
+                    });
+                }
+            }
+
+        });
+    })
+}
+
+
+function getBarRatingByUser(barID, callback) {
+    const formData = {barID: barID};
+    $.ajax({
+        type: 'POST',
+        url: "/getBarRatingByUser",
+        data: formData
+    }).done(function (response) {
+        if (response.isRated) {
+            callback(response);
+        } else {
+            callback(false);
+        }
+    }).fail(function (data) {
+        callback(false);
     });
+}
+
+function checkIfUserIsLogged(callback) {
+    $.ajax({
+        type: 'POST',
+        url: "/userIsLogged",
+    }).done(function (response) {
+        if (response.result) {
+            callback(true);
+        } else {
+            callback(false);
+        }
+    }).fail(function (data) {
+        callback(false);
+    })
 }
 
 /**
@@ -244,6 +306,20 @@ $(document).ready(function () {
     //add markers for current view on map
     $(".findbars").click(function () {
         navigatedLocation();
+    });
+
+    $('#modalRating').on('show.bs.modal', function (event) {
+        const button = $(event.relatedTarget);
+        const barName = button.data('bar_name');
+        const barID = button.data('bar_id');
+        const rating = button.data('bar_rating');
+        const comment = button.data('bar_comment');
+
+        const modal = $(this);
+        modal.find('.modal-title').text('Rate the bar : ' + barName);
+        modal.find('#rating-field').val(rating);
+        //TODO find a better way to send barID
+        modal.find('#modalBarId').val(barID);
     });
 
 });

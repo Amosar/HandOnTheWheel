@@ -92,8 +92,7 @@ const local = module.exports = {
     },
 
     /**
-     * get user with his api key
-     * (will be remove or modify with session system)
+     * get user with his UUID
      * @param uuid
      * @param callback
      */
@@ -138,12 +137,42 @@ const local = module.exports = {
             user.find({email: email}).toArray(function (err, doc) {
                 if (doc.length > 0) {
                     const salt = bcrypt.genSaltSync(10);
-                    user.updateOne({email: email}, {$set: {"password": bcrypt.hashSync(newPassword, salt)}});
-                    callback(null);
+                    const hash = bcrypt.hashSync(newPassword, salt);
+                    user.updateOne({email: email}, {$set: {"password": hash}}, function (err, res) {
+                        if (err) throw err;
+                        client.close();
+                        callback(null);
+                    });
                 } else {
                     callback(new Error('No user have been found with ' + uuid + " id"));
                 }
+            });
+        })
+    },
+
+
+    getBarRating: function (userUUID, barId, callback) {
+        connect(function (db, client) {
+            const bars = db.collection('bars');
+            bars.find({userUUID: userUUID, barID: barId}).toArray(function (err, bar) {
                 client.close();
+                if (bar.length > 0) {
+                    callback(false, bar[0])
+                } else {
+                    callback(true, null, "no bar")
+                }
+            })
+        })
+    },
+
+    setBarRating: function (userUUID, barId, rating, comment, callback) {
+        connect(function (db, client) {
+            const bars = db.collection('bars');
+            bars.updateOne({userUUID: userUUID, barID: barId}, {
+                userUUID: userUUID,
+                barID: barId,
+                rating: rating,
+                comment: comment
             });
         })
     }
