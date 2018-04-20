@@ -200,6 +200,10 @@ module.exports = function (app) {
         }
     });
 
+    app.post("/userIsLogged", function (req, res) {
+        res.status(200).json({result: req.isAuthenticated()});
+    });
+
     app.get('/check', function (req, res) {
         res.send(req.isAuthenticated());
     });

@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 
 //Used for authenticate system.
 require('./auth.js')(app);
+require('./rating.js')(app);
 
 app.use(express.static('public'));
 
@@ -20,34 +21,33 @@ app.set('view engine', 'ejs');
 
 //homepage
 app.get('/', function (req, res) {
-    res.render('index', {auth: req.isAuthenticated()});
+    res.render('index', {auth: req.isAuthenticated(), page_name: "home"});
 });
 
 //about us poge
 app.get('/about', function (req, res) {
-    res.render('about', {auth: req.isAuthenticated()});
+    res.render('about', {auth: req.isAuthenticated(), page_name: "about"});
 });
 
 //users account page
 app.get('/account', function (req, res) {
-    res.render('account', {auth: req.isAuthenticated()});
+    res.render('account', {auth: req.isAuthenticated(), page_name: "account"});
 });
 
 //bar page where users can view saved info
 app.get('/bar', function (req, res) {
-    res.render('bar', {auth: req.isAuthenticated()});
+    res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars"});
 });
 
 //contact us page
 app.get('/contact', function (req, res) {
-    res.render('contact', {auth: req.isAuthenticated(), msg:""});
+    res.render('contact', {auth: req.isAuthenticated(), page_name: "contact", msg: ""});
 });
 
 // POST route from contact form
 app.post('/contact', function (req, res) {
   //setup smtp setting gmail
-  var mailOpts, smtpTrans;
-  smtpTrans = nodemailer.createTransport({
+    const smtpTrans = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
@@ -57,7 +57,7 @@ app.post('/contact', function (req, res) {
     }
   });
 
-  mailOpts = {
+    const mailOpts = {
     from: req.body.email, //email address from form
     to: 'contactpinpints@gmail.com', //send to pinpints address
     subject: req.body.subject, //subject from form

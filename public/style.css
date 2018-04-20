@@ -70,6 +70,10 @@ header {
     background: #696969;
 }
 
+.current-page {
+    text-decoration: underline;
+}
+
 /*set logo size */
 .brand {
     position: absolute;
