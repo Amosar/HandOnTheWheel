@@ -21,27 +21,27 @@ app.set('view engine', 'ejs');
 
 //homepage
 app.get('/', function (req, res) {
-    res.render('index', {auth: req.isAuthenticated()});
+    res.render('index', {auth: req.isAuthenticated(), page_name: "home"});
 });
 
 //about us poge
 app.get('/about', function (req, res) {
-    res.render('about', {auth: req.isAuthenticated()});
+    res.render('about', {auth: req.isAuthenticated(), page_name: "about"});
 });
 
 //users account page
 app.get('/account', function (req, res) {
-    res.render('account', {auth: req.isAuthenticated()});
+    res.render('account', {auth: req.isAuthenticated(), page_name: "account"});
 });
 
 //bar page where users can view saved info
 app.get('/bar', function (req, res) {
-    res.render('bar', {auth: req.isAuthenticated()});
+    res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars"});
 });
 
 //contact us page
 app.get('/contact', function (req, res) {
-    res.render('contact', {auth: req.isAuthenticated(), msg:""});
+    res.render('contact', {auth: req.isAuthenticated(), page_name: "contact", msg: ""});
 });
 
 // //404 page when user navigates to wrong section
@@ -52,7 +52,7 @@ app.get('/contact', function (req, res) {
 //handle 404 - Keep this as a last route
 app.use(function(req, res, next) {
     res.status(404);
-    res.render('404', {auth: req.isAuthenticated()});
+    res.render('404', {auth: req.isAuthenticated(), page_name: "404Error"});
 });
 
 // POST route from contact form
