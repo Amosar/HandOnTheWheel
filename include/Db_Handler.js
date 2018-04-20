@@ -174,6 +174,7 @@ const local = module.exports = {
                 rating: rating,
                 comment: comment
             });
+            client.close();
         })
     }
 };
