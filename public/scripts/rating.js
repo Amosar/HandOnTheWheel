@@ -19,7 +19,7 @@ $(function () {
                 $("#ratingForm-message").html("<div class=\"alert alert-success\" role=\"alert\">"
                     + "You rating as been updated with success"
                     + "</div>");
-
+                navigatedLocation();
             }
         }).fail(function () {
             $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
