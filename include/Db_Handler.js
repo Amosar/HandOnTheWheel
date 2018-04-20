@@ -169,11 +169,13 @@ const local = module.exports = {
         connect(function (db, client) {
             const bars = db.collection('bars');
             bars.updateOne({userUUID: userUUID, barID: barId}, {
-                userUUID: userUUID,
-                barID: barId,
-                rating: rating,
-                comment: comment
-            });
+                $set: {
+                    userUUID: userUUID,
+                    barID: barId,
+                    rating: rating,
+                    comment: comment
+                }
+            }, {upsert: true});
             client.close();
         })
     }
