@@ -320,6 +320,8 @@ $(document).ready(function () {
         modal.find('#rating-field').val(rating);
         //TODO find a better way to send barID
         modal.find('#modalBarId').val(barID);
+        modal.find('#rating-comment').val(comment);
+        modal.find('#ratingForm-message').html("");
     });
 
 });

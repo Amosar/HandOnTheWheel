@@ -175,8 +175,13 @@ const local = module.exports = {
                     rating: rating,
                     comment: comment
                 }
-            }, {upsert: true});
-            client.close();
+            }, {upsert: true}, function (err, result) {
+                if (err) throw err;
+
+                client.close();
+                callback(result.modifiedCount + result.upsertedCount === 0);
+            });
+
         })
     }
 };

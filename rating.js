@@ -52,8 +52,8 @@ module.exports = function (app) {
             });
         } else {
             dbHandler.getUserByEmail(email, function (err, user) {
-                dbHandler.setBarRating(user.uuid, barID, rating, comment, function () {
-
+                dbHandler.setBarRating(user.uuid, barID, rating, comment, function (err) {
+                    res.status(200).json({error: err});
                 })
             });
         }
