@@ -1,7 +1,7 @@
 <!-- views/partials/banner.ejs -->
 <header>       <!-- Header tag set up as a container -->
   <div>
-    <a href="/"><img src="img/pinpint.png" class="brand" alt=""></a>
+    <a href="/"><img src="/img/pinpint.png" class="brand" alt=""></a>
     <div id="bannerText">PinPints</div>      <!-- Image for the banner along with the title -->
   </div>
 
@@ -13,7 +13,7 @@
       <li class="registertxt"><a href="#modalRegister" data-toggle="modal">Register</a></li>
       <!-- Register choice -->
       <% } else { %>
-        <li class="accountLink"><a href="account">Account</a></li>      <!-- Account choice -->
+    <li class="accountLink"><a href="/account">Account</a></li>      <!-- Account choice -->
     <li class="logOutLink"><a href="/logout">Logout</a></li>      <!-- LogOut choice -->
         <% } %>
       </ul>
@@ -32,13 +32,13 @@
           <!-- Link to homepage -->
         </li>
           <li class="nav-item active<% if (page_name === 'myBars') { %> current-page <% } %>">
-          <a class="nav-link" href="bar">My Bars</a>     <!-- Link to Bar page -->
+            <a class="nav-link" href="/bar">My Bars</a>     <!-- Link to Bar page -->
         </li>
           <li class="nav-item active<% if (page_name === 'about') { %> current-page <% } %>">
-          <a class="nav-link" href="about">About</a>     <!-- Link to About page -->
+            <a class="nav-link" href="/about">About</a>     <!-- Link to About page -->
         </li>
           <li class="nav-item active<% if (page_name === 'contact') { %> current-page <% } %>">
-          <a class="nav-link" href="contact">Contact</a>     <!-- Link to Contact page -->
+            <a class="nav-link" href="/contact">Contact</a>     <!-- Link to Contact page -->
         </li>
       </ul>
     </div>
