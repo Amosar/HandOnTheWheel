@@ -3,11 +3,11 @@ const uuidv1 = require('uuid/v1');
 const assert = require('assert');
 const bcrypt = require('bcryptjs');
 
-// Connection URL
-const url = 'mongodb://localhost:27017';
+// Connection URI
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 
 // Database Name
-const dbName = 'PinPint';
+const dbName = process.env.MONGODB_DBNAME || 'pinpint';
 
 function connect(callback) {
     // Use connect method to connect to the server
