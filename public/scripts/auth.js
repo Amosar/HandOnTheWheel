@@ -4,9 +4,9 @@ $(function () {
     $(registerForm).submit(function (event) {
         // Stop the browser from submitting the registerForm.
         event.preventDefault();
-        const formData = $(registerForm).serialize();
-        const password = $(registerForm).find(":input[name=password]")[0].value;
-        const confirmPassword = $(registerForm).find(":input[name=confirmPassword]")[0].value;
+        const formData = $(this).serialize();
+        const password = $(this).find(":input[name=password]")[0].value;
+        const confirmPassword = $(this).find(":input[name=confirmPassword]")[0].value;
         if (password !== confirmPassword) {
             $("#register-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                 + "the passwords doesn't match"
@@ -40,11 +40,11 @@ $(function () {
         });
     });
 
-    const loginForm = $('#loginForm');
+    const loginForm = $('.loginForm');
     $(loginForm).submit(function (event) {
         // Stop the browser from submitting the loginForm.
         event.preventDefault();
-        const formData = $(loginForm).serialize();
+        const formData = $(this).serialize();
 
         $.ajax({
             type: 'POST',
@@ -52,7 +52,7 @@ $(function () {
             data: formData
         }).done(function (response) {
             if (response.error) {
-                $("#login-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                $(".login-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                     + response.message
                     + "</div>");
             } else {
@@ -61,7 +61,7 @@ $(function () {
         }).fail(function (data) {
             let param = data.responseJSON.param;
             if (param === undefined) param = "";
-            $("#login-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+            $(".login-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                 + data.responseJSON.message + param
                 + "</div>");
         });
@@ -71,7 +71,7 @@ $(function () {
     $(deleteAccountForm).submit(function (event) {
         // Stop the browser from submitting the loginForm.
         event.preventDefault();
-        const formData = $(deleteAccountForm).serialize();
+        const formData = $(this).serialize();
 
         $.ajax({
             type: 'POST',
@@ -98,7 +98,7 @@ $(function () {
     $(changePasswordForm).submit(function (event) {
         // Stop the browser from submitting the loginForm.
         event.preventDefault();
-        const formData = $(changePasswordForm).serialize();
+        const formData = $(this).serialize();
         const currentPassword = $(changePasswordForm).find(":input[name=oldPassword]")[0].value;
         const newPassword = $(changePasswordForm).find(":input[name=newPassword]")[0].value;
         const confirmNewPassword = $(changePasswordForm).find(":input[name=confirmNewPassword]")[0].value;

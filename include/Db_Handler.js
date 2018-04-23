@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const url = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 
 // Database Name
-const dbName = process.env.MONGODB_DBNAME || 'pinpint';
+const dbName = process.env.MONGODB_DBNAME || 'PinPint';
 
 function connect(callback) {
     // Use connect method to connect to the server
@@ -120,6 +120,7 @@ const local = module.exports = {
             const user = db.collection('user');
             user.find({email: email}).toArray(function (err, docs) {
                 client.close();
+                console.log(docs);
                 callback(docs.length > 0);
             });
         })
@@ -150,6 +151,19 @@ const local = module.exports = {
         })
     },
 
+    getBarRatedByUser: function (userUUID, callback) {
+        connect(function (db, client) {
+            const bars = db.collection('bars');
+            bars.find({userUUID: userUUID}).toArray(function (err, bar) {
+                client.close();
+                if (bar.length > 0) {
+                    callback(false, bar)
+                } else {
+                    callback(true, null, "no bar")
+                }
+            })
+        })
+    },
 
     getBarRating: function (userUUID, barId, callback) {
         connect(function (db, client) {
@@ -165,12 +179,13 @@ const local = module.exports = {
         })
     },
 
-    setBarRating: function (userUUID, barId, rating, comment, callback) {
+    setBarRating: function (userUUID, barId, barName, rating, comment, callback) {
         connect(function (db, client) {
             const bars = db.collection('bars');
             bars.updateOne({userUUID: userUUID, barID: barId}, {
                 $set: {
                     userUUID: userUUID,
+                    barName: barName,
                     barID: barId,
                     rating: rating,
                     comment: comment

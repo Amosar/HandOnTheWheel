@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const dbHandler = require('./include/Db_Handler.js');
+
 
 const port = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({extended: true}));
@@ -36,7 +38,21 @@ app.get('/account', function (req, res) {
 
 //bar page where users can view saved info
 app.get('/bar', function (req, res) {
-    res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars"});
+    const email = req.session.email;
+    dbHandler.getUserByEmail(email, function (err, user) {
+        if (err) return done(err);
+        if (user) {
+            dbHandler.getBarRatedByUser(user.uuid, function (err, bars) {
+                if (err) {
+                    res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: bars});
+                } else {
+                    res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: bars});
+                }
+            });
+        } else {
+            res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: null});
+        }
+    });
 });
 
 //contact us page

@@ -19,7 +19,11 @@ $(function () {
                 $("#ratingForm-message").html("<div class=\"alert alert-success\" role=\"alert\">"
                     + "You rating as been updated with success"
                     + "</div>");
-                navigatedLocation();
+                if (location.pathname === "/bar") {
+                    window.location.reload();
+                } else {
+                    navigatedLocation();
+                }
             }
         }).fail(function () {
             $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
@@ -27,4 +31,22 @@ $(function () {
                 + "</div>");
         })
     });
+
+    $('#modalRating').on('show.bs.modal', function (event) {
+        const button = $(event.relatedTarget);
+        const barName = button.data('bar_name');
+        const barID = button.data('bar_id');
+        const rating = button.data('bar_rating');
+        const comment = button.data('bar_comment');
+
+        const modal = $(this);
+        modal.find('.modal-title').text('Rate the bar : ' + barName);
+        modal.find('#rating-field').val(rating);
+        //TODO find a better way to send barID
+        modal.find('#modalBarId').val(barID);
+        modal.find('#modalBarName').val(barName);
+        modal.find('#rating-comment').val(comment);
+        modal.find('#ratingForm-message').html("");
+    });
 });
+

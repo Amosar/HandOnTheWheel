@@ -212,7 +212,7 @@ function placeMarkers(location) {
 
                                             if (barRated.isRated) {
                                                 infoWindowContent += "Your rating: " + barRated.rating + "/5 <br />";
-                                                infoWindowContent += "<a data-toggle='modal' data-target=\"#modalRating\" " +
+                                                infoWindowContent += "<a data-toggle='modal' data-target='#modalRating\' " +
                                                     "data-bar_name='" + placeDetail.name + "' " +
                                                     "data-bar_id='" + placeDetail.place_id + "' " +
                                                     "data-bar_rating='" + barRated.rating + "' " +
@@ -306,22 +306,6 @@ $(document).ready(function () {
     //add markers for current view on map
     $(".findbars").click(function () {
         navigatedLocation();
-    });
-
-    $('#modalRating').on('show.bs.modal', function (event) {
-        const button = $(event.relatedTarget);
-        const barName = button.data('bar_name');
-        const barID = button.data('bar_id');
-        const rating = button.data('bar_rating');
-        const comment = button.data('bar_comment');
-
-        const modal = $(this);
-        modal.find('.modal-title').text('Rate the bar : ' + barName);
-        modal.find('#rating-field').val(rating);
-        //TODO find a better way to send barID
-        modal.find('#modalBarId').val(barID);
-        modal.find('#rating-comment').val(comment);
-        modal.find('#ratingForm-message').html("");
     });
 
 });

@@ -30,6 +30,7 @@ module.exports = function (app) {
     app.post('/updateRating', function (req, res) {
         const email = req.session.email;
         const barID = req.body.barID;
+        const barName = req.body.barName;
         const rating = req.body.rating;
         const comment = req.body.comment;
 
@@ -52,7 +53,7 @@ module.exports = function (app) {
             });
         } else {
             dbHandler.getUserByEmail(email, function (err, user) {
-                dbHandler.setBarRating(user.uuid, barID, rating, comment, function (err) {
+                dbHandler.setBarRating(user.uuid, barID, barName, rating, comment, function (err) {
                     res.status(200).json({error: err});
                 })
             });

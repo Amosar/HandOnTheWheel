@@ -3,6 +3,8 @@
 <head>
     <!-- ejs file for the header information  -->
     <% include ../partials/head %>
+    <script src="/scripts/rating.js"></script>
+
 
     <title>Pin Pints | Bars</title>    <!-- Defining the title of the page -->
 </head>
@@ -17,14 +19,40 @@
 <div class="wrapper">
     <main>
         <% if (auth) { %>
-
-        <p>Here there will be a list of bars the user has rated and any comments added. This is where the registered
-            users can track where they have been and what bars they enjoyed.</p>
+        <!-- add table of users bars -->
+        <table style="border: 1px solid black;">
+            <th style="border: 1px solid black;">Bar</th>
+            <th style="border: 1px solid black;">Rating</th>
+            <th style="border: 1px solid black;">Comment</th>
+            <% if(bars){ %>
+            <% for(var i = 0; i < bars.length;i++) { %>
+            <tr style="border: 1px solid black;">
+                <td style="border: 1px solid black;"> <%= bars[i].barName %> </td>
+                <td style="border: 1px solid black;"> <%= bars[i].rating %> </td>
+                <td style="border: 1px solid black;"> <%= bars[i].comment %> </td>
+                <td style="border: 1px solid black;"><a style="color: blue" data-toggle='modal'
+                                                        data-target='#modalRating'
+                                                        data-bar_name="<%= bars[i].barName %>"
+                                                        data-bar_id="<%= bars[i].barID %>"
+                                                        data-bar_rating="<%= bars[i].rating %>"
+                                                        data-bar_comment="<%= bars[i].comment %>">Edit</a></td>
+            </tr>
+            <% } %>
+            <% } else { %>
+            <p>no bar found</p>
+            <% } %>
+        </table>
+        <% } else { %>
+        <div class="alert alert-danger" role="alert">This area requires you to be logged in</div>
+        <% include ../partials/login %>
+        <% } %>
     </main>
-    <% } else { %>
-    <div class="alert alert-danger" role="alert">This area requires you to be logged in</div>
-    <% include ../partials/login %>
-    <% } %>
+
+    <!-- Modal rating-->
+    <div class="modal fade" id="modalRating" tabindex="-1" role="dialog" aria-labelledby="modalRating"
+         aria-hidden="true">
+        <% include ../partials/rating %>
+    </div>
 
     <!-- Modal Login-->
     <div id="modalLogin" class="modal fade">
