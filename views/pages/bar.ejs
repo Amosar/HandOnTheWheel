@@ -28,15 +28,15 @@
             <% for(var i = 0; i < bars.length;i++) { %>
               <div id="accordion">
   <div class="card">
-    <div class="card-header" id="<%= bars[i].barID %>">
+    <div class="card-header" id="heading<%= bars[i].barID %>">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#<%= bars[i].barID %>" aria-expanded="true" aria-controls="<%= bars[i].barID %>">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= bars[i].barID %>" aria-expanded="true" aria-controls="collapse<%= bars[i].barID %>">
           <%= bars[i].barName %>
         </button>
       </h5>
     </div>
 
-    <div id="<%= bars[i].barID %>" class="collapse show" aria-labelledby="<%= bars[i].barID %>" data-parent="#accordion">
+    <div id="collapse<%= bars[i].barID %>" class="collapse show" aria-labelledby="heading<%= bars[i].barID %>" data-parent="#accordion">
       <div class="card-body">
         Rating: <%= bars[i].rating %></br>
         Comment: <%= bars[i].comment %></br>
