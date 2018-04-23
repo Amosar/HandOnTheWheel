@@ -30,7 +30,7 @@
   <div class="card">
     <div class="card-header" id="<%= bars[i].barID %>">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="<%= bars[i].barID %>" aria-expanded="true" aria-controls="<%= bars[i].barID %>">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#<%= bars[i].barID %>" aria-expanded="true" aria-controls="<%= bars[i].barID %>">
           <%= bars[i].barName %>
         </button>
       </h5>
@@ -65,7 +65,7 @@
             <% } else { %>
             <p>no bar found</p>
             <% } %>
-        </table>
+        <!-- </table> -->
         <% } else { %>
         <div class="alert alert-danger" role="alert">This area requires you to be logged in</div>
         <% include ../partials/login %>
