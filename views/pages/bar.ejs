@@ -20,13 +20,37 @@
     <main>
         <% if (auth) { %>
         <!-- add table of users bars -->
-        <table style="border: 1px solid black;">
+        <!-- <table style="border: 1px solid black;">
             <th style="border: 1px solid black;">Bar</th>
             <th style="border: 1px solid black;">Rating</th>
-            <th style="border: 1px solid black;">Comment</th>
+            <th style="border: 1px solid black;">Comment</th> -->
             <% if(bars){ %>
             <% for(var i = 0; i < bars.length;i++) { %>
-            <tr style="border: 1px solid black;">
+              <div id="accordion">
+  <div class="card">
+    <div class="card-header" id="<%= bars[i].barID %>">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="<%= bars[i].barID %>" aria-expanded="true" aria-controls="<%= bars[i].barID %>">
+          <%= bars[i].barName %>
+        </button>
+      </h5>
+    </div>
+
+    <div id="<%= bars[i].barID %>" class="collapse show" aria-labelledby="<%= bars[i].barID %>" data-parent="#accordion">
+      <div class="card-body">
+        Rating: <%= bars[i].rating %></br>
+        Comment: <%= bars[i].comment %></br>
+        <a style="color: blue" data-toggle='modal'
+                                                data-target='#modalRating'
+                                                data-bar_name="<%= bars[i].barName %>"
+                                                data-bar_id="<%= bars[i].barID %>"
+                                                data-bar_rating="<%= bars[i].rating %>"
+                                                data-bar_comment="<%= bars[i].comment %>">Edit</a>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- <tr style="border: 1px solid black;">
                 <td style="border: 1px solid black;"> <%= bars[i].barName %> </td>
                 <td style="border: 1px solid black;"> <%= bars[i].rating %> </td>
                 <td style="border: 1px solid black;"> <%= bars[i].comment %> </td>
@@ -36,7 +60,7 @@
                                                         data-bar_id="<%= bars[i].barID %>"
                                                         data-bar_rating="<%= bars[i].rating %>"
                                                         data-bar_comment="<%= bars[i].comment %>">Edit</a></td>
-            </tr>
+            </tr> -->
             <% } %>
             <% } else { %>
             <p>no bar found</p>
