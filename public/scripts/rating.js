@@ -49,3 +49,4 @@ $(function () {
         modal.find('#ratingForm-message').html("");
     });
 });
+

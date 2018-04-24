@@ -3,6 +3,7 @@
 <head>
     <!-- ejs file for the header information  -->
     <% include ../partials/head %>
+    <script src="/scripts/rating.js"></script>
 
     <title>Pin Pints | Bars</title>    <!-- Defining the title of the page -->
 </head>
@@ -30,7 +31,7 @@
                   data-bar_id="<%= bars[i].barID %>"
                   data-bar_rating="<%= bars[i].rating %>"
                   data-bar_comment="<%= bars[i].comment %>" value="Edit">
-                  <form action="/deleteRating" id="deleteRatingForm" method="post">
+                  <form action="/deleteRatedBar" id="deleteBar" method="post">
                 <input type="submit" class="btn btn-danger" value="Delete"></p>
                 </form>
         </div>
