@@ -5,7 +5,6 @@
     <% include ../partials/head %>
     <script src="/scripts/rating.js"></script>
 
-
     <title>Pin Pints | Bars</title>    <!-- Defining the title of the page -->
 </head>
 
@@ -33,7 +32,7 @@
                   data-bar_rating="<%= bars[i].rating %>"
                   data-bar_comment="<%= bars[i].comment %>" value="Edit">
                   <form action="/deleteRatedBar" id="deleteBar" method="post">
-                <button type="submit" class="btn btn-danger" value="Delete"></p>
+                <input type="submit" class="btn btn-danger" value="Delete"></p>
                 </form>
         </div>
         <% } %>
