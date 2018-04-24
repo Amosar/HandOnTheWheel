@@ -48,7 +48,7 @@ $(function () {
                         + response.message
                         + "</div>");
                 } else {
-                    window.location.reload();
+                    console.log("failed");
                 }
             }).fail(function (data) {
                     console.log("failed");
