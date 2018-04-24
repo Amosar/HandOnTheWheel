@@ -94,7 +94,7 @@ $(function () {
         });
     });
 
-    const deleteRatedBar = $('#deleteBarForm');
+    const deleteRatedBarForm = $('#deleteRatedBarForm');
     $(deleteRatedBar).submit(function (event) {
         // Stop the browser from submitting the loginForm.
         event.preventDefault();
@@ -102,7 +102,7 @@ $(function () {
 
         $.ajax({
             type: 'POST',
-            url: $(deleteRatedBar).attr('action'),
+            url: $(deleteRatedBarForm).attr('action'),
             data: formData
         }).done(function (response) {
             if (response.error) {
