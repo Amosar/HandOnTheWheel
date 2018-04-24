@@ -26,30 +26,19 @@
             <th style="border: 1px solid black;">Comment</th> -->
             <% if(bars){ %>
             <% for(var i = 0; i < bars.length;i++) { %>
-              <div id="accordion">
-  <div class="card">
-    <div class="card-header" id="heading<%= bars[i].barID %>">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse<%= bars[i].barID %>" aria-expanded="true" aria-controls="collapse<%= bars[i].barID %>">
-          <%= bars[i].barName %>
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapse<%= bars[i].barID %>" class="collapsed" aria-labelledby="heading<%= bars[i].barID %>" data-parent="#accordion">
-      <div class="card-body">
-        Rating: <%= bars[i].rating %></br>
-        Comment: <%= bars[i].comment %></br>
-        <a style="color: blue" data-toggle='modal'
-                                                data-target='#modalRating'
-                                                data-bar_name="<%= bars[i].barName %>"
-                                                data-bar_id="<%= bars[i].barID %>"
-                                                data-bar_rating="<%= bars[i].rating %>"
-                                                data-bar_comment="<%= bars[i].comment %>">Edit</a>
-      </div>
-    </div>
-  </div>
-</div>
+              <div id="barList">
+                <button class="accordion"><%= bars[i].barName %></button>
+                <div class="panel">
+                  <p>Rating: <%= bars[i].rating %> </p>
+                  <p>Comments: <%= bars[i].comment %> </p>
+                  <p> <a style="color: blue" data-toggle='modal'
+                                                          data-target='#modalRating'
+                                                          data-bar_name="<%= bars[i].barName %>"
+                                                          data-bar_id="<%= bars[i].barID %>"
+                                                          data-bar_rating="<%= bars[i].rating %>"
+                                                          data-bar_comment="<%= bars[i].comment %>">Edit</a></p>
+                </div>
+              </div>
             <!-- <tr style="border: 1px solid black;">
                 <td style="border: 1px solid black;"> <%= bars[i].barName %> </td>
                 <td style="border: 1px solid black;"> <%= bars[i].rating %> </td>
@@ -97,5 +86,21 @@
         <% include ../partials/footer %>
     </footer>
 </div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
 </body>
 </html>
