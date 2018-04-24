@@ -25,7 +25,8 @@
         <div class="panel">
             <p>Rating: <%= bars[i].rating %> </p>
             <p>Comments: <%= bars[i].comment %> </p>
-            <p><input type="button" data-toggle='modal'
+            <p><input type="button" class="btn btn-primary"
+                  data-toggle='modal'
                   data-target='#modalRating'
                   data-bar_name="<%= bars[i].barName %>"
                   data-bar_id="<%= bars[i].barID %>"
