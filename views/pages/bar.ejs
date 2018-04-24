@@ -23,9 +23,9 @@
         <% for(var i = 0; i < bars.length;i++) { %>
         <button class="accordion"><%= bars[i].barName %></button>
         <div class="panel">
-            <p>Rating: <%= bars[i].rating %> </p>
-            <p>Comments: <%= bars[i].comment %> </p>
-            <p><input type="button" class="btn btn-primary"
+            <p>Rating: <%= bars[i].rating %> <br/>
+              Comments: <%= bars[i].comment %> <br/>
+            <br/><input type="button" class="btn btn-primary"
                   data-toggle='modal'
                   data-target='#modalRating'
                   data-bar_name="<%= bars[i].barName %>"
