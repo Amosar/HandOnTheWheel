@@ -32,27 +32,6 @@ $(function () {
         })
     });
 
-        // remove the updateRating.
-        const deleteRatingForm = $('#deleteRatingForm');
-        deleteRatingForm.submit(function (event) {
-            // Stop the browser from submitting the registerForm.
-            event.preventDefault();
-            const formData = deleteRatingForm.serialize();
-            $.ajax({
-                type: 'POST',
-                url: deleteRatingForm.attr('action'),
-                data: formData
-            }).done(function (response) {
-                if (response.error) {
-                    console.log(response.error);
-                } else {
-                    console.log("failed");
-                }
-            }).fail(function () {
-                    console.log("failed");
-            });
-        });
-
     $('#modalRating').on('show.bs.modal', function (event) {
         const button = $(event.relatedTarget);
         const barName = button.data('bar_name');
