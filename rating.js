@@ -61,7 +61,7 @@ module.exports = function (app) {
 
     });
 
-    app.post('/deleRating', function (req, res) {
+    app.post('/deleteRating', function (req, res) {
         const email = req.session.email;
         const barID = req.body.barID;
 
