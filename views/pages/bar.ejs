@@ -26,11 +26,8 @@
           <form action="/deleteBar" id="deleteBarForm" method="post">
             <p>Rating: <%= bars[i].rating %> </p>
             <p>Comments: <%= bars[i].comment %> </p>
-            <div>
-                <label for="modalBarId" class="col-form-label">Workaround to send barID (do not edit this
-                    value!)</label>
-                <input name="barID" id="modalBarId" readonly value="<%= bars[i].barID %>">
-            </div>
+            <!-- hidden barID value don't delete -->
+            <input style="display: none;" name="barID" id="modalBarId" readonly value="<%= bars[i].barID %>">
             <p><input type="button" class="btn btn-primary"
                   data-toggle='modal'
                   data-target='#modalRating'
