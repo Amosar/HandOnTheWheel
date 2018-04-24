@@ -31,7 +31,10 @@
                   data-bar_name="<%= bars[i].barName %>"
                   data-bar_id="<%= bars[i].barID %>"
                   data-bar_rating="<%= bars[i].rating %>"
-                  data-bar_comment="<%= bars[i].comment %>" value="Edit"></p>
+                  data-bar_comment="<%= bars[i].comment %>" value="Edit">
+                <form action="/deleteBar" id="deleteBarForm" method="post">
+                <input type="submit" class="btn btn-danger mr-auto" value="Delete">
+              </form></p>
         </div>
         <% } %>
         <% } else { %>
