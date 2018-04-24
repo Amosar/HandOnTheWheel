@@ -76,11 +76,7 @@ module.exports = function (app) {
         } else {
             dbHandler.getUserByEmail(email, function (err, user) {
                 dbHandler.deleteRatedBar(user.uuid, barID, function (err, bar, message) {
-                    if (err) {
-                        res.status(200).json({isRated: false, message: message})
-                    } else {
-                        res.status(200).json({isRated: true, rating: bar.rating, comment: bar.comment})
-                    }
+                    res.status(200).json({error: err});
                 })
             });
         }
