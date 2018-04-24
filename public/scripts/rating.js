@@ -51,7 +51,7 @@ $(function () {
                     window.location.reload();
                 }
             }).fail(function (data) {
-                    window.location.reload();
+                    console.log("failed");
             });
         });
 
