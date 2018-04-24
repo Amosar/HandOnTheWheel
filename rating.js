@@ -87,7 +87,7 @@ module.exports = function (app) {
             });
         } else {
             dbHandler.getUserByEmail(email, function (err, user) {
-                dbHandler.deleteRatedBar(user.uuid, barID, barName, rating, comment, function (err) {
+                dbHandler.deleteRatedBar(user.uuid, barName, comment, function (err) {
                     res.status(200).json({error: err});
                 })
             });
