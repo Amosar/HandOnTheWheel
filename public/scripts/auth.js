@@ -98,11 +98,11 @@ $(function () {
     $(deleteRatedBarForm).submit(function (event) {
         // Stop the browser from submitting the loginForm.
         event.preventDefault();
-        const formData = deleteRatingBarForm.serialize();
+        const formData = deleteRatedBarForm.serialize();
 
         $.ajax({
             type: 'POST',
-            url: deleteRatingBarForm.attr('action'),
+            url: deleteRatedBarForm.attr('action'),
             data: formData
         }).done(function (response) {
             if (response.error) {
