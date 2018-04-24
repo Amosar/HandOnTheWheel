@@ -51,11 +51,7 @@ $(function () {
                     window.location.reload();
                 }
             }).fail(function (data) {
-                let param = data.responseJSON.param;
-                if (param === undefined) param = "";
-                $("#deleteAccount-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                    + data.responseJSON.message + param
-                    + "</div>");
+                    window.location.reload();
             });
         });
 
