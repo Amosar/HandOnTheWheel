@@ -19,40 +19,23 @@
 <div class="wrapper">
     <main>
         <% if (auth) { %>
-        <!-- add table of users bars -->
-        <!-- <table style="border: 1px solid black;">
-            <th style="border: 1px solid black;">Bar</th>
-            <th style="border: 1px solid black;">Rating</th>
-            <th style="border: 1px solid black;">Comment</th> -->
         <% if(bars){ %>
         <% for(var i = 0; i < bars.length;i++) { %>
         <button class="accordion"><%= bars[i].barName %></button>
         <div class="panel">
             <p>Rating: <%= bars[i].rating %> </p>
             <p>Comments: <%= bars[i].comment %> </p>
-            <p><a style="color: blue" data-toggle='modal'
+            <p><input type="button" data-toggle='modal'
                   data-target='#modalRating'
                   data-bar_name="<%= bars[i].barName %>"
                   data-bar_id="<%= bars[i].barID %>"
                   data-bar_rating="<%= bars[i].rating %>"
-                  data-bar_comment="<%= bars[i].comment %>">Edit</a></p>
+                  data-bar_comment="<%= bars[i].comment %>" value="Edit"></p>
         </div>
-        <!-- <tr style="border: 1px solid black;">
-                <td style="border: 1px solid black;"> <%= bars[i].barName %> </td>
-                <td style="border: 1px solid black;"> <%= bars[i].rating %> </td>
-                <td style="border: 1px solid black;"> <%= bars[i].comment %> </td>
-                <td style="border: 1px solid black;"><a style="color: blue" data-toggle='modal'
-                                                        data-target='#modalRating'
-                                                        data-bar_name="<%= bars[i].barName %>"
-                                                        data-bar_id="<%= bars[i].barID %>"
-                                                        data-bar_rating="<%= bars[i].rating %>"
-                                                        data-bar_comment="<%= bars[i].comment %>">Edit</a></td>
-            </tr> -->
         <% } %>
         <% } else { %>
         <p>no bar found</p>
         <% } %>
-        <!-- </table> -->
         <% } else { %>
         <div class="alert alert-danger" role="alert">This area requires you to be logged in</div>
         <% include ../partials/login %>
