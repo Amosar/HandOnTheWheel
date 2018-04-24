@@ -61,24 +61,33 @@ module.exports = function (app) {
 
     });
 
-    app.post('/deleteRating', function (req, res) {
+    app.post('/deleRating', function (req, res) {
         const email = req.session.email;
         const barID = req.body.barID;
 
+        const paramErr = [];
         if (!req.isAuthenticated() || email === undefined || email === "") {
             res.status(400).json({
                 error: true,
                 message: "You need to be authenticated to do that"
             });
+            return;
+        }
+        if (barID === undefined || barID === "") paramErr.push("barID");
 
-        } else if (barID === undefined || barID === "") {
-            res.status(400).json({error: true, message: "the BarID parameter need to be specified"})
+        if (paramErr.length > 0) {
+            res.status(400).json({
+                error: 'true',
+                message: "One or more parameters are empty or missing: ",
+                param: paramErr
+            });
         } else {
             dbHandler.getUserByEmail(email, function (err, user) {
-                dbHandler.deleteRatedBar(user.uuid, barID, function (err, bar, message) {
+                dbHandler.deleteBarRating(user.uuid, barID, function (err) {
                     res.status(200).json({error: err});
                 })
             });
         }
+
     });
 };
