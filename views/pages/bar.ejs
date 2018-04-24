@@ -23,15 +23,20 @@
         <% for(var i = 0; i < bars.length;i++) { %>
         <button class="accordion"><%= bars[i].barName %></button>
         <div class="panel">
+          <form action="/deleteBar" id="deleteBarForm" method="post">
             <p>Rating: <%= bars[i].rating %> </p>
             <p>Comments: <%= bars[i].comment %> </p>
+            <!-- hidden barID value don't delete -->
+            <input style="display: none;" name="barID" id="modalBarId" readonly value="<%= bars[i].barID %>">
             <p><input type="button" class="btn btn-primary"
                   data-toggle='modal'
                   data-target='#modalRating'
                   data-bar_name="<%= bars[i].barName %>"
                   data-bar_id="<%= bars[i].barID %>"
                   data-bar_rating="<%= bars[i].rating %>"
-                  data-bar_comment="<%= bars[i].comment %>" value="Edit"></p>
+                  data-bar_comment="<%= bars[i].comment %>" value="Edit">
+                <input type="submit" class="btn btn-danger" value="Delete">
+              </form></p>
         </div>
         <% } %>
         <% } else { %>

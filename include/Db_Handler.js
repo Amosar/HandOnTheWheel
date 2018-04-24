@@ -179,6 +179,20 @@ const local = module.exports = {
         })
     },
 
+    deleteBarRating: function (userUUID, barId, callback) {
+        connect(function (db, client) {
+            const bars = db.collection('bars');
+            bars.removeMany({userUUID: userUUID, barID: barId}, function (err, result) {
+                client.close();
+                if (err) {
+                    callback({error: true, message: err.errmsg})
+                } else {
+                    callback({error: false, message: "Bar rating successfully removed"});
+                }
+            });
+        })
+    },
+
     setBarRating: function (userUUID, barId, barName, rating, comment, callback) {
         connect(function (db, client) {
             const bars = db.collection('bars');
