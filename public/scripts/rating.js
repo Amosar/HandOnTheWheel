@@ -44,9 +44,7 @@ $(function () {
                 data: formData
             }).done(function (response) {
                 if (response.error) {
-                    $("#deleteAccount-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                        + response.message
-                        + "</div>");
+                    console.log(response.error);
                 } else {
                     console.log("failed");
                 }
