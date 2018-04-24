@@ -95,7 +95,7 @@ $(function () {
     });
 
     const deleteRatedBarForm = $('#deleteRatedBarForm');
-    $(deleteRatedBar).submit(function (event) {
+    $(deleteRatedBarForm).submit(function (event) {
         // Stop the browser from submitting the loginForm.
         event.preventDefault();
         const formData = $(this).serialize();
