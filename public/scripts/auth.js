@@ -94,6 +94,33 @@ $(function () {
         });
     });
 
+    const deleteRatedBar = $('#deleteBarForm');
+    $(deleteRatedBar).submit(function (event) {
+        // Stop the browser from submitting the loginForm.
+        event.preventDefault();
+        const formData = $(this).serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: $(deleteRatedBar).attr('action'),
+            data: formData
+        }).done(function (response) {
+            if (response.error) {
+                $("#deleteAccount-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                    + response.message
+                    + "</div>");
+            } else {
+                window.location = "/";
+            }
+        }).fail(function (data) {
+            let param = data.responseJSON.param;
+            if (param === undefined) param = "";
+            $("#deleteAccount-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                + data.responseJSON.message + param
+                + "</div>");
+        });
+    });
+
     const changePasswordForm = $('#changePasswordForm');
     $(changePasswordForm).submit(function (event) {
         // Stop the browser from submitting the loginForm.
