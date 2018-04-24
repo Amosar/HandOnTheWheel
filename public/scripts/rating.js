@@ -32,7 +32,6 @@ $(function () {
         })
     });
 
-    $(function () {
         // remove the updateRating.
         const deleteRatingForm = $('#deleteRatingForm');
         deleteRatingForm.submit(function (event) {
