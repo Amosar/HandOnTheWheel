@@ -196,7 +196,7 @@ main {
     transition: 0.4s;
 }
 
-.accordion:hover, .accordion:focus {
+.accordion:hover, .accordion:active {
     background-color: #ccc;
 }
 
