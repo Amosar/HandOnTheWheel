@@ -5,6 +5,7 @@
     <% include ../partials/head %>
     <script src="/scripts/rating.js"></script>
 
+
     <title>Pin Pints | Bars</title>    <!-- Defining the title of the page -->
 </head>
 
@@ -22,18 +23,15 @@
         <% for(var i = 0; i < bars.length;i++) { %>
         <button class="accordion"><%= bars[i].barName %></button>
         <div class="panel">
-            <p>Rating: <%= bars[i].rating %> <br/>
-              Comments: <%= bars[i].comment %> <br/>
-              <input type="button" class="btn btn-primary"
+            <p>Rating: <%= bars[i].rating %> </p>
+            <p>Comments: <%= bars[i].comment %> </p>
+            <p><input type="button" class="btn btn-primary"
                   data-toggle='modal'
                   data-target='#modalRating'
                   data-bar_name="<%= bars[i].barName %>"
                   data-bar_id="<%= bars[i].barID %>"
                   data-bar_rating="<%= bars[i].rating %>"
-                  data-bar_comment="<%= bars[i].comment %>" value="Edit">
-                  <form action="/deleteRatedBar" id="deleteBar" method="post">
-                <input type="submit" class="btn btn-danger" value="Delete"></p>
-                </form>
+                  data-bar_comment="<%= bars[i].comment %>" value="Edit"></p>
         </div>
         <% } %>
         <% } else { %>

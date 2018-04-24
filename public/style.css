@@ -187,6 +187,7 @@ main {
     background-color: #eee;
     color: #273bdf;
     cursor: pointer;
+    padding: 18px;
     width: 100%;
     text-align: center;
     font-size: 15px;

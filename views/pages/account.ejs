@@ -25,17 +25,17 @@
                 <div id="changePasswordForm-message"></div>
                 <div class="form-group">
                     <label>Current password</label>
-                    <input type="password" id="current-password" class="form-control" placeholder="Enter Current Password"
+                    <input type="password" id="password" class="form-control" placeholder="Enter Current Password"
                            required="required" data-toggle="password" name="oldPassword">
                 </div>    <!-- Input box for users to enter their current password -->
                 <div class="form-group">
                     <label>New-password</label>
-                    <input type="password" id="new-password" class="form-control" placeholder="Enter New Password"
+                    <input type="password" id="password" class="form-control" placeholder="Enter New Password"
                            required="required" data-toggle="password" name="newPassword">
                 </div>   <!-- Input box for users to enter their new password -->
                 <div class="form-group">
                     <label>Confirm new password</label>
-                    <input type="password" id="confirm-password" class="form-control" placeholder="Confirm New Password"
+                    <input type="password" id="password" class="form-control" placeholder="Confirm New Password"
                            required="required" data-toggle="password" name="confirmNewPassword">
                 </div>   <!-- Input box for users to confirm their new password -->
                 <input type="submit" class="btn btn-primary mr-auto" value="Change Password">
@@ -85,7 +85,7 @@
         </div>
     </div>
     <% } else { %>
-    <div class="alert alert-danger" role="alert">This area needs an account</div>
+    <div class="alert alert-danger" role="alert">This area need an account</div>
     <% include ../partials/login %>
     <% } %>
 

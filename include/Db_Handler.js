@@ -71,20 +71,6 @@ const local = module.exports = {
         })
     },
 
-    deleteRatedBar: function (userUUID, barId, callback) {
-        connect(function (db, client) {
-            const bars = db.collection('bars');
-            bars.remove({userUUID: userUUID, barId: barID}, function (err, result) {
-                client.close();
-                if (err) {
-                    callback({error: true, message: err.errmsg})
-                } else {
-                    callback({error: false, message: "Bar successfully removed"});
-                }
-            });
-        })
-    },
-
     /**
      * getUserByEmail
      * (will be remove or modify with session system)
