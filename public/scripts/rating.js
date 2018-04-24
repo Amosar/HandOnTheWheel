@@ -44,24 +44,19 @@ $(function () {
                 data: formData
             }).done(function (response) {
                 if (response.error) {
-                    $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                        + "You haven't modified your rating"
+                    $("#deleteAccount-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                        + response.message
                         + "</div>");
                 } else {
-                    $("#ratingForm-message").html("<div class=\"alert alert-success\" role=\"alert\">"
-                        + "You rating as been updated with success"
-                        + "</div>");
-                    if (location.pathname === "/bar") {
-                        window.location.reload();
-                    } else {
-                        navigatedLocation();
-                    }
+                    window.location.reload();
                 }
-            }).fail(function () {
-                $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                    + "An unexpected error has occurred. Please contact the Administrator"
+            }).fail(function (data) {
+                let param = data.responseJSON.param;
+                if (param === undefined) param = "";
+                $("#deleteAccount-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                    + data.responseJSON.message + param
                     + "</div>");
-            })
+            });
         });
 
     $('#modalRating').on('show.bs.modal', function (event) {
