@@ -50,7 +50,7 @@ $(function () {
                 } else {
                     console.log("failed");
                 }
-            }).fail(function (data) {
+            }).fail(function () {
                     console.log("failed");
             });
         });
