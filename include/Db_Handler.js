@@ -71,7 +71,7 @@ const local = module.exports = {
         })
     },
 
-    deleteRatedBar: function (email, callback) {
+    deleteRatedBar: function (userUUID, barId, callback) {
         connect(function (db, client) {
             const bars = db.collection('bars');
             bars.removeMany({userUUID: userUUID, barId: barID}, function (err, result) {
