@@ -24,22 +24,20 @@
             <th style="border: 1px solid black;">Bar</th>
             <th style="border: 1px solid black;">Rating</th>
             <th style="border: 1px solid black;">Comment</th> -->
-            <% if(bars){ %>
-            <% for(var i = 0; i < bars.length;i++) { %>
-              <div id="barList">
-                <button class="accordion"><%= bars[i].barName %></button>
-                <div class="panel">
-                  <p>Rating: <%= bars[i].rating %> </p>
-                  <p>Comments: <%= bars[i].comment %> </p>
-                  <p> <a style="color: blue" data-toggle='modal'
-                                                          data-target='#modalRating'
-                                                          data-bar_name="<%= bars[i].barName %>"
-                                                          data-bar_id="<%= bars[i].barID %>"
-                                                          data-bar_rating="<%= bars[i].rating %>"
-                                                          data-bar_comment="<%= bars[i].comment %>">Edit</a></p>
-                </div>
-              </div>
-            <!-- <tr style="border: 1px solid black;">
+        <% if(bars){ %>
+        <% for(var i = 0; i < bars.length;i++) { %>
+        <button class="accordion"><%= bars[i].barName %></button>
+        <div class="panel">
+            <p>Rating: <%= bars[i].rating %> </p>
+            <p>Comments: <%= bars[i].comment %> </p>
+            <p><a style="color: blue" data-toggle='modal'
+                  data-target='#modalRating'
+                  data-bar_name="<%= bars[i].barName %>"
+                  data-bar_id="<%= bars[i].barID %>"
+                  data-bar_rating="<%= bars[i].rating %>"
+                  data-bar_comment="<%= bars[i].comment %>">Edit</a></p>
+        </div>
+        <!-- <tr style="border: 1px solid black;">
                 <td style="border: 1px solid black;"> <%= bars[i].barName %> </td>
                 <td style="border: 1px solid black;"> <%= bars[i].rating %> </td>
                 <td style="border: 1px solid black;"> <%= bars[i].comment %> </td>
@@ -50,10 +48,10 @@
                                                         data-bar_rating="<%= bars[i].rating %>"
                                                         data-bar_comment="<%= bars[i].comment %>">Edit</a></td>
             </tr> -->
-            <% } %>
-            <% } else { %>
-            <p>no bar found</p>
-            <% } %>
+        <% } %>
+        <% } else { %>
+        <p>no bar found</p>
+        <% } %>
         <!-- </table> -->
         <% } else { %>
         <div class="alert alert-danger" role="alert">This area requires you to be logged in</div>
@@ -87,20 +85,20 @@
     </footer>
 </div>
 <script>
-var acc = document.getElementsByClassName("accordion");
-var i;
+    var acc = document.getElementsByClassName("accordion");
+    var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
     }
-  });
-}
 </script>
 </body>
 </html>
