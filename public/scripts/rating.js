@@ -17,7 +17,7 @@ $(function () {
                     + "</div>");
             } else {
                 $("#ratingForm-message").html("<div class=\"alert alert-success\" role=\"alert\">"
-                    + "You rating as been updated with success"
+                    + "Your rating as been updated successfully"
                     + "</div>");
                 if (location.pathname === "/bar") {
                     window.location.reload();
@@ -25,15 +25,15 @@ $(function () {
                     navigatedLocation();
                 }
             }
-        }).fail(function (req, res) {
-          const rating = req.body.rating;
+        }).fail(function () {
+          //TODO add error message for rating is null
           if (rating === "") {
             $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                + "Please enter a rating."
+                + "Please enter a rating"
                 + "</div>");
           } else {
             $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                + "An unexpected error has occurred. Please contact the Administrator."
+                + "An unexpected error has occurred, please contact the Administrator"
                 + "</div>");
               }
         })
