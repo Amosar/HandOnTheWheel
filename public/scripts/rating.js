@@ -25,7 +25,7 @@ $(function () {
                     navigatedLocation();
                 }
             }
-        }).fail(function () {
+        }).fail(function (req, res) {
           const rating = req.body.rating;
           if (rating === "") {
             $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
