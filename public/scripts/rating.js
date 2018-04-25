@@ -26,16 +26,13 @@ $(function () {
                 }
             }
         }).fail(function () {
-          const button = $(event.relatedTarget);
-          const rating = button.data('bar_rating');
-          modal.find('#rating-field').val(rating);
-          if (rating == null) {
+          if (formData == null) {
             $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                + "Please enter a rating"
+                + "Please enter a rating."
                 + "</div>");
           } else {
             $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                + "An unexpected error has occurred. Please contact the Administrator"
+                + "An unexpected error has occurred. Please contact the Administrator."
                 + "</div>");
               }
         })
