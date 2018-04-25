@@ -26,7 +26,7 @@ $(function () {
                 }
             }
         }).fail(function () {
-          if (formData == null) {
+          if (rating == null) {
             $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                 + "Please enter a rating."
                 + "</div>");
