@@ -44,6 +44,12 @@ $(function () {
                         + "</div>");
                 }
             }
+        }).fail(function (data) {
+          let param = data.responseJSON.param;
+          if (param === undefined) param = "";
+          $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+              + "Please enter a " + param
+              + "</div>");
         })
     });
 

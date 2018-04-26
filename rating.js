@@ -64,11 +64,7 @@ module.exports = function (app) {
                     if (err) {
                         res.status(500).json(rep);
                     } else {
-                        if (rep.error) {
-                            res.status(200).json(rep);
-                        } else {
-                            res.redirect('/bar');
-                        }
+                      res.redirect('/bar');
                     }
                 })
             });
