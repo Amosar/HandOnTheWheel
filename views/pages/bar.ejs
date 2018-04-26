@@ -18,19 +18,25 @@
 
 <div class="wrapper">
     <main>
+        <!-- check the user is logged in and has rated bars -->
         <% if (auth) { %>
         <% if(bars){ %>
-        <div class="center-block">
+        <!-- get all the rated bars-->
         <% for(var i = 0; i < bars.length;i++) { %>
+        <!-- display bar name as accordion button -->
         <button class="accordion"><%= bars[i].barName %></button>
         <div class="panel">
+          <!-- show bar info in panel and add form for remove option -->
           <form action="/deleteBar" id="deleteBarForm" method="post">
+            <!-- show the ratings -->
             <p>Rating: <%= bars[i].rating %> </p>
+            <!-- show comments only if not NULL -->
             <%if (bars[i].comment !== "") { %>
             <p>Comments: <%= bars[i].comment %> </p>
             <% } %>
-            <!-- hidden barID value don't delete -->
+            <!-- hidden barID value for delete function -->
             <input style="display: none;" name="barID" id="modalBarId" readonly value="<%= bars[i].barID %>">
+            <!-- edit button to chnage bar ratngs and comments -->
             <p><input type="button" class="btn btn-primary"
                   data-toggle='modal'
                   data-target='#modalRating'
@@ -38,15 +44,17 @@
                   data-bar_id="<%= bars[i].barID %>"
                   data-bar_rating="<%= bars[i].rating %>"
                   data-bar_comment="<%= bars[i].comment %>" value="Edit">
+                <!-- delete button to remove bars rating -->
                 <input type="submit" class="btn btn-danger" value="Delete">
               </form></p>
-            </div>
         </div>
         <% } %>
         <% } else { %>
+        <!-- if there are no rated bars show the user -->
         <div class="alert alert-warning text-center" role="alert">You have not rated any bars</div>
         <% } %>
         <% } else { %>
+        <!-- if user isn't logged in display login form -->
         <div class="alert alert-danger text-center" role="alert">This area requires you to be logged in</div>
         <% include ../partials/login %>
         <% } %>
@@ -55,6 +63,7 @@
     <!-- Modal rating-->
     <div class="modal fade" id="modalRating" tabindex="-1" role="dialog" aria-labelledby="modalRating"
          aria-hidden="true">
+         <!-- rating form -->
         <% include ../partials/rating %>
     </div>
 
@@ -78,13 +87,17 @@
         <% include ../partials/footer %>
     </footer>
 <script>
-    var acc = document.getElementsByClassName("accordion");
+    // java script for accordion button
+    var accordion = document.getElementsByClassName("accordion");
     var i;
 
+    // get all the accordion buttons
     for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
+      // check on click to show the pannel
+        accordion[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
+            // if pannel is at max height hide when accordion button clicked
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
             } else {
