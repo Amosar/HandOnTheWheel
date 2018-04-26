@@ -126,7 +126,7 @@ main {
     height: auto;
     float: left;
     margin: 0;
-    padding: 0;
+    padding-bottom: 5%;
 }
 
 /* set width and height of main content */
