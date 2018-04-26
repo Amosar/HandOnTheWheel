@@ -20,6 +20,7 @@
     <main>
         <% if (auth) { %>
         <% if(bars){ %>
+        <div class="center-block">
         <% for(var i = 0; i < bars.length;i++) { %>
         <button class="accordion"><%= bars[i].barName %></button>
         <div class="panel">
@@ -39,6 +40,7 @@
                   data-bar_comment="<%= bars[i].comment %>" value="Edit">
                 <input type="submit" class="btn btn-danger" value="Delete">
               </form></p>
+            </div>
         </div>
         <% } %>
         <% } else { %>
