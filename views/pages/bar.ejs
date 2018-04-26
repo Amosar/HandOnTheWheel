@@ -25,7 +25,7 @@
         <div class="panel">
           <form action="/deleteBar" id="deleteBarForm" method="post">
             <p>Rating: <%= bars[i].rating %> </p>
-            <% if (bars[i].comment === ""){ %>
+            <% if(bars[i].comment === ""){ %>
             <% } else { <p>Comments: bars[i].comment </p> } %>
             <% } %>
             <!-- hidden barID value don't delete -->
