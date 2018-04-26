@@ -139,10 +139,9 @@ main {
 /* google maps display */
 #map {
     height: 100%;
-    width: 100%;
+    width: 80%;
     position: absolute;
     z-index: initial;
-    padding-bottom: 5%;
 }
 
 /*search features over google map */
