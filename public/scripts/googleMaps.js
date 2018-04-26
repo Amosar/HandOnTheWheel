@@ -32,6 +32,7 @@ function getPreciseLocation(success) {
         maximumAge: 0
     };
 
+    //function called if the user location is found
     function localSuccess(pos) {
         const location = {
             lat: pos.coords.latitude,
@@ -41,7 +42,7 @@ function getPreciseLocation(success) {
         $(".location-loading").hide();
     }
 
-    //TODO better error for user
+    //function called if the user location cannot be found
     function localError(err) {
         console.warn(err);
         alert("Your location could not be determined\n" + err.message);
@@ -54,83 +55,67 @@ function getPreciseLocation(success) {
 
 /**
  * Use user inputed text to find location
- * @param success - give a callback method called if the user location is get.
  */
-function searchLocation(success){
-  //create the search box and link it to the searchbar
-  var input = document.getElementById('searchbar');
-  var searchBox = new google.maps.places.SearchBox(input);
+function searchLocation() {
+    //create the search box and link it to the searchbar
+    const input = document.getElementById('searchbar');
+    const searchBox = new google.maps.places.SearchBox(input);
 
     //bias search results to current view
     map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
-  });
+        searchBox.setBounds(map.getBounds());
+    });
 
-       //listen for event when user selects place get more information
-       searchBox.addListener('places_changed', function() {
-         var places = searchBox.getPlaces();
+    //listen for event when user selects place get more information
+    searchBox.addListener('places_changed', function () {
+        const places = searchBox.getPlaces();
 
-           if (places.length === 0) {
-           return;
-         }
+        if (places.length === 0) {
+            return;
+        }
 
-         //for each place get name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
+        //for each place get name and location.
+        const bounds = new google.maps.LatLngBounds();
+        places.forEach(function (place) {
             //get the center co-ords of the map
-            var newMapCenter = map.getCenter();
+            const newMapCenter = map.getCenter();
             if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
+                console.log("Returned place contains no geometry");
+                return;
             }
 
             if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-              //get lat and lng co-ords from center function
-              console.log("lat:" + newMapCenter.lat() + " " + "lng:" + newMapCenter.lng());
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+                //get lat and lng co-ords from center function
+                console.log("lat:" + newMapCenter.lat() + " " + "lng:" + newMapCenter.lng());
             } else {
-              bounds.extend(place.geometry.location);
-              //get lat and lng co-ords from center function
-              console.log("lat:" + newMapCenter.lat() + " " + "lng:" + newMapCenter.lng());
+                bounds.extend(place.geometry.location);
+                //get lat and lng co-ords from center function
+                console.log("lat:" + newMapCenter.lat() + " " + "lng:" + newMapCenter.lng());
             }
-          });
-
-          //clear previous markers
-          clearMarkers();
-          //display the location
-          map.fitBounds(bounds);
-          //display new markers
-          navigatedLocation();
         });
+
+        //clear previous markers
+        clearMarkers();
+        //display the location
+        map.fitBounds(bounds);
+        //display new markers
+        navigatedLocation();
+    });
 }
 
 /**
- * Update the map with a given location
- * @param location - location object with lat and lng fields.
+ * Update the map with with the position of the user
  */
 //when user navigates to a location update markers
-function navigatedLocation(location) {
-  var newMapCenter = map.getCenter();
-  location = {
-    lat: newMapCenter.lat(),
-    lng: newMapCenter.lng()
-  };
-    const mapOptions = {
-        center: location,
-        zoom: 15,
-        streetViewControl: false,
-        minZoom: 3
+function navigatedLocation() {
+    const newMapCenter = map.getCenter();
+    const location = {
+        lat: newMapCenter.lat(),
+        lng: newMapCenter.lng()
     };
-    clearMarkers();
-    if (typeof map.setCenter !== "undefined") {
-        map.panTo(location);
-        map.setZoom(mapOptions.zoom);
-        placeMarkers(location);
-    } else {
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        placeMarkers(location);
-    }
+    updateMap(location);
 }
 
 /**
@@ -145,6 +130,7 @@ function updateMap(location) {
         minZoom: 3
     };
     clearMarkers();
+    //Used to know if the map is initialized or not
     if (typeof map.setCenter !== "undefined") {
         map.panTo(location);
         map.setZoom(mapOptions.zoom);
@@ -169,12 +155,13 @@ function placeMarkers(location) {
     const service = new google.maps.places.PlacesService(map);
 
     checkIfUserIsLogged(function (userIsLogged) {
+        //Service provided by google maps to find places
         service.nearbySearch(request, function (results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (let i = 0; i < results.length; i++) {
                     const place = results[i];
                     getBarRatingByUser(place.place_id, function (barRated) {
-
+                        //Create custom icon for the google maps markers
                         const icon = {
                             url: "/img/pinpint.png",
                             size: new google.maps.Size(50, 50),
@@ -192,16 +179,20 @@ function placeMarkers(location) {
                             icon: icon
                         });
                         marker.data = place;
+                        //Add listener to see the information of the bar when you click on it
                         google.maps.event.addListener(marker, 'click', function () {
+                            //Call the PlaceService to get information about the bar when user click on the marker
                             const PlaceService = new google.maps.places.PlacesService(map);
                             PlaceService.getDetails({
                                 placeId: this.data.place_id
                             }, function (placeDetail, status) {
+                                //Needed to get the right marker
                                 for (let j = 0; j < markers.length; j++) {
                                     if (markers[j].data.place_id === placeDetail.place_id) {
                                         if (status === google.maps.places.PlacesServiceStatus.OK) {
                                             let infoWindowContent = '<div><strong>' + placeDetail.name + '</strong><br />';
                                             infoWindowContent += 'Google rating: ' + placeDetail.rating + '<br />';
+                                            //If the bar have a website display it on the infoWindow
                                             if (placeDetail.website !== undefined) {
                                                 infoWindowContent += 'WebSite: <a href="' + placeDetail.website
                                                     + '" target="_blank">click here</a><br />';
@@ -210,6 +201,10 @@ function placeMarkers(location) {
                                             infoWindowContent += '<a target="_blank" href="' + placeDetail.url
                                                 + '">View on Google Maps</a><br /><br />';
 
+                                            /*
+                                            Check if the bar is rated and add the information needed by the rating modal
+                                            to the rating button on the infoWindow
+                                             */
                                             if (barRated.isRated) {
                                                 infoWindowContent += "Your rating: " + barRated.rating + "/5 <br />";
                                                 infoWindowContent += "<a data-toggle='modal' data-target='#modalRating\' " +
@@ -232,6 +227,7 @@ function placeMarkers(location) {
                                 }
                             });
                         });
+                        //Store the markers (useful for the infoWindow and to be able to marker cluster in the future)
                         markers.push(marker);
                     });
                 }
@@ -241,7 +237,11 @@ function placeMarkers(location) {
     })
 }
 
-
+/**
+ * Ask the server if the bar is rated by the logged user and get the information about the bar
+ * @param barID     google map id of the bar
+ * @param callback  callback function that return the json answer give by the server
+ */
 function getBarRatingByUser(barID, callback) {
     const formData = {barID: barID};
     $.ajax({
@@ -249,16 +249,16 @@ function getBarRatingByUser(barID, callback) {
         url: "/getBarRatingByUser",
         data: formData
     }).done(function (response) {
-        if (response.isRated) {
-            callback(response);
-        } else {
-            callback(false);
-        }
+        callback(response);
     }).fail(function (data) {
-        callback(false);
+        callback(data.responseJSON);
     });
 }
 
+/**
+ * Ask the server if the active user is logged or not
+ * @param callback  boolean that said if the user is logged or not
+ */
 function checkIfUserIsLogged(callback) {
     $.ajax({
         type: 'POST',

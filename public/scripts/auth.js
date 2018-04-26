@@ -1,9 +1,10 @@
 $(function () {
-    // Get the registerForm.
+    // Manage the register form.
     const registerForm = $('#registerForm');
     $(registerForm).submit(function (event) {
         // Stop the browser from submitting the registerForm.
         event.preventDefault();
+        //Serialize the data and get password value
         const formData = $(this).serialize();
         const password = $(this).find(":input[name=password]")[0].value;
         const confirmPassword = $(this).find(":input[name=confirmPassword]")[0].value;
@@ -14,16 +15,18 @@ $(function () {
             return;
         }
 
+        //Create and run the ajax method to register the user
         $.ajax({
             type: 'POST',
             url: $(registerForm).attr('action'),
             data: formData
-        }).done(function (response) {
+        }).done(function (response) { //If the server return 200 status
             if (response.error) {
                 $("#register-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                     + response.message
                     + "</div>");
             } else {
+                //Open the login modal with a message and close the register modal
                 $("#login-message").html("<div class=\"alert alert-success\" role=\"alert\">"
                     + "you are registered, you can now log in to the website"
                     + "</div>");
@@ -31,7 +34,7 @@ $(function () {
                 $("#modalLogin").modal();
                 $("#modalRegister").modal("hide");
             }
-        }).fail(function (data) {
+        }).fail(function (data) { //If the browser return a bad status (status other than 200)
             let param = data.responseJSON.param;
             if (param === undefined) param = "";
             $("#register-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
@@ -40,12 +43,14 @@ $(function () {
         });
     });
 
+    // Manage the login form
     const loginForm = $('.loginForm');
     $(loginForm).submit(function (event) {
         // Stop the browser from submitting the loginForm.
         event.preventDefault();
         const formData = $(this).serialize();
 
+        //Create and run the ajax method to log the user
         $.ajax({
             type: 'POST',
             url: $(loginForm).attr('action'),
@@ -56,6 +61,7 @@ $(function () {
                     + response.message
                     + "</div>");
             } else {
+                //reload the page to update the element that need an authentication
                 window.location.reload();
             }
         }).fail(function (data) {
@@ -67,12 +73,14 @@ $(function () {
         });
     });
 
+    // Manage the delete account form
     const deleteAccountForm = $('#deleteAccountForm');
     $(deleteAccountForm).submit(function (event) {
         // Stop the browser from submitting the loginForm.
         event.preventDefault();
         const formData = $(this).serialize();
 
+        //Create and run the ajax method to delete the user account
         $.ajax({
             type: 'POST',
             url: $(deleteAccountForm).attr('action'),
@@ -83,6 +91,7 @@ $(function () {
                     + response.message
                     + "</div>");
             } else {
+                // Redirect the user to the home page when his account is delete
                 window.location = "/";
             }
         }).fail(function (data) {
@@ -94,10 +103,12 @@ $(function () {
         });
     });
 
+    // Manage the change password form
     const changePasswordForm = $('#changePasswordForm');
     $(changePasswordForm).submit(function (event) {
         // Stop the browser from submitting the loginForm.
         event.preventDefault();
+        //Serialize the data and get password value
         const formData = $(this).serialize();
         const currentPassword = $(changePasswordForm).find(":input[name=oldPassword]")[0].value;
         const newPassword = $(changePasswordForm).find(":input[name=newPassword]")[0].value;
@@ -115,6 +126,7 @@ $(function () {
             return;
         }
 
+        //Create and run the ajax method to change the password of the user
         $.ajax({
             type: 'POST',
             url: $(changePasswordForm).attr('action'),
@@ -128,6 +140,9 @@ $(function () {
                 $("#changePasswordForm-message").html("<div class=\"alert alert-success\" role=\"alert\">"
                     + response.message
                     + "</div>");
+                //reset the form after the password change
+                $(changePasswordForm).trigger("reset");
+
             }
         }).fail(function (data) {
             let param = data.responseJSON.param;

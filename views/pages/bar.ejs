@@ -26,27 +26,32 @@
         <!-- display bar name as accordion button -->
         <button class="accordion"><%= bars[i].barName %></button>
         <div class="panel">
-          <!-- show bar info in panel and add form for remove option -->
-          <form action="/deleteBar" id="deleteBarForm" method="post">
-            <!-- show the ratings -->
-            <p>Rating: <%= bars[i].rating %> </p>
-            <!-- show comments only if not NULL -->
-            <%if (bars[i].comment !== "") { %>
-            <p>Comments: <%= bars[i].comment %> </p>
-            <% } %>
-            <!-- hidden barID value for delete function -->
-            <input style="display: none;" name="barID" id="modalBarId" readonly value="<%= bars[i].barID %>">
-            <!-- edit button to chnage bar ratngs and comments -->
-            <p><input type="button" class="btn btn-primary"
-                  data-toggle='modal'
-                  data-target='#modalRating'
-                  data-bar_name="<%= bars[i].barName %>"
-                  data-bar_id="<%= bars[i].barID %>"
-                  data-bar_rating="<%= bars[i].rating %>"
-                  data-bar_comment="<%= bars[i].comment %>" value="Edit">
-                <!-- delete button to remove bars rating -->
-                <input type="submit" class="btn btn-danger" value="Delete">
-              </form></p>
+        <!-- show bar info in panel and add form for remove option -->
+        <form action="/deleteBar" method="post">
+          <!-- show the ratings -->
+          <p>Rating: <%= bars[i].rating %> </p>
+          <!-- show comments only if not NULL -->
+          <%if (bars[i].comment !== "") { %>
+          <p>Comments: <%= bars[i].comment %> </p>
+          <% } %>
+          <!-- hidden barID value for delete function -->
+            <div style="display: none;">
+                <label for="bar-<%= bars[i].barID %>" class="col-form-label">Workaround to send barID
+                    (do not edit this value!)</label>
+                <input style="display: none;" id="bar-<%= bars[i].barID %>" name="barID" readonly
+                       value="<%= bars[i].barID %>">
+            </div>
+        <!-- edit button to chnage bar ratngs and comments -->
+        <p><input type="button" class="btn btn-primary"
+              data-toggle='modal'
+              data-target='#modalRating'
+              data-bar_name="<%= bars[i].barName %>"
+              data-bar_id="<%= bars[i].barID %>"
+              data-bar_rating="<%= bars[i].rating %>"
+              data-bar_comment="<%= bars[i].comment %>" value="Edit">
+            <!-- delete button to remove bars rating -->
+            <input type="submit" class="btn btn-danger" value="Delete">
+          </form></p>
         </div>
         <% } %>
         <% } else { %>

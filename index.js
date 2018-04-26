@@ -4,10 +4,13 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const dbHandler = require('./include/Db_Handler.js');
 
-
+//define the port used by the application (process.env.PORT is needed for environment like herokuapp)
 const port = process.env.PORT || 8080;
+//Allow the application to parse json file and read encoded url
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+//Add debug information on the console
 //app.use(require('morgan')('combined')); //useful value :dev, combined
 
 
@@ -40,11 +43,11 @@ app.get('/account', function (req, res) {
 app.get('/bar', function (req, res) {
     const email = req.session.email;
     dbHandler.getUserByEmail(email, function (err, user) {
-        if (err) return done(err);
+        if (err) return res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: null});
         if (user) {
-            dbHandler.getBarRatedByUser(user.uuid, function (err, bars) {
+            dbHandler.getAllBarRatedByUser(user.uuid, function (err, bars) {
                 if (err) {
-                    res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: bars});
+                    res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: null});
                 } else {
                     res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: bars});
                 }
@@ -95,7 +98,7 @@ app.post('/contact', function (req, res) {
 });
 
 //handle 404 - Keep this as a last route
-app.use(function(req, res, next) {
+app.use(function (req, res) {
     res.status(404);
     res.render('404', {auth: req.isAuthenticated(), page_name: "404Error"});
 });
