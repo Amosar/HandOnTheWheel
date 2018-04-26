@@ -132,8 +132,9 @@ main {
 /* set width and height of main content */
 #container {
     width: 100%;
-    height: 80%;
+    height: 100%;
     position: absolute;
+    margin-bottom: 5%;
 }
 
 /* google maps display */
@@ -240,12 +241,7 @@ footer {
     width: 100%;
 }
 
-.facebook:hover {
-    opacity: 0.5;
-    cursor: pointer;
-}
-
-.twitter:hover {
+.twitter:hover, .facebook:hover {
     opacity: 0.5;
     cursor: pointer;
 }
