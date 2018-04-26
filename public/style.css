@@ -132,7 +132,7 @@ main {
 /* set width and height of main content */
 #container {
     width: 100%;
-    height: 70%;
+    height: 100%;
     position: absolute;
 }
 
@@ -231,7 +231,6 @@ main {
 /* css for the footer and footer componenets */
 footer {
     width: 100%;
-    height: 10%;
     background-color: #1f1f1f;
     display: block;
     bottom: 0;
