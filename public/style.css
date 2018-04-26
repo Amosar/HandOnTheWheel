@@ -131,14 +131,15 @@ main {
 
 /* set width and height of main content */
 #container {
-    height: 80%;
+    height: 100%;
     width: 100%;
     position: absolute;
+    padding-bottom: 5%;
 }
 
 /* google maps display */
 #map {
-    height: 80%;
+    height: 100%;
     width: 100%;
     position: absolute;
     z-index: initial;
