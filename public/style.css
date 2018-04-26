@@ -132,7 +132,7 @@ main {
 /* set width and height of main content */
 #container {
     width: 100%;
-    height: 100%;
+    height: 80%;
     position: absolute;
 }
 
@@ -156,16 +156,6 @@ main {
     text-align: center;
     margin-top: 15%;
     color: #000;
-}
-
-#overlay {
-    width: 75%;
-    height: 37.5em;
-    background: rgba(107, 107, 107, 1);
-    position: absolute;
-    z-index: -1;
-    left: 30em;
-    top: 6.25em;
 }
 
 /* contact us form and about us styles */
