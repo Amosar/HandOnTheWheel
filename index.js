@@ -4,10 +4,13 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const dbHandler = require('./include/Db_Handler.js');
 
-
+//define the port used by the application (process.env.PORT is needed for environment like herokuapp)
 const port = process.env.PORT || 8080;
+//Allow the application to parse json file and read encoded url
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+//Add debug information on the console
 //app.use(require('morgan')('combined')); //useful value :dev, combined
 
 

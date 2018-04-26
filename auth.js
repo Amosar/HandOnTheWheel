@@ -5,6 +5,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bCrypt = require('bcryptjs');
 
+//Strategy use to authenticate the user with passport
 passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
@@ -38,10 +39,16 @@ passport.deserializeUser(function (uuid, done) {
 });
 
 module.exports = function (app) {
-    app.use(session({secret: "cats", resave: false, saveUninitialized: false}));
+    //parameter use for the authentification system (need to be improve to use another method than Memory storage)
+    app.use(session({secret: "john", resave: false, saveUninitialized: false}));
     app.use(passport.initialize());
     app.use(passport.session());
 
+    /*
+    Allow the user to be logged on the website
+    Need a valid email and password send into the post request
+    Return a json that contain an error field (boolean) and a message field to explain the error.
+     */
     app.post('/login', function (req, res) {
         passport.authenticate('local', function (err, user, info) {
             if (err) {
@@ -67,6 +74,11 @@ module.exports = function (app) {
         })(req, res);
     });
 
+    /*
+    Allow the user to logOut from the website
+    Need an active session initialized with the login method
+    Redirect the user to the home page
+     */
     app.get('/logout', function (req, res) {
             req.logout();
         req.session.destroy();
@@ -74,7 +86,11 @@ module.exports = function (app) {
         }
     );
 
-
+    /*
+    Allow the user to register on the website
+    Need valid login, email and password parameters into the post request
+    Return a json that contain an error field (boolean) and a message field to explain the error
+     */
     app.post('/register', function (req, res) {
             const login = req.body.login;
             const email = req.body.email;
@@ -108,6 +124,11 @@ module.exports = function (app) {
         }
     );
 
+    /*
+    Allow the user to change his password on the website
+    Need an active session initialized with the login method, the old and the new user password parameter into the post request
+    Return a json that contain an error field (boolean) and a message field to explain the error
+     */
     app.post('/changePassword', function (req, res) {
         const email = req.session.email;
         const oldPassword = req.body.oldPassword;
@@ -160,6 +181,11 @@ module.exports = function (app) {
         }
     });
 
+    /*
+    Allow the user to delete his account on the website
+    Need an active session initialized with the login method, the user email and his password parameter into the post request
+    Return a json that contain an error field (boolean) and a message field to explain the error
+     */
     app.post('/deleteAccount', function (req, res) {
         const email = req.body.email;
         const password = req.body.password;
@@ -210,15 +236,13 @@ module.exports = function (app) {
         }
     });
 
+    //return true if the user is logged or false if the user isn't logged on the website
     app.post("/userIsLogged", function (req, res) {
         res.status(200).json({result: req.isAuthenticated()});
     });
-
-    app.get('/check', function (req, res) {
-        res.send(req.isAuthenticated());
-    });
 };
 
+//Validate the user email with a regex String
 function validateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());

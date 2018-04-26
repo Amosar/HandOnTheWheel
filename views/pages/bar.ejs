@@ -20,17 +20,20 @@
     <main>
         <% if (auth) { %>
         <% if(bars){ %>
+        <!-- create a list of the bar rated by the user-->
         <% for(var i = 0; i < bars.length;i++) { %>
         <button class="accordion"><%= bars[i].barName %></button>
         <div class="panel">
-            <form action="/deleteBar" method="post">
+            <form action="/deleteBarRating" method="post">
                 <p>Rating: <%= bars[i].rating %> </p>
                 <p>Comments: <%= bars[i].comment %> </p>
                 <!-- hidden barID value don't delete -->
-                <label for="bar-<%= bars[i].barID %>" class="col-form-label">Workaround to send barID (do not edit this
-                    value!)</label>
-                <input style="display: none;" id="bar-<%= bars[i].barID %>" name="barID" readonly
-                       value="<%= bars[i].barID %>">
+                <div style="display: none;">
+                    <label for="bar-<%= bars[i].barID %>" class="col-form-label">Workaround to send barID
+                        (do not edit this value!)</label>
+                    <input style="display: none;" id="bar-<%= bars[i].barID %>" name="barID" readonly
+                           value="<%= bars[i].barID %>">
+                </div>
                 <p><input type="button" class="btn btn-primary"
                           data-toggle='modal'
                           data-target='#modalRating'
@@ -80,6 +83,7 @@
 <script>
     const acc = document.getElementsByClassName("accordion");
 
+    //Add the action to show or hide the bar on the list
     for (let i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function () {
             this.classList.toggle("active");

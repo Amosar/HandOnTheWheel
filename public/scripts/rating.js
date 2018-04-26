@@ -1,11 +1,12 @@
-
 $(function () {
-    // Get the updateRating.
+    // Manage the update rating form
     const updateRatingForm = $('#ratingForm');
     updateRatingForm.submit(function (event) {
         // Stop the browser from submitting the registerForm.
         event.preventDefault();
         const formData = updateRatingForm.serialize();
+
+        //Create and run the ajax method to update theu user rating of a bar
         $.ajax({
             type: 'POST',
             url: updateRatingForm.attr('action'),
@@ -15,9 +16,11 @@ $(function () {
                 $("#ratingForm-message").html("<div class=\"alert alert-success\" role=\"alert\">"
                     + "Your rating as been updated successfully"
                     + "</div>");
+
+                //Do an action depend on where is the user on the website*
                 if (location.pathname === "/bar") {
                     window.location.reload();
-                } else {
+                } else if (location.pathname === "/") {
                     navigatedLocation();
                 }
             } else {
@@ -26,12 +29,11 @@ $(function () {
                     + "</div>");
             }
         }).fail(function (data) {
-          //TODO add error message for rating is null
             if (data.responseJSON.rating === "") {
-            $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                + "Please enter a rating"
-                + "</div>");
-          } else {
+                $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                    + "Please enter a rating"
+                    + "</div>");
+            } else {
                 if (data.responseJSON.message) {
                     $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                         + data.responseJSON.message
@@ -40,11 +42,12 @@ $(function () {
                     $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                         + "An unexpected error has occurred, please contact the Administrator"
                         + "</div>");
-              }
+                }
             }
         })
     });
 
+    //Add an action to the modal rating to automatically fill it with the rating information of a bar
     $('#modalRating').on('show.bs.modal', function (event) {
         const button = $(event.relatedTarget);
         const barName = button.data('bar_name');
