@@ -26,11 +26,10 @@ $(function () {
                 }
             }
         }).fail(function (data) {
-          //TODO add error message for rating is null
           let param = data.responseJSON.param;
           if (param === undefined) param = "";
           $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-              + data.responseJSON.message + param
+              + "Please enter a " + param
               + "</div>");
         })
     });
