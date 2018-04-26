@@ -15,12 +15,17 @@ module.exports = function (app) {
         } else if (barID === undefined || barID === "") {
             res.status(400).json({error: true, message: "the BarID parameter need to be specified"})
         } else {
-            dbHandler.getUserByEmail(email, function (err, user) {
-                dbHandler.getBarRating(user.uuid, barID, function (err, bar, message) {
+            dbHandler.getUserByEmail(email, function (err, user, msg) {
+                if (err) return res.status(500).json({error: true, message: msg});
+                dbHandler.getOneBarRatedByUser(user.uuid, barID, function (err, bar, message) {
                     if (err) {
-                        res.status(200).json({isRated: false, message: message})
+                        res.status(500).json({isRated: false, message: message})
                     } else {
-                        res.status(200).json({isRated: true, rating: bar.rating, comment: bar.comment})
+                        if (bar) {
+                            res.status(200).json({isRated: true, rating: bar.rating, comment: bar.comment})
+                        } else {
+                            res.status(200).json({isRated: false, message: message})
+                        }
                     }
                 })
             });
@@ -40,12 +45,17 @@ module.exports = function (app) {
         } else if (barID === undefined || barID === "") {
             res.status(400).json({error: true, message: "the BarID parameter need to be specified"})
         } else {
-            dbHandler.getUserByEmail(email, function (err, user) {
-                dbHandler.deleteBarRating(user.uuid, barID, function (rep) {
-                    if (res.error) {
-                        res.status(200).json(rep);
+            dbHandler.getUserByEmail(email, function (err, user, msg) {
+                if (err) return res.status(500).json({error: true, message: msg});
+                dbHandler.deleteBarRating(user.uuid, barID, function (err, rep) {
+                    if (err) {
+                        res.status(500).json(rep);
                     } else {
-                        window.location.reload();
+                        if (rep.error) {
+                            res.status(200).json(rep);
+                        } else {
+                            res.redirect('/bar');
+                        }
                     }
                 })
             });
@@ -77,9 +87,11 @@ module.exports = function (app) {
                 param: paramErr
             });
         } else {
-            dbHandler.getUserByEmail(email, function (err, user) {
-                dbHandler.setBarRating(user.uuid, barID, barName, rating, comment, function (err) {
-                    res.status(200).json({error: err});
+            dbHandler.getUserByEmail(email, function (err, user, msg) {
+                if (err) return res.status(500).json({error: true, message: msg});
+                dbHandler.setBarRating(user.uuid, barID, barName, rating, comment, function (err, updated, msg) {
+                    if (err) return res.status(500).json({error: true, message: msg});
+                    res.status(200).json({updated: updated});
                 })
             });
         }

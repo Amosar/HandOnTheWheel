@@ -3,18 +3,17 @@ const dbHandler = require('./include/Db_Handler.js');
 const session = require("express-session");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcryptjs');
+const bCrypt = require('bcryptjs');
 
-//req.session.passport.user; A way to found the user email
 passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
     },
     function (email, password, done) {
-        dbHandler.getUserByEmail(email, function (err, user) {
-            if (err) return done(err);
+        dbHandler.getUserByEmail(email, function (err, user, msg) {
+            if (err) return done(null, false, {message: msg});
             if (!user) return done(null, false, {message: 'Incorrect username.'});
-            bcrypt.compare(password, user.password, function (err, res) {
+            bCrypt.compare(password, user.password, function (err, res) {
                 if (res === true) {
                     done(null, user);
                 } else {
@@ -46,23 +45,24 @@ module.exports = function (app) {
     app.post('/login', function (req, res) {
         passport.authenticate('local', function (err, user, info) {
             if (err) {
-                return err;
-            }
-            if (!user) {
-                res.status(200).json({
-                    error: true,
-                    message: info.message
-                })
+                res.status(500).json(err);
             } else {
-                req.logIn(user, function (err) {
-                    if (err) {
-                        return err
-                    }
-                    req.session.email = req.body.email;
+                if (!user) {
                     res.status(200).json({
-                        error: false
+                        error: true,
+                        message: info.message
+                    })
+                } else {
+                    req.logIn(user, function (err) {
+                        if (err) {
+                            res.status(500).json(err);
+                        }
+                        req.session.email = req.body.email;
+                        res.status(200).json({
+                            error: false
+                        });
                     });
-                });
+                }
             }
         })(req, res);
     });
@@ -73,6 +73,8 @@ module.exports = function (app) {
             res.redirect('/');
         }
     );
+
+
     app.post('/register', function (req, res) {
             const login = req.body.login;
             const email = req.body.email;
@@ -92,8 +94,12 @@ module.exports = function (app) {
                 });
             } else {
                 if (validateEmail(email)) {
-                    dbHandler.createUser(login, email, password, function (rep) {
-                        res.status(200).json(rep);
+                    dbHandler.createUser(login, email, password, function (err, rep) {
+                        if (err) {
+                            res.status(500).json(rep);
+                        } else {
+                            res.status(200).json(rep);
+                        }
                     });
                 } else {
                     res.status(200).json({error: 'true', message: "Email address is not valid"});
@@ -129,14 +135,14 @@ module.exports = function (app) {
                 });
             } else if (validateEmail(email)) {
                 if (req.isAuthenticated()) {
-                    dbHandler.getUserByEmail(email, function (err, user) {
-                        if (err) return done(err);
-                        if (!user) return done(null, false, {message: 'Incorrect username.'});
+                    dbHandler.getUserByEmail(email, function (err, user, msg) {
+                        if (err) return res.status(500).json({error: true, message: msg});
+                        if (!user) return res.status(200).json({error: true, message: 'Incorrect username.'});
 
-                        bcrypt.compare(oldPassword, user.password, function (err, result) {
+                        bCrypt.compare(oldPassword, user.password, function (err, result) {
                             if (result === true) {
-                                dbHandler.updatePassword(email, newPassword, function (err) {
-                                    if (err) res.status(200).json({error: true, message: err.errmsg});
+                                dbHandler.updatePassword(email, newPassword, function (err, msg) {
+                                    if (err) res.status(500).json({error: true, message: msg});
                                     res.status(200).json({error: false, message: 'Password change with success'})
                                 });
                             } else {
@@ -172,18 +178,22 @@ module.exports = function (app) {
         } else {
             if (validateEmail(email)) {
                 if (req.isAuthenticated()) {
-                    dbHandler.getUserByEmail(email, function (err, user) {
-                        if (err) throw(err);
+                    dbHandler.getUserByEmail(email, function (err, user, msg) {
+                        if (err) return res.status(500).json({error: true, message: msg});
                         if (!user) return res.status(400).json({error: 'true', message: 'Incorrect username.'});
 
-                        bcrypt.compare(password, user.password, function (err, result) {
+                        bCrypt.compare(password, user.password, function (err, result) {
                             if (result === true) {
                                 req.logout();
-                                dbHandler.deleteUser(email, function (rep) {
-                                    if (rep.error) {
-                                        res.status(200).json(rep);
+                                dbHandler.deleteUser(email, function (err, rep) {
+                                    if (err) {
+                                        res.status(500).json(rep);
                                     } else {
-                                        res.redirect('/');
+                                        if (rep.error) {
+                                            res.status(200).json(rep);
+                                        } else {
+                                            res.redirect('/');
+                                        }
                                     }
                                 });
                             } else {

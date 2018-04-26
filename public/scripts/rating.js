@@ -11,11 +11,7 @@ $(function () {
             url: updateRatingForm.attr('action'),
             data: formData
         }).done(function (response) {
-            if (response.error) {
-                $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                    + "You haven't modified your rating"
-                    + "</div>");
-            } else {
+            if (response.updated) {
                 $("#ratingForm-message").html("<div class=\"alert alert-success\" role=\"alert\">"
                     + "Your rating as been updated successfully"
                     + "</div>");
@@ -24,18 +20,28 @@ $(function () {
                 } else {
                     navigatedLocation();
                 }
+            } else {
+                $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                    + "You haven't modified your rating"
+                    + "</div>");
             }
-        }).fail(function () {
+        }).fail(function (data) {
           //TODO add error message for rating is null
-          if (rating === "") {
+            if (data.responseJSON.rating === "") {
             $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
                 + "Please enter a rating"
                 + "</div>");
           } else {
-            $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                + "An unexpected error has occurred, please contact the Administrator"
-                + "</div>");
+                if (data.responseJSON.message) {
+                    $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                        + data.responseJSON.message
+                        + "</div>");
+                } else {
+                    $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+                        + "An unexpected error has occurred, please contact the Administrator"
+                        + "</div>");
               }
+            }
         })
     });
 

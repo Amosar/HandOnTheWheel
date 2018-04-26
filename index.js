@@ -40,11 +40,11 @@ app.get('/account', function (req, res) {
 app.get('/bar', function (req, res) {
     const email = req.session.email;
     dbHandler.getUserByEmail(email, function (err, user) {
-        if (err) return done(err);
+        if (err) return res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: null});
         if (user) {
-            dbHandler.getBarRatedByUser(user.uuid, function (err, bars) {
+            dbHandler.getAllBarRatedByUser(user.uuid, function (err, bars) {
                 if (err) {
-                    res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: bars});
+                    res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: null});
                 } else {
                     res.render('bar', {auth: req.isAuthenticated(), page_name: "myBars", bars: bars});
                 }
