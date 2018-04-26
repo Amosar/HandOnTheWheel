@@ -239,10 +239,11 @@ footer {
     text-align: center;
     position: absolute;
     width: 100%;
+    font-size: 10em;
 }
 
 .facebook, .twitter {
-    width: 10%;
+    width: 5%;
     padding: .2em;
     height: auto;
     text-decoration: none;
