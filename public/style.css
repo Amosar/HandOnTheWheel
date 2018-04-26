@@ -240,13 +240,6 @@ footer {
     width: 100%;
 }
 
-.facebook, .twitter {
-    width: 90%;
-    padding: .2em;
-    height: auto;
-    text-decoration: none;
-}
-
 .facebook:hover {
     opacity: 0.5;
     cursor: pointer;
