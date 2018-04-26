@@ -25,17 +25,13 @@ $(function () {
                     navigatedLocation();
                 }
             }
-        }).fail(function () {
+        }).fail(function (data) {
           //TODO add error message for rating is null
-          if (rating === "") {
-            $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                + "Please enter a rating"
-                + "</div>");
-          } else {
-            $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
-                + "An unexpected error has occurred, please contact the Administrator"
-                + "</div>");
-              }
+          let param = data.responseJSON.param;
+          if (param === undefined) param = "";
+          $("#ratingForm-message").html("<div class=\"alert alert-danger\" role=\"alert\">"
+              + data.responseJSON.message + param
+              + "</div>");
         })
     });
 
