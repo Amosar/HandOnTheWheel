@@ -95,7 +95,7 @@ app.post('/contact', function (req, res) {
 });
 
 //handle 404 - Keep this as a last route
-app.use(function(req, res, next) {
+app.use(function (req, res) {
     res.status(404);
     res.render('404', {auth: req.isAuthenticated(), page_name: "404Error"});
 });

@@ -1,5 +1,6 @@
 const api_key = "AIzaSyAf-JAqM8EDoTDnBgaH0dN9ioyBPI0dYJs";
 let markers = [];
+let map;
 
 /**
  * Use Google Maps Geolocation API to found the location of the user.
@@ -58,8 +59,8 @@ function getPreciseLocation(success) {
  */
 function searchLocation(success){
   //create the search box and link it to the searchbar
-  var input = document.getElementById('searchbar');
-  var searchBox = new google.maps.places.SearchBox(input);
+    const input = document.getElementById('searchbar');
+    const searchBox = new google.maps.places.SearchBox(input);
 
     //bias search results to current view
     map.addListener('bounds_changed', function() {
@@ -68,17 +69,17 @@ function searchLocation(success){
 
        //listen for event when user selects place get more information
        searchBox.addListener('places_changed', function() {
-         var places = searchBox.getPlaces();
+           const places = searchBox.getPlaces();
 
            if (places.length === 0) {
            return;
          }
 
          //for each place get name and location.
-          var bounds = new google.maps.LatLngBounds();
+           const bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
             //get the center co-ords of the map
-            var newMapCenter = map.getCenter();
+              const newMapCenter = map.getCenter();
             if (!place.geometry) {
               console.log("Returned place contains no geometry");
               return;
@@ -111,7 +112,7 @@ function searchLocation(success){
  */
 //when user navigates to a location update markers
 function navigatedLocation(location) {
-  var newMapCenter = map.getCenter();
+    const newMapCenter = map.getCenter();
   location = {
     lat: newMapCenter.lat(),
     lng: newMapCenter.lng()

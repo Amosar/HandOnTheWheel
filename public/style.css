@@ -194,8 +194,7 @@ main {
     text-align: center;
     font-size: 15px;
     transition: 0.4s;
-    border-style: groove;
-    border-color: #ccc;
+    border: groove #ccc;
 }
 
 .accordion:hover, .accordion.active {

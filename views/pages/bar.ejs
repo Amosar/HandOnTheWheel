@@ -23,11 +23,14 @@
         <% for(var i = 0; i < bars.length;i++) { %>
         <button class="accordion"><%= bars[i].barName %></button>
         <div class="panel">
-            <form action="/deleteBar" id="deleteBarForm" method="post">
+            <form action="/deleteBar" method="post">
                 <p>Rating: <%= bars[i].rating %> </p>
                 <p>Comments: <%= bars[i].comment %> </p>
                 <!-- hidden barID value don't delete -->
-                <input style="display: none;" name="barID" id="modalBarId" readonly value="<%= bars[i].barID %>">
+                <label for="bar-<%= bars[i].barID %>" class="col-form-label">Workaround to send barID (do not edit this
+                    value!)</label>
+                <input style="display: none;" id="bar-<%= bars[i].barID %>" name="barID" readonly
+                       value="<%= bars[i].barID %>">
                 <p><input type="button" class="btn btn-primary"
                           data-toggle='modal'
                           data-target='#modalRating'
@@ -75,13 +78,12 @@
     </footer>
 </div>
 <script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+    const acc = document.getElementsByClassName("accordion");
 
-    for (i = 0; i < acc.length; i++) {
+    for (let i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function () {
             this.classList.toggle("active");
-            var panel = this.nextElementSibling;
+            const panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
             } else {
