@@ -45,7 +45,7 @@ module.exports = function (app) {
                     if (res.error) {
                         res.status(200).json(rep);
                     } else {
-                        window.location.reload();
+                      res.redirect('/bar');
                     }
                 })
             });
